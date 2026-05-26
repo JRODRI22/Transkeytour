@@ -292,29 +292,29 @@
         /* Señales de ruta en el preloader */
         .pre-sign {
             position: absolute;
-            bottom: calc(13% + 55px);
+            bottom: calc(27% + 140px);
             display: flex; flex-direction: column; align-items: center;
-            gap: 4px; z-index: 4;
+            gap: 4px; z-index: 5;
         }
         .pre-sign img {
-            width: 36px; border-radius: 3px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.5);
+            width: 54px; border-radius: 4px;
+            box-shadow: 0 3px 12px rgba(0,0,0,.6);
         }
         .pre-sign-label {
-            font-size: .62rem; font-weight: 700;
+            font-size: .72rem; font-weight: 700;
             color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.8);
             font-family: 'Montserrat', sans-serif;
             white-space: nowrap; letter-spacing: .5px;
-            background: rgba(0,0,0,.45); padding: 2px 6px;
-            border-radius: 3px;
+            background: rgba(0,0,0,.55); padding: 3px 8px;
+            border-radius: 4px;
         }
         .pre-sign::after {
             content: '';
-            width: 3px; height: 30px;
-            background: #888; border-radius: 2px;
+            width: 3px; height: 38px;
+            background: #aaa; border-radius: 2px;
         }
-        .pre-sign-cr { left: 5%; }
-        .pre-sign-pa { right: 5%; }
+        .pre-sign-cr { left: 8%; }
+        .pre-sign-pa { right: 8%; }
 
         /* Preloader — mobile responsive */
         @media (max-width: 480px) {
@@ -325,10 +325,11 @@
             .pre-palm-l2 { font-size: 2.8rem; left: 10%; }
             .pre-palm-r1 { font-size: 4rem; right: 1%; }
             .pre-palm-r2 { font-size: 2.8rem; right: 10%; }
-            /* Se\u00f1ales m\u00e1s peque\u00f1as */
-            .pre-sign img { width: 28px; }
-            .pre-sign-label { font-size: .55rem; }
-            .pre-sign::after { height: 22px; }
+            /* Se\u00f1ales m\u00e1s grandes y arriba */
+            .pre-sign { bottom: calc(27% + 100px); }
+            .pre-sign img { width: 42px; }
+            .pre-sign-label { font-size: .62rem; }
+            .pre-sign::after { height: 28px; }
             /* Barra de progreso y texto m\u00e1s compactos */
             .pre-logo-txt { font-size: 1.15rem; }
             .pre-tagline-txt { font-size: .75rem; }
@@ -1648,6 +1649,40 @@
             }
         }
 
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 120px;
+            right: 35px;
+            width: 50px;
+            height: 50px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 998;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: var(--orange-hover, #e05a2a);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.7);
+        }
+
         /* ===== HAMBURGER MENU ===== */
         .hamburger {
             display: none;
@@ -1883,10 +1918,18 @@
             .hero-right {
                 width: 100%;
                 max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .price-box {
                 padding: 1.8rem;
+                width: 100%;
+                max-width: 460px;
+                margin: 0 auto;
+                text-align: center;
+                box-sizing: border-box;
             }
 
             .price-label {
@@ -3192,6 +3235,9 @@
         </button>
     </div>
 
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba" title="Volver arriba">&#8679;</button>
+
     <!-- WHATSAPP FLOTANTE -->
     <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20informaci%C3%B3n%20sobre%20el%20tour%20a%20Bocas%20del%20Toro%20del%2016-19%20Julio%202026%20%F0%9F%87%B5%F0%9F%87%A6" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
         <svg width="45" height="45" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3366,7 +3412,8 @@
             });
         })();
 
-        // HEADER SCROLL EFFECT
+        // HEADER SCROLL EFFECT + BACK TO TOP
+        const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
@@ -3374,6 +3421,15 @@
             } else {
                 header.classList.remove('scrolled');
             }
+            // Back to top visibility
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // PARALLAX MULTI-CAPA EN HERO
