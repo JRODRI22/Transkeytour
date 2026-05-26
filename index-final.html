@@ -993,6 +993,244 @@
         }
 
         /* DEVELOPER CREDITS */
+        /* ===== COUNTDOWN TIMER ===== */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a5f 100%);
+            padding: 3rem 0;
+            border-top: 2px solid rgba(255, 107, 53, 0.3);
+            border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .countdown-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-title {
+            font-size: 1.8rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .countdown-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            min-width: 110px;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--orange);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            text-shadow: 0 2px 10px rgba(255, 107, 53, 0.5);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== SHARE BUTTON ===== */
+        .share-float {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .share-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .share-btn.facebook {
+            background: #1877F2;
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, var(--white) 0%, #f8fafc 100%);
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.8rem 2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-question:hover {
+            color: var(--orange);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.8rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ===== LIGHTBOX GALERIA ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 31, 68, 0.98);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: var(--orange-hover);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .galeria-item {
+            cursor: pointer;
+        }
+
         .dev-credits-section {
             background: #0a1f44;
             border-top: 3px solid rgba(255, 107, 53, 0.4);
@@ -1231,6 +1469,41 @@
             .nav {
                 width: 100%;
             }
+
+            .lang-selector {
+                order: -1;
+                margin-bottom: 1rem;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .lang-btn {
+                font-size: 1rem;
+                padding: 0.7rem 1.5rem;
+            }
+
+            .countdown-timer {
+                gap: 1rem;
+            }
+
+            .countdown-box {
+                min-width: 80px;
+                padding: 1rem 1.5rem;
+            }
+
+            .countdown-number {
+                font-size: 2.2rem;
+            }
+
+            .share-float {
+                bottom: 120px;
+                right: 15px;
+            }
+
+            .share-btn {
+                width: 55px;
+                height: 55px;
+            }
         }
 
         /* ===== MEJORAS PROFESIONALES PREMIUM ===== */
@@ -1384,6 +1657,155 @@
             border: 2px solid;
             border-image: linear-gradient(135deg, var(--orange) 0%, #fbbf24 100%) 1;
         }
+
+        /* ===== MODAL BLOG ===== */
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 31, 68, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .blog-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            background: var(--orange-hover);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-category {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--orange);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .modal-body {
+            color: var(--text-dark);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .modal-body h3 {
+            color: var(--navy);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-body ul,
+        .modal-body ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .modal-body li {
+            margin: 0.8rem 0;
+        }
+
+        .modal-body strong {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 2rem;
+                border-radius: 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+
+            .modal-close {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1447,8 +1869,8 @@
                 <div class="hero-right">
                     <div class="price-box">
                         <p class="price-label" data-es="PRECIO TOTAL POR PERSONA" data-en="TOTAL PRICE PER PERSON">PRECIO TOTAL POR PERSONA</p>
-                        <div class="price-amount">₡150.000</div>
-                        <p class="price-subtitle" data-es="👶 Niños (5-10 años): ₡120.000" data-en="👶 Children (5-10 years): ₡120.000">👶 Niños (5-10 años): ₡120.000</p>
+                        <div class="price-amount" data-target="150000">₡0</div>
+                        <p class="price-subtitle" data-es="👶 Niños (5-10 años): ₡120,000" data-en="👶 Children (5-10 years): ₡120,000">👶 Niños (5-10 años): ₡120,000</p>
                         <p class="price-note" data-es="💰 Aparta con solo ₡25,000" data-en="💰 Reserve with only ₡25,000">💰 Aparta con solo ₡25,000</p>
                         
                         <div class="dates">
@@ -1456,6 +1878,34 @@
                             <p data-es="4 días / 3 noches de pura aventura" data-en="4 days / 3 nights of pure adventure">4 días / 3 noches de pura aventura</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER -->
+    <section class="countdown-section">
+        <div class="container">
+            <div class="countdown-header">
+                <h2 class="countdown-title" data-es="⏰ Cuenta Regresiva para la Aventura" data-en="⏰ Countdown to Adventure">⏰ Cuenta Regresiva para la Aventura</h2>
+                <p class="countdown-subtitle" data-es="¡No te quedes sin tu lugar!" data-en="Don't miss your spot!">¡No te quedes sin tu lugar!</p>
+            </div>
+            <div class="countdown-timer">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">--</div>
+                    <div class="countdown-label" data-es="Días" data-en="Days">Días</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">--</div>
+                    <div class="countdown-label" data-es="Horas" data-en="Hours">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">--</div>
+                    <div class="countdown-label" data-es="Minutos" data-en="Minutes">Minutos</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">--</div>
+                    <div class="countdown-label" data-es="Segundos" data-en="Seconds">Segundos</div>
                 </div>
             </div>
         </div>
@@ -1732,7 +2182,7 @@
                         <span class="blog-category" data-es="CONSEJOS" data-en="TIPS">CONSEJOS</span>
                         <h3 class="blog-title" data-es="10 Tips Esenciales para Bocas del Toro" data-en="10 Essential Tips for Bocas del Toro">10 Tips Esenciales para Bocas del Toro</h3>
                         <p class="blog-excerpt" data-es="Desde protector solar biodegradable hasta efectivo en dólares, descubre todo lo que debes saber para disfrutar al máximo de tu aventura en el Caribe panameño." data-en="From biodegradable sunscreen to cash in dollars, discover everything you need to know to make the most of your adventure in the Panamanian Caribbean.">Desde protector solar biodegradable hasta efectivo en dólares, descubre todo lo que debes saber para disfrutar al máximo de tu aventura en el Caribe panameño.</p>
-                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                        <a href="#" class="blog-read-more" data-article="tips" data-es="Leer más →" data-en="Read more →">Leer más →</a>
                     </div>
                 </div>
 
@@ -1742,7 +2192,7 @@
                         <span class="blog-category" data-es="PREPARACIÓN" data-en="PREPARATION">PREPARACIÓN</span>
                         <h3 class="blog-title" data-es="Qué Empacar para Bocas: Lista Completa" data-en="What to Pack for Bocas: Complete List">Qué Empacar para Bocas: Lista Completa</h3>
                         <p class="blog-excerpt" data-es="Tu checklist definitivo para no olvidar nada importante. Ropa ligera, calzado acuático, cámara waterproof y más. Empaca inteligente y viaja ligero." data-en="Your definitive checklist so you don't forget anything important. Light clothing, water shoes, waterproof camera and more. Pack smart and travel light.">Tu checklist definitivo para no olvidar nada importante. Ropa ligera, calzado acuático, cámara waterproof y más. Empaca inteligente y viaja ligero.</p>
-                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                        <a href="#" class="blog-read-more" data-article="packing" data-es="Leer más →" data-en="Read more →">Leer más →</a>
                     </div>
                 </div>
 
@@ -1752,7 +2202,7 @@
                         <span class="blog-category" data-es="PLANIFICACIÓN" data-en="PLANNING">PLANIFICACIÓN</span>
                         <h3 class="blog-title" data-es="Mejor Época para Visitar Bocas del Toro" data-en="Best Time to Visit Bocas del Toro">Mejor Época para Visitar Bocas del Toro</h3>
                         <p class="blog-excerpt" data-es="Clima, temporada seca vs lluviosa, festividades locales y cuándo encontrarás menos turistas. Guía completa para planificar tu viaje en el momento perfecto." data-en="Weather, dry vs rainy season, local festivals and when you'll find fewer tourists. Complete guide to plan your trip at the perfect time.">Clima, temporada seca vs lluviosa, festividades locales y cuándo encontrarás menos turistas. Guía completa para planificar tu viaje en el momento perfecto.</p>
-                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                        <a href="#" class="blog-read-more" data-article="timing" data-es="Leer más →" data-en="Read more →">Leer más →</a>
                     </div>
                 </div>
             </div>
@@ -1823,14 +2273,94 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-es="❓ Preguntas Frecuentes" data-en="❓ Frequently Asked Questions">❓ Preguntas Frecuentes</h2>
+                <p data-es="Todo lo que necesitas saber sobre el tour" data-en="Everything you need to know about the tour">Todo lo que necesitas saber sobre el tour</p>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Qué incluye el paquete de ₡150,000?" data-en="What's included in the ₡150,000 package?">¿Qué incluye el paquete de ₡150,000?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="El paquete incluye: transporte terrestre San José-Sixaola-San José, transporte acuático a las islas, hospedaje 3 noches en hotel con aire acondicionado, desayuno todos los días, tours a 6 destinos paradisíacos (Playa Estrella, Delfines, Cayos Zapatilla, Hospital Point, Boca del Drago y Hotel Punta Caracol), chaleco salvavidas, snorkel, y seguro de viaje." data-en="The package includes: ground transportation San José-Sixaola-San José, boat transportation to the islands, 3-night hotel accommodation with air conditioning, daily breakfast, tours to 6 paradisiacal destinations (Starfish Beach, Dolphins, Zapatilla Keys, Hospital Point, Boca del Drago and Punta Caracol Hotel), life jacket, snorkel, and travel insurance.">El paquete incluye: transporte terrestre San José-Sixaola-San José, transporte acuático a las islas, hospedaje 3 noches en hotel con aire acondicionado, desayuno todos los días, tours a 6 destinos paradisíacos (Playa Estrella, Delfines, Cayos Zapatilla, Hospital Point, Boca del Drago y Hotel Punta Caracol), chaleco salvavidas, snorkel, y seguro de viaje.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Necesito pasaporte para ir a Bocas del Toro?" data-en="Do I need a passport to go to Bocas del Toro?">¿Necesito pasaporte para ir a Bocas del Toro?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="Si eres costarricense, NO necesitas pasaporte. Puedes ingresar a Panamá solo con tu cédula de identidad vigente. Si eres de otro país, consulta los requisitos migratorios." data-en="If you're Costa Rican, you DON'T need a passport. You can enter Panama with just your valid ID card. If you're from another country, check immigration requirements.">Si eres costarricense, NO necesitas pasaporte. Puedes ingresar a Panamá solo con tu cédula de identidad vigente. Si eres de otro país, consulta los requisitos migratorios.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Cómo funciona el sistema de apartado de ₡25,000?" data-en="How does the ₡25,000 reservation system work?">¿Cómo funciona el sistema de apartado de ₡25,000?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="Para reservar tu lugar, haces un pago inicial de ₡25,000. El saldo restante (₡125,000) lo puedes pagar en cuotas o completo antes del 15 de junio 2026. Esto te permite asegurar tu cupo sin pagar todo de inmediato." data-en="To reserve your spot, you make an initial payment of ₡25,000. The remaining balance (₡125,000) can be paid in installments or in full before June 15, 2026. This allows you to secure your spot without paying everything upfront.">Para reservar tu lugar, haces un pago inicial de ₡25,000. El saldo restante (₡125,000) lo puedes pagar en cuotas o completo antes del 15 de junio 2026. Esto te permite asegurar tu cupo sin pagar todo de inmediato.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Qué no está incluido en el precio?" data-en="What's NOT included in the price?">¿Qué no está incluido en el precio?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="NO incluye: almuerzos y cenas (aproximadamente $8-15 por comida), bebidas alcohólicas, compras personales, propinas, actividades opcionales adicionales. Te recomendamos llevar efectivo en dólares o colones para estos gastos." data-en="NOT included: lunches and dinners (approximately $8-15 per meal), alcoholic beverages, personal purchases, tips, additional optional activities. We recommend bringing cash in dollars or colones for these expenses.">NO incluye: almuerzos y cenas (aproximadamente $8-15 por comida), bebidas alcohólicas, compras personales, propinas, actividades opcionales adicionales. Te recomendamos llevar efectivo en dólares o colones para estos gastos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Es seguro viajar a Bocas del Toro?" data-en="Is it safe to travel to Bocas del Toro?">¿Es seguro viajar a Bocas del Toro?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="Sí, Bocas del Toro es un destino turístico muy seguro y popular. El tour incluye seguro de viaje, nuestros guías son certificados y conocen la zona perfectamente. Todos los traslados en lancha cuentan con chalecos salvavidas y medidas de seguridad." data-en="Yes, Bocas del Toro is a very safe and popular tourist destination. The tour includes travel insurance, our guides are certified and know the area perfectly. All boat transfers include life jackets and safety measures.">Sí, Bocas del Toro es un destino turístico muy seguro y popular. El tour incluye seguro de viaje, nuestros guías son certificados y conocen la zona perfectamente. Todos los traslados en lancha cuentan con chalecos salvavidas y medidas de seguridad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Puedo ir si no sé nadar?" data-en="Can I go if I don't know how to swim?">¿Puedo ir si no sé nadar?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="¡Sí! Todas las actividades acuáticas incluyen chaleco salvavidas. Además, en lugares como Playa Estrella el agua es muy poco profunda (a la rodilla). Nuestros guías están capacitados para ayudar a todos los pasajeros sin importar su nivel de natación." data-en="Yes! All water activities include life jackets. Also, in places like Starfish Beach the water is very shallow (knee-deep). Our guides are trained to help all passengers regardless of swimming level.">¡Sí! Todas las actividades acuáticas incluyen chaleco salvavidas. Además, en lugares como Playa Estrella el agua es muy poco profunda (a la rodilla). Nuestros guías están capacitados para ayudar a todos los pasajeros sin importar su nivel de natación.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span data-es="¿Cuál es la política de cancelación?" data-en="What's the cancellation policy?">¿Cuál es la política de cancelación?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-es="Cancelaciones con más de 30 días de anticipación: reembolso del 80%. Entre 15-30 días: reembolso del 50%. Menos de 15 días: no hay reembolso, pero puedes transferir tu cupo a otra persona. Te recomendamos contratar un seguro de viaje que cubra cancelaciones por emergencias." data-en="Cancellations more than 30 days in advance: 80% refund. Between 15-30 days: 50% refund. Less than 15 days: no refund, but you can transfer your spot to someone else. We recommend purchasing travel insurance that covers cancellations due to emergencies.">Cancelaciones con más de 30 días de anticipación: reembolso del 80%. Entre 15-30 días: reembolso del 50%. Menos de 15 días: no hay reembolso, pero puedes transferir tu cupo a otra persona. Te recomendamos contratar un seguro de viaje que cubra cancelaciones por emergencias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- DEVELOPER CREDITS -->
     <section class="dev-credits-section">
         <div class="dev-credits-container">
             <div class="dev-logo-wrapper">
-                <img src="images/LogoDesarrollador.png" alt="JR Digital Solutions" class="dev-logo">
+                <img src="images/LogoDesarrollador.png" alt="JR Digital Solutions" class="dev-logo" onerror="this.style.display='none'">
             </div>
             <div class="dev-info">
-                <h3 class="dev-company-name">JR Digital Solutions</h3>
+                <h3 class="dev-company-name">💻 JR Digital Solutions</h3>
                 <p class="dev-tagline" data-es="Desarrollo web profesional • Soluciones digitales a la medida" data-en="Professional web development • Custom digital solutions">Desarrollo web profesional • Soluciones digitales a la medida</p>
                 <p class="dev-location-text">📍 San Carlos, Costa Rica</p>
             </div>
@@ -1875,6 +2405,196 @@
             </div>
         </div>
     </footer>
+
+    <!-- LIGHTBOX GALERIA -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightbox-img" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- MODALES DE BLOG -->
+    <div id="modal-tips" class="blog-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBlogModal()">×</button>
+            <div class="modal-header">
+                <span class="modal-category" data-es="GUÍA DEL VIAJERO" data-en="TRAVELER'S GUIDE">GUÍA DEL VIAJERO</span>
+                <h2 class="modal-title" data-es="10 Tips Esenciales para Viajar a Bocas del Toro" data-en="10 Essential Tips for Traveling to Bocas del Toro">10 Tips Esenciales para Viajar a Bocas del Toro</h2>
+            </div>
+            <div class="modal-body">
+                <p data-es="Bocas del Toro es uno de los destinos más paradisíacos de Centroamérica. Para que aproveches al máximo tu aventura, aquí te compartimos los consejos más importantes basados en la experiencia de cientos de viajeros." data-en="Bocas del Toro is one of the most paradisiacal destinations in Central America. To make the most of your adventure, here we share the most important tips based on the experience of hundreds of travelers.">Bocas del Toro es uno de los destinos más paradisíacos de Centroamérica. Para que aproveches al máximo tu aventura, aquí te compartimos los consejos más importantes basados en la experiencia de cientos de viajeros.</p>
+                
+                <h3 data-es="1. Lleva Efectivo en Dólares" data-en="1. Bring Cash in Dollars">1. Lleva Efectivo en Dólares</h3>
+                <p data-es="Aunque muchos lugares aceptan tarjetas, varios restaurantes y tiendas pequeñas solo aceptan efectivo. Los dólares americanos son ampliamente aceptados junto con el balboa panameño (que tiene paridad 1:1 con el dólar)." data-en="Although many places accept cards, several restaurants and small shops only accept cash. American dollars are widely accepted along with the Panamanian balboa (which has 1:1 parity with the dollar).">Aunque muchos lugares aceptan tarjetas, varios restaurantes y tiendas pequeñas solo aceptan efectivo. Los dólares americanos son ampliamente aceptados junto con el balboa panameño (que tiene paridad 1:1 con el dólar).</p>
+                
+                <h3 data-es="2. Protector Solar Biodegradable es Obligatorio" data-en="2. Biodegradable Sunscreen is Mandatory">2. Protector Solar Biodegradable es Obligatorio</h3>
+                <p data-es="Para proteger los arrecifes de coral, utiliza únicamente bloqueador solar biodegradable o reef-safe. Los protectores tradicionales con oxibenzona dañan los corales y están prohibidos en algunas áreas marinas." data-en="To protect coral reefs, use only biodegradable or reef-safe sunscreen. Traditional sunscreens with oxybenzone damage corals and are prohibited in some marine areas.">Para proteger los arrecifes de coral, utiliza únicamente bloqueador solar biodegradable o reef-safe. Los protectores tradicionales con oxibenzona dañan los corales y están prohibidos en algunas áreas marinas.</p>
+                
+                <h3 data-es="3. Ropa Ligera y de Secado Rápido" data-en="3. Light and Quick-Dry Clothing">3. Ropa Ligera y de Secado Rápido</h3>
+                <p data-es="El clima es tropical y húmedo. Empaca ropa de telas ligeras como poliéster o nylon que secan rápido. Evita el algodón porque tarda mucho en secar con la humedad." data-en="The climate is tropical and humid. Pack clothes made of light fabrics like polyester or nylon that dry quickly. Avoid cotton as it takes a long time to dry in the humidity.">El clima es tropical y húmedo. Empaca ropa de telas ligeras como poliéster o nylon que secan rápido. Evita el algodón porque tarda mucho en secar con la humedad.</p>
+                
+                <h3 data-es="4. Calzado Acuático (Water Shoes)" data-en="4. Water Shoes">4. Calzado Acuático (Water Shoes)</h3>
+                <p data-es="Indispensables para caminar sobre coral, rocas y fondos marinos. Protegen tus pies de erizos de mar y permiten explorar playas rocosas con seguridad." data-en="Essential for walking on coral, rocks and sea bottoms. They protect your feet from sea urchins and allow you to explore rocky beaches safely.">Indispensables para caminar sobre coral, rocas y fondos marinos. Protegen tus pies de erizos de mar y permiten explorar playas rocosas con seguridad.</p>
+                
+                <h3 data-es="5. Cámara Acuática o Funda Waterproof" data-en="5. Waterproof Camera or Case">5. Cámara Acuática o Funda Waterproof</h3>
+                <p data-es="No querrás perderte las increíbles fotos submarinas de las estrellas de mar, corales y peces tropicales. Una GoPro o funda impermeable para tu smartphone son esenciales." data-en="You won't want to miss the incredible underwater photos of starfish, corals and tropical fish. A GoPro or waterproof case for your smartphone are essential.">No querrás perderte las increíbles fotos submarinas de las estrellas de mar, corales y peces tropicales. Una GoPro o funda impermeable para tu smartphone son esenciales.</p>
+                
+                <h3 data-es="6. Repelente de Mosquitos Fuerte" data-en="6. Strong Mosquito Repellent">6. Repelente de Mosquitos Fuerte</h3>
+                <p data-es="Al atardecer los mosquitos pueden ser molestos. Lleva repelente con DEET al menos 30% o alternativas naturales como aceite de citronela." data-en="At dusk mosquitoes can be annoying. Bring repellent with at least 30% DEET or natural alternatives like citronella oil.">Al atardecer los mosquitos pueden ser molestos. Lleva repelente con DEET al menos 30% o alternativas naturales como aceite de citronela.</p>
+                
+                <h3 data-es="7. Medicamentos Personales y Básicos" data-en="7. Personal and Basic Medications">7. Medicamentos Personales y Básicos</h3>
+                <p data-es="Lleva tus medicamentos de prescripción más un botiquín básico: analgésicos, antihistamínicos, medicina para mareos (si eres sensible en lancha) y protección estomacal." data-en="Bring your prescription medications plus a basic kit: pain relievers, antihistamines, motion sickness medicine (if you're sensitive on boats) and stomach protection.">Lleva tus medicamentos de prescripción más un botiquín básico: analgésicos, antihistamínicos, medicina para mareos (si eres sensible en lancha) y protección estomacal.</p>
+                
+                <h3 data-es="8. Bolsas Impermeables (Dry Bags)" data-en="8. Waterproof Bags (Dry Bags)">8. Bolsas Impermeables (Dry Bags)</h3>
+                <p data-es="Protege tu celular, documentos y ropa seca durante los traslados en lancha. Las bolsas dry bag son económicas y salvarán tus pertenencias de mojarse." data-en="Protect your phone, documents and dry clothes during boat transfers. Dry bags are inexpensive and will save your belongings from getting wet.">Protege tu celular, documentos y ropa seca durante los traslados en lancha. Las bolsas dry bag son económicas y salvarán tus pertenencias de mojarse.</p>
+                
+                <h3 data-es="9. Respeta la Cultura Local" data-en="9. Respect Local Culture">9. Respeta la Cultura Local</h3>
+                <p data-es="Bocas tiene una fuerte presencia de comunidades afrocaribeñas e indígenas Ngäbe-Buglé. Respeta sus costumbres, pide permiso antes de fotografiar personas, y apoya negocios locales." data-en="Bocas has a strong presence of Afro-Caribbean and indigenous Ngäbe-Buglé communities. Respect their customs, ask permission before photographing people, and support local businesses.">Bocas tiene una fuerte presencia de comunidades afrocaribeñas e indígenas Ngäbe-Buglé. Respeta sus costumbres, pide permiso antes de fotografiar personas, y apoya negocios locales.</p>
+                
+                <h3 data-es="10. No Toques la Vida Marina" data-en="10. Don't Touch Marine Life">10. No Toques la Vida Marina</h3>
+                <p data-es="Aunque es tentador, no toques las estrellas de mar ni los corales. El contacto humano daña su delicado ecosistema. Observa, fotografía y disfruta sin alterar la naturaleza." data-en="Although it's tempting, don't touch starfish or corals. Human contact damages their delicate ecosystem. Observe, photograph and enjoy without altering nature.">Aunque es tentador, no toques las estrellas de mar ni los corales. El contacto humano daña su delicado ecosistema. Observa, fotografía y disfruta sin alterar la naturaleza.</p>
+                
+                <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-left: 4px solid var(--orange); border-radius: 10px;"><strong data-es="💡 Tip Extra:" data-en="💡 Extra Tip:">💡 Tip Extra:</strong> <span data-es="Descarga mapas offline de Bocas del Toro en Google Maps antes de viajar. El internet puede ser inestable en algunas islas." data-en="Download offline maps of Bocas del Toro in Google Maps before traveling. Internet can be unstable on some islands.">Descarga mapas offline de Bocas del Toro en Google Maps antes de viajar. El internet puede ser inestable en algunas islas.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-packing" class="blog-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBlogModal()">×</button>
+            <div class="modal-header">
+                <span class="modal-category" data-es="CHECKLIST" data-en="CHECKLIST">CHECKLIST</span>
+                <h2 class="modal-title" data-es="Qué Empacar para Bocas del Toro: Checklist Completa" data-en="What to Pack for Bocas del Toro: Complete Checklist">Qué Empacar para Bocas del Toro: Checklist Completa</h2>
+            </div>
+            <div class="modal-body">
+                <p data-es="Empacar bien es clave para disfrutar tu aventura en Bocas del Toro. Aquí está tu checklist definitiva para no olvidar nada importante." data-en="Packing well is key to enjoying your adventure in Bocas del Toro. Here's your definitive checklist so you don't forget anything important.">Empacar bien es clave para disfrutar tu aventura en Bocas del Toro. Aquí está tu checklist definitiva para no olvidar nada importante.</p>
+                
+                <h3 data-es="📱 Electrónicos y Tecnología" data-en="📱 Electronics and Technology">📱 Electrónicos y Tecnología</h3>
+                <ul>
+                    <li data-es="<strong>Celular</strong> con funda impermeable" data-en="<strong>Phone</strong> with waterproof case"><strong>Celular</strong> con funda impermeable</li>
+                    <li data-es="<strong>Cargadores</strong> y cables USB" data-en="<strong>Chargers</strong> and USB cables"><strong>Cargadores</strong> y cables USB</li>
+                    <li data-es="<strong>Batería portátil (power bank)</strong> de al menos 10,000 mAh" data-en="<strong>Portable battery (power bank)</strong> at least 10,000 mAh"><strong>Batería portátil (power bank)</strong> de al menos 10,000 mAh</li>
+                    <li data-es="<strong>Cámara acuática</strong> (GoPro, cámara sumergible o funda waterproof)" data-en="<strong>Waterproof camera</strong> (GoPro, submersible camera or waterproof case)"><strong>Cámara acuática</strong> (GoPro, cámara sumergible o funda waterproof)</li>
+                    <li data-es="<strong>Adaptador universal</strong> (Panamá usa enchufes tipo A/B, 110V)" data-en="<strong>Universal adapter</strong> (Panama uses type A/B plugs, 110V)"><strong>Adaptador universal</strong> (Panamá usa enchufes tipo A/B, 110V)</li>
+                    <li data-es="<strong>Audífonos</strong> resistentes al agua" data-en="<strong>Headphones</strong> water resistant"><strong>Audífonos</strong> resistentes al agua</li>
+                </ul>
+                
+                <h3 data-es="👕 Ropa y Calzado" data-en="👕 Clothing and Footwear">👕 Ropa y Calzado</h3>
+                <ul>
+                    <li data-es="<strong>3-4 trajes de baño</strong> (para tener siempre uno seco)" data-en="<strong>3-4 swimsuits</strong> (to always have a dry one)"><strong>3-4 trajes de baño</strong> (para tener siempre uno seco)</li>
+                    <li data-es="<strong>Ropa ligera y de secado rápido:</strong> camisetas, shorts, vestidos" data-en="<strong>Light and quick-dry clothing:</strong> t-shirts, shorts, dresses"><strong>Ropa ligera y de secado rápido:</strong> camisetas, shorts, vestidos</li>
+                    <li data-es="<strong>Ropa de manga larga liviana</strong> (protección solar y mosquitos)" data-en="<strong>Light long-sleeve clothing</strong> (sun and mosquito protection)"><strong>Ropa de manga larga liviana</strong> (protección solar y mosquitos)</li>
+                    <li data-es="<strong>Calzado acuático</strong> (water shoes obligatorios)" data-en="<strong>Water shoes</strong> (mandatory)"><strong>Calzado acuático</strong> (water shoes obligatorios)</li>
+                    <li data-es="<strong>Sandalias cómodas</strong> tipo Teva o Crocs" data-en="<strong>Comfortable sandals</strong> like Teva or Crocs"><strong>Sandalias cómodas</strong> tipo Teva o Crocs</li>
+                    <li data-es="<strong>Tenis deportivos</strong> (para caminatas si aplica)" data-en="<strong>Sports shoes</strong> (for hikes if applicable)"><strong>Tenis deportivos</strong> (para caminatas si aplica)</li>
+                    <li data-es="<strong>Gorra o sombrero</strong> con protección solar" data-en="<strong>Cap or hat</strong> with sun protection"><strong>Gorra o sombrero</strong> con protección solar</li>
+                    <li data-es="<strong>Lentes de sol</strong> con protección UV" data-en="<strong>Sunglasses</strong> with UV protection"><strong>Lentes de sol</strong> con protección UV</li>
+                    <li data-es="<strong>Ropa para dormir</strong> liviana" data-en="<strong>Sleepwear</strong> light"><strong>Ropa para dormir</strong> liviana</li>
+                </ul>
+                
+                <h3 data-es="🧴 Artículos de Higiene y Salud" data-en="🧴 Hygiene and Health Items">🧴 Artículos de Higiene y Salud</h3>
+                <ul>
+                    <li data-es="<strong>Protector solar biodegradable</strong> SPF 50+ (reef-safe)" data-en="<strong>Biodegradable sunscreen</strong> SPF 50+ (reef-safe)"><strong>Protector solar biodegradable</strong> SPF 50+ (reef-safe)</li>
+                    <li data-es="<strong>Repelente de mosquitos</strong> con DEET 30%+" data-en="<strong>Mosquito repellent</strong> with 30%+ DEET"><strong>Repelente de mosquitos</strong> con DEET 30%+</li>
+                    <li data-es="<strong>After-sun</strong> o aloe vera para quemaduras" data-en="<strong>After-sun</strong> or aloe vera for burns"><strong>After-sun</strong> o aloe vera para quemaduras</li>
+                    <li data-es="<strong>Shampoo y acondicionador</strong> en tamaño de viaje" data-en="<strong>Shampoo and conditioner</strong> travel size"><strong>Shampoo y acondicionador</strong> en tamaño de viaje</li>
+                    <li data-es="<strong>Cepillo y pasta de dientes</strong>" data-en="<strong>Toothbrush and toothpaste</strong>"><strong>Cepillo y pasta de dientes</strong></li>
+                    <li data-es="<strong>Desodorante</strong>" data-en="<strong>Deodorant</strong>"><strong>Desodorante</strong></li>
+                    <li data-es="<strong>Toalla de microfibra</strong> (secan rápido y ocupan poco espacio)" data-en="<strong>Microfiber towel</strong> (dries fast and takes little space)"><strong>Toalla de microfibra</strong> (secan rápido y ocupan poco espacio)</li>
+                    <li data-es="<strong>Medicamentos personales</strong> y recetas" data-en="<strong>Personal medications</strong> and prescriptions"><strong>Medicamentos personales</strong> y recetas</li>
+                    <li data-es="<strong>Botiquín básico:</strong> curitas, analgésicos, antiácidos, antihistamínicos" data-en="<strong>Basic kit:</strong> band-aids, pain relievers, antacids, antihistamines"><strong>Botiquín básico:</strong> curitas, analgésicos, antiácidos, antihistamínicos</li>
+                </ul>
+                
+                <h3 data-es="🎒 Accesorios y Extras" data-en="🎒 Accessories and Extras">🎒 Accesorios y Extras</h3>
+                <ul>
+                    <li data-es="<strong>Mochila impermeable</strong> (dry bag 20-30L)" data-en="<strong>Waterproof backpack</strong> (dry bag 20-30L)"><strong>Mochila impermeable</strong> (dry bag 20-30L)</li>
+                    <li data-es="<strong>Bolsas Ziploc</strong> para documentos y electrónicos" data-en="<strong>Ziploc bags</strong> for documents and electronics"><strong>Bolsas Ziploc</strong> para documentos y electrónicos</li>
+                    <li data-es="<strong>Snorkel y visor</strong> personales (opcionales, pero más higiénico)" data-en="<strong>Snorkel and mask</strong> personal (optional, but more hygienic)"><strong>Snorkel y visor</strong> personales (opcionales, pero más higiénico)</li>
+                    <li data-es="<strong>Linterna pequeña</strong> o frontal" data-en="<strong>Small flashlight</strong> or headlamp"><strong>Linterna pequeña</strong> o frontal</li>
+                    <li data-es="<strong>Libro o Kindle</strong> para momentos de relax" data-en="<strong>Book or Kindle</strong> for relaxation moments"><strong>Libro o Kindle</strong> para momentos de relax</li>
+                    <li data-es="<strong>Botella reutilizable</strong> para agua" data-en="<strong>Reusable bottle</strong> for water"><strong>Botella reutilizable</strong> para agua</li>
+                </ul>
+                
+                <h3 data-es="📄 Documentos Importantes" data-en="📄 Important Documents">📄 Documentos Importantes</h3>
+                <ul>
+                    <li data-es="<strong>Pasaporte o cédula</strong> vigente (costarricenses pueden entrar con cédula)" data-en="<strong>Passport or ID</strong> valid (Costa Ricans can enter with ID)"><strong>Pasaporte o cédula</strong> vigente (costarricenses pueden entrar con cédula)</li>
+                    <li data-es="<strong>Comprobante de reserva</strong> del tour" data-en="<strong>Tour reservation</strong> proof"><strong>Comprobante de reserva</strong> del tour</li>
+                    <li data-es="<strong>Seguro de viaje</strong> (recomendado)" data-en="<strong>Travel insurance</strong> (recommended)"><strong>Seguro de viaje</strong> (recomendado)</li>
+                    <li data-es="<strong>Tarjetas de crédito/débito</strong> y efectivo en dólares" data-en="<strong>Credit/debit cards</strong> and cash in dollars"><strong>Tarjetas de crédito/débito</strong> y efectivo en dólares</li>
+                    <li data-es="<strong>Contactos de emergencia</strong> anotados" data-en="<strong>Emergency contacts</strong> noted"><strong>Contactos de emergencia</strong> anotados</li>
+                </ul>
+                
+                <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 168, 232, 0.1); border-left: 4px solid var(--sky); border-radius: 10px;"><strong data-es="✈️ Tip de Viaje:" data-en="✈️ Travel Tip:">✈️ Tip de Viaje:</strong> <span data-es="Empaca todo en una maleta pequeña tipo carry-on. Los traslados en lancha son más cómodos con equipaje ligero y compacto." data-en="Pack everything in a small carry-on suitcase. Boat transfers are more comfortable with light and compact luggage.">Empaca todo en una maleta pequeña tipo carry-on. Los traslados en lancha son más cómodos con equipaje ligero y compacto.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-timing" class="blog-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBlogModal()">×</button>
+            <div class="modal-header">
+                <span class="modal-category" data-es="PLANIFICACIÓN" data-en="PLANNING">PLANIFICACIÓN</span>
+                <h2 class="modal-title" data-es="Mejor Época para Visitar Bocas del Toro" data-en="Best Time to Visit Bocas del Toro">Mejor Época para Visitar Bocas del Toro</h2>
+            </div>
+            <div class="modal-body">
+                <p data-es="Elegir el momento correcto para viajar a Bocas del Toro puede marcar la diferencia entre unas vacaciones buenas y unas vacaciones inolvidables. Aquí te ayudamos a decidir cuándo ir según tus preferencias." data-en="Choosing the right time to travel to Bocas del Toro can make the difference between a good vacation and an unforgettable one. Here we help you decide when to go according to your preferences.">Elegir el momento correcto para viajar a Bocas del Toro puede marcar la diferencia entre unas vacaciones buenas y unas vacaciones inolvidables. Aquí te ayudamos a decidir cuándo ir según tus preferencias.</p>
+                
+                <h3 data-es="☀️ Temporada Seca (Febrero - Abril, Septiembre - Octubre)" data-en="☀️ Dry Season (February - April, September - October)">☀️ Temporada Seca (Febrero - Abril, Septiembre - Octubre)</h3>
+                <p data-es="<strong>La mejor época para actividades de playa y snorkel.</strong> El clima es más predecible con menos lluvia, mar tranquilo y excelente visibilidad bajo el agua." data-en="<strong>The best time for beach and snorkeling activities.</strong> The weather is more predictable with less rain, calm seas and excellent underwater visibility."><strong>La mejor época para actividades de playa y snorkel.</strong> El clima es más predecible con menos lluvia, mar tranquilo y excelente visibilidad bajo el agua.</p>
+                <ul>
+                    <li data-es="<strong>Pros:</strong> Sol garantizado, mar cristalino, menos mosquitos" data-en="<strong>Pros:</strong> Guaranteed sun, crystal clear sea, fewer mosquitoes"><strong>Pros:</strong> Sol garantizado, mar cristalino, menos mosquitos</li>
+                    <li data-es="<strong>Contras:</strong> Más turistas, precios ligeramente más altos" data-en="<strong>Cons:</strong> More tourists, slightly higher prices"><strong>Contras:</strong> Más turistas, precios ligeramente más altos</li>
+                    <li data-es="<strong>Ideal para:</strong> Familias, snorkelers, fotógrafos de paisajes" data-en="<strong>Ideal for:</strong> Families, snorkelers, landscape photographers"><strong>Ideal para:</strong> Familias, snorkelers, fotógrafos de paisajes</li>
+                </ul>
+                
+                <h3 data-es="🌧️ Temporada de Lluvias (Mayo - Agosto, Noviembre - Enero)" data-en="🌧️ Rainy Season (May - August, November - January)">🌧️ Temporada de Lluvias (Mayo - Agosto, Noviembre - Enero)</h3>
+                <p data-es="<strong>No significa lluvia todo el día.</strong> Generalmente llueve en la tarde/noche con mañanas soleadas. La naturaleza está en su máximo esplendor: verde intenso y cascadas con más caudal." data-en="<strong>Doesn't mean rain all day.</strong> It generally rains in the afternoon/evening with sunny mornings. Nature is at its peak: intense green and waterfalls with more flow."><strong>No significa lluvia todo el día.</strong> Generalmente llueve en la tarde/noche con mañanas soleadas. La naturaleza está en su máximo esplendor: verde intenso y cascadas con más caudal.</p>
+                <ul>
+                    <li data-es="<strong>Pros:</strong> Menos turistas, precios más económicos, naturaleza exuberante" data-en="<strong>Pros:</strong> Fewer tourists, cheaper prices, lush nature"><strong>Pros:</strong> Menos turistas, precios más económicos, naturaleza exuberante</li>
+                    <li data-es="<strong>Contras:</strong> Algunas actividades pueden cancelarse por clima, más mosquitos" data-en="<strong>Cons:</strong> Some activities may be cancelled due to weather, more mosquitoes"><strong>Contras:</strong> Algunas actividades pueden cancelarse por clima, más mosquitos</li>
+                    <li data-es="<strong>Ideal para:</strong> Viajeros de presupuesto ajustado, amantes de naturaleza, quienes buscan tranquilidad" data-en="<strong>Ideal for:</strong> Budget travelers, nature lovers, those seeking tranquility"><strong>Ideal para:</strong> Viajeros de presupuesto ajustado, amantes de naturaleza, quienes buscan tranquilidad</li>
+                </ul>
+                
+                <h3 data-es="🎉 Eventos y Festividades Locales" data-en="🎉 Events and Local Festivities">🎉 Eventos y Festividades Locales</h3>
+                <ul>
+                    <li data-es="<strong>Carnaval (Febrero-Marzo):</strong> Celebración afrocaribeña con música, desfiles y baile en las calles" data-en="<strong>Carnival (February-March):</strong> Afro-Caribbean celebration with music, parades and street dancing"><strong>Carnaval (Febrero-Marzo):</strong> Celebración afrocaribeña con música, desfiles y baile en las calles</li>
+                    <li data-es="<strong>Semana Santa (Marzo-Abril):</strong> Temporada alta con muchos visitantes locales" data-en="<strong>Holy Week (March-April):</strong> High season with many local visitors"><strong>Semana Santa (Marzo-Abril):</strong> Temporada alta con muchos visitantes locales</li>
+                    <li data-es="<strong>Feria del Mar (Septiembre):</strong> Festival gastronómico del mar con comida tradicional" data-en="<strong>Sea Fair (September):</strong> Sea food festival with traditional food"><strong>Feria del Mar (Septiembre):</strong> Festival gastronómico del mar con comida tradicional</li>
+                    <li data-es="<strong>Día de la Independencia de Panamá (3 de Noviembre):</strong> Desfiles y celebraciones patrióticas" data-en="<strong>Panama Independence Day (November 3):</strong> Parades and patriotic celebrations"><strong>Día de la Independencia de Panamá (3 de Noviembre):</strong> Desfiles y celebraciones patrióticas</li>
+                </ul>
+                
+                <h3 data-es="🌊 Condiciones del Mar por Temporada" data-en="🌊 Sea Conditions by Season">🌊 Condiciones del Mar por Temporada</h3>
+                <p data-es="<strong>Enero-Marzo:</strong> Mar tranquilo, ideal para kayak y paddleboard. Visibilidad submarina excelente (20-30 metros)." data-en="<strong>January-March:</strong> Calm sea, ideal for kayaking and paddleboarding. Excellent underwater visibility (20-30 meters)."><strong>Enero-Marzo:</strong> Mar tranquilo, ideal para kayak y paddleboard. Visibilidad submarina excelente (20-30 metros).</p>
+                <p data-es="<strong>Abril-Junio:</strong> Transición con lluvias ocasionales. Mar moderado. Buena época para surfistas principiantes." data-en="<strong>April-June:</strong> Transition with occasional rains. Moderate sea. Good time for beginner surfers."><strong>Abril-Junio:</strong> Transición con lluvias ocasionales. Mar moderado. Buena época para surfistas principiantes.</p>
+                <p data-es="<strong>Julio-Agosto:</strong> Lluvias frecuentes pero cortas. Olas más grandes en algunas playas (Playa Bluff, Paunch)." data-en="<strong>July-August:</strong> Frequent but short rains. Bigger waves on some beaches (Playa Bluff, Paunch)."><strong>Julio-Agosto:</strong> Lluvias frecuentes pero cortas. Olas más grandes en algunas playas (Playa Bluff, Paunch).</p>
+                <p data-es="<strong>Septiembre-Diciembre:</strong> Clima variable. Mejores precios del año. Perfecto para quienes buscan experiencias auténticas sin multitudes." data-en="<strong>September-December:</strong> Variable weather. Best prices of the year. Perfect for those seeking authentic experiences without crowds."><strong>Septiembre-Diciembre:</strong> Clima variable. Mejores precios del año. Perfecto para quienes buscan experiencias auténticas sin multitudes.</p>
+                
+                <h3 data-es="🐢 Mejor Época para Ver Vida Silvestre" data-en="🐢 Best Time to See Wildlife">🐢 Mejor Época para Ver Vida Silvestre</h3>
+                <ul>
+                    <li data-es="<strong>Tortugas marinas:</strong> Marzo-Septiembre (anidación en Playa Larga y Zapatillas)" data-en="<strong>Sea turtles:</strong> March-September (nesting at Playa Larga and Zapatillas)"><strong>Tortugas marinas:</strong> Marzo-Septiembre (anidación en Playa Larga y Zapatillas)</li>
+                    <li data-es="<strong>Perezosos:</strong> Todo el año (más activos en mañanas)" data-en="<strong>Sloths:</strong> All year (more active in mornings)"><strong>Perezosos:</strong> Todo el año (más activos en mañanas)</li>
+                    <li data-es="<strong>Delfines:</strong> Todo el año (tours matutinos tienen mejores avistamientos)" data-en="<strong>Dolphins:</strong> All year (morning tours have better sightings)"><strong>Delfines:</strong> Todo el año (tours matutinos tienen mejores avistamientos)</li>
+                    <li data-es="<strong>Estrellas de mar:</strong> Todo el año en Starfish Beach, mejor visibilidad en temporada seca" data-en="<strong>Starfish:</strong> All year at Starfish Beach, best visibility in dry season"><strong>Estrellas de mar:</strong> Todo el año en Starfish Beach, mejor visibilidad en temporada seca</li>
+                    <li data-es="<strong>Aves tropicales:</strong> Abril-Junio (época de reproducción, más actividad)" data-en="<strong>Tropical birds:</strong> April-June (breeding season, more activity)"><strong>Aves tropicales:</strong> Abril-Junio (época de reproducción, más actividad)</li>
+                </ul>
+                
+                <h3 data-es="💰 Presupuesto y Ocupación" data-en="💰 Budget and Occupancy">💰 Presupuesto y Ocupación</h3>
+                <p data-es="<strong>Temporada Alta (Diciembre-Abril, Julio):</strong> Hoteles llenos, precios altos. Reservar con 2-3 meses de anticipación." data-en="<strong>High Season (December-April, July):</strong> Full hotels, high prices. Book 2-3 months in advance."><strong>Temporada Alta (Diciembre-Abril, Julio):</strong> Hoteles llenos, precios altos. Reservar con 2-3 meses de anticipación.</p>
+                <p data-es="<strong>Temporada Media (Septiembre-Noviembre):</strong> Buenos precios, clima aceptable. Sweet spot para valor." data-en="<strong>Mid Season (September-November):</strong> Good prices, acceptable weather. Sweet spot for value."><strong>Temporada Media (Septiembre-Noviembre):</strong> Buenos precios, clima aceptable. Sweet spot para valor.</p>
+                <p data-es="<strong>Temporada Baja (Mayo-Junio, Agosto):</strong> Descuentos de hasta 30%. Muchos hoteles y tours siguen operando normalmente." data-en="<strong>Low Season (May-June, August):</strong> Discounts up to 30%. Many hotels and tours still operate normally."><strong>Temporada Baja (Mayo-Junio, Agosto):</strong> Descuentos de hasta 30%. Muchos hoteles y tours siguen operando normalmente.</p>
+                
+                <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--green); border-radius: 10px;"><strong data-es="🎯 Nuestra Recomendación:" data-en="🎯 Our Recommendation:">🎯 Nuestra Recomendación:</strong> <span data-es="Febrero-Marzo y Septiembre-Octubre son los mejores meses: buen clima, precios razonables y menos multitudes. ¡Nuestro tour en Julio 2026 está perfectamente timed para aprovechar el verano con ambiente vibrante!" data-en="February-March and September-October are the best months: good weather, reasonable prices and fewer crowds. Our July 2026 tour is perfectly timed to enjoy summer with a vibrant atmosphere!">Febrero-Marzo y Septiembre-Octubre son los mejores meses: buen clima, precios razonables y menos multitudes. ¡Nuestro tour en Julio 2026 está perfectamente timed para aprovechar el verano con ambiente vibrante!</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTONES COMPARTIR -->
+    <div class="share-float">
+        <button class="share-btn facebook" onclick="shareOnFacebook()" title="Compartir en Facebook">f</button>
+        <button class="share-btn whatsapp" onclick="shareOnWhatsApp()" title="Compartir en WhatsApp">💬</button>
+    </div>
 
     <!-- WHATSAPP FLOTANTE -->
     <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20informaci%C3%B3n%20sobre%20el%20tour%20a%20Bocas%20del%20Toro%20del%2016-19%20Julio%202026%20%F0%9F%87%B5%F0%9F%87%A6" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
@@ -2271,15 +2991,23 @@
         // ANIMACIÓN DE CONTEO MEJORADA
         const priceAmount = document.querySelector('.price-amount');
         if (priceAmount) {
-            const targetNumber = 150000;
-            gsap.from(priceAmount, {
-                textContent: 0,
+            const targetNumber = parseInt(priceAmount.getAttribute('data-target')) || 150000;
+            const startNumber = 0;
+            
+            gsap.to(priceAmount, {
+                textContent: targetNumber,
                 duration: 2.5,
                 delay: 0.5,
                 ease: 'power2.out',
                 snap: { textContent: 1 },
+                scrollTrigger: {
+                    trigger: '.price-box',
+                    start: 'top 80%',
+                    once: true
+                },
                 onUpdate: function() {
-                    priceAmount.textContent = '₡' + Math.floor(this.targets()[0].textContent).toLocaleString();
+                    const current = Math.floor(this.targets()[0].textContent);
+                    priceAmount.textContent = '₡' + current.toLocaleString('es-CR');
                 }
             });
         }
@@ -2321,6 +3049,146 @@
                 ticking = true;
             }
         });
+
+        // ===== SISTEMA DE MODALES DE BLOG =====
+        
+        // Abrir modal según data-article
+        function openBlogModal(articleType) {
+            const modal = document.getElementById(`modal-${articleType}`);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+            }
+        }
+
+        // Cerrar cualquier modal abierto
+        function closeBlogModal() {
+            const modals = document.querySelectorAll('.blog-modal');
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+
+        // Event listeners para botones "Leer más"
+        document.querySelectorAll('.blog-read-more').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const articleType = button.getAttribute('data-article');
+                if (articleType) {
+                    openBlogModal(articleType);
+                }
+            });
+        });
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.querySelectorAll('.blog-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeBlogModal();
+                }
+            });
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBlogModal();
+            }
+        });
+
+        // ===== COUNTDOWN TIMER =====
+        function updateCountdown() {
+            const tourDate = new Date('2026-07-16T06:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = tourDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ===== FAQ TOGGLE =====
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const wasActive = faqItem.classList.contains('active');
+            
+            // Cerrar todos los FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Abrir el clickeado si no estaba activo
+            if (!wasActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // ===== LIGHTBOX GALERIA =====
+        function openLightbox(img) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Agregar click handlers a imágenes de galería
+        document.querySelectorAll('.galeria-item img').forEach(img => {
+            img.addEventListener('click', () => openLightbox(img));
+        });
+
+        // Cerrar lightbox con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Cerrar lightbox al hacer click fuera de la imagen
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // ===== COMPARTIR =====
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent('🌴 ¡Mira este increíble tour a Bocas del Toro! 16-19 Julio 2026 🇵🇦');
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+        }
 
         console.log('%c✨ TransKeyTours — Diseño Premium Activado', 'color: #FF6B35; font-size: 16px; font-weight: bold;');
     </script>
