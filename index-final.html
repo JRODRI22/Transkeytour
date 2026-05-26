@@ -76,6 +76,9 @@
             backdrop-filter: blur(10px);
         }
 
+        /* ocultar en desktop — solo visible en mobile via media query */
+        .nav-btn-mobile { display: none; }
+
         .lang-btn {
             background: transparent;
             border: none;
@@ -1586,6 +1589,37 @@
             }
         }
 
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1002;
+            flex-shrink: 0;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .hamburger.is-open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.is-open span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-8px);
+        }
+        .hamburger.is-open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
         /* RESPONSIVE */
         @media (max-width: 968px) {
             .hero-content {
@@ -1619,6 +1653,101 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .header-content {
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                flex-wrap: nowrap !important;
+            }
+
+            /* Ocultar botón Reservar del header en mobile */
+            .header-content > .btn-reservar {
+                display: none !important;
+            }
+
+            /* Nav como overlay fullscreen en mobile */
+            .nav {
+                display: none !important;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(8, 22, 54, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column !important;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1.5rem;
+                gap: 0 !important;
+                z-index: 998;
+                overflow-y: auto;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            }
+
+            .nav.nav-open {
+                display: flex !important;
+                animation: mobileNavIn 0.28s ease forwards;
+            }
+
+            @keyframes mobileNavIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+
+            .nav a {
+                padding: 1.1rem 0;
+                font-size: 1.15rem;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.07);
+                color: rgba(255,255,255,0.9);
+            }
+
+            .nav a:hover {
+                color: var(--orange);
+                background: none;
+            }
+
+            .lang-selector {
+                margin-top: 1.5rem;
+                justify-content: center;
+                width: 100%;
+                order: unset;
+            }
+
+            /* Botón Reservar dentro del menú mobile */
+            .nav-btn-mobile {
+                display: flex;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .nav-btn-mobile a {
+                background: var(--orange);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 30px;
+                font-weight: 700;
+                text-decoration: none;
+                width: 100%;
+                text-align: center;
+                border-bottom: none !important;
+                font-size: 1rem;
+            }
+
+            .nav-btn-mobile a:hover {
+                background: var(--orange-hover);
+                color: white !important;
+            }
+        }
+
         @media (max-width: 640px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
@@ -1639,22 +1768,6 @@
             .btn-secondary {
                 width: 100%;
                 text-align: center;
-            }
-
-            .header-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .nav {
-                width: 100%;
-            }
-
-            .lang-selector {
-                order: -1;
-                margin-bottom: 1rem;
-                justify-content: center;
-                width: 100%;
             }
 
             .lang-btn {
@@ -2109,7 +2222,12 @@
                 <div class="logo">
                     <img src="Logov2.png" alt="TransKeyTours">
                 </div>
-                <nav class="nav">
+                <button class="hamburger" id="hamburger" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav">
                     <a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
                     <a href="#testimonios" data-es="Testimonios" data-en="Testimonials">Testimonios</a>
                     <a href="#incluye" data-es="Incluye" data-en="Includes">Incluye</a>
@@ -2119,6 +2237,9 @@
                     <div class="lang-selector">
                         <button class="lang-btn active" data-lang="es"><img src="https://flagcdn.com/w40/es.png" alt="ES" width="22"> ES</button>
                         <button class="lang-btn" data-lang="en"><img src="https://flagcdn.com/w40/us.png" alt="EN" width="22"> EN</button>
+                    </div>
+                    <div class="nav-btn-mobile">
+                        <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" data-es="Reservar Ahora" data-en="Book Now">Reservar Ahora</a>
                     </div>
                 </nav>
                 <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" class="btn-reservar" data-es="Reservar Ahora" data-en="Book Now">Reservar Ahora</a>
@@ -3026,6 +3147,48 @@
 
         // Aplicar idioma inicial
         setLanguage(currentLang);
+
+        // HAMBURGER MENU
+        (function() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('mainNav');
+            if (!hamburger || !nav) return;
+
+            function openMenu() {
+                nav.classList.add('nav-open');
+                hamburger.classList.add('is-open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                nav.classList.remove('nav-open');
+                hamburger.classList.remove('is-open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nav.classList.contains('nav-open') ? closeMenu() : openMenu();
+            });
+
+            // Cerrar al hacer clic en un enlace
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => closeMenu());
+            });
+
+            // Cerrar al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            // Cerrar al redimensionar a desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) closeMenu();
+            });
+        })();
 
         // HEADER SCROLL EFFECT
         window.addEventListener('scroll', () => {
