@@ -100,6 +100,186 @@
             color: var(--white);
         }
 
+        .lang-btn img {
+            vertical-align: middle;
+            margin-right: 4px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        /* ===== PRELOADER — Buseta rumbo a Bocas del Toro ===== */
+        #pagePreloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        .pre-sky {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg,
+                #020b1a 0%, #0a1f44 20%, #1565c0 50%, #e8841a 80%, #f5c842 100%);
+        }
+        .pre-sun {
+            position: absolute;
+            right: 18%; bottom: 37%;
+            width: 90px; height: 90px;
+            background: radial-gradient(circle at center, #fffde7, #fdd835, #f59820);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #fdd835, 0 0 140px rgba(245,200,60,.4);
+        }
+        .pre-cloud {
+            position: absolute;
+            border-radius: 50px;
+            background: rgba(255,255,255,.87);
+        }
+        .pre-cloud::before, .pre-cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255,255,255,.87);
+            border-radius: 50%;
+        }
+        .pc1 { top: 11%; left: 7%; width: 130px; height: 26px; }
+        .pc1::before { width: 65px; height: 52px; top: -30px; left: 18px; }
+        .pc1::after  { width: 45px; height: 38px; top: -20px; left: 68px; }
+        .pc2 { top: 7%;  left: 37%; width: 88px; height: 20px; }
+        .pc2::before { width: 44px; height: 36px; top: -19px; left: 12px; }
+        .pc2::after  { width: 32px; height: 26px; top: -14px; left: 48px; }
+        .pc3 { top: 18%; right: 7%; width: 112px; height: 24px; }
+        .pc3::before { width: 56px; height: 46px; top: -26px; left: 16px; }
+        .pc3::after  { width: 38px; height: 34px; top: -18px; left: 60px; }
+        .pre-mountains {
+            position: absolute;
+            bottom: 27%; left: 0; right: 0; height: 220px;
+            background: #1a4731;
+            clip-path: polygon(
+                0% 100%, 0% 55%, 6% 23%, 13% 55%, 20% 12%, 29% 46%,
+                37% 7%,  47% 42%, 55% 21%, 65% 47%, 73% 11%,
+                82% 40%, 90% 17%, 96% 42%, 100% 27%, 100% 100%);
+        }
+        .pre-mountains::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 52%;
+            background: #0d3320;
+            clip-path: polygon(
+                0% 100%, 0% 55%, 5% 37%, 14% 62%, 22% 28%, 31% 57%,
+                39% 24%, 49% 52%, 57% 31%, 67% 52%, 75% 27%,
+                84% 49%, 91% 27%, 97% 50%, 100% 31%, 100% 100%);
+        }
+        .pre-ocean {
+            position: absolute;
+            bottom: 23%; left: 0; right: 0; height: 50px;
+            background: linear-gradient(180deg, #1a7abf, #0e5a8a);
+            opacity: .75;
+        }
+        .pre-ocean::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: rgba(255,255,255,.25);
+        }
+        .pre-ground {
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 26%;
+            background: linear-gradient(180deg, #4caf50 0%, #2e7d32 45%, #1b5e20 100%);
+        }
+        .pre-road {
+            position: absolute;
+            bottom: 13%; left: 0; right: 0; height: 50px;
+            background: #3a3a3a;
+            border-top: 3px solid #555;
+            border-bottom: 2px solid #555;
+        }
+        .pre-road::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 5px; margin-top: -2.5px;
+            background: repeating-linear-gradient(
+                90deg, #fff 0, #fff 55px, transparent 55px, transparent 110px);
+            opacity: .65;
+        }
+        .pre-palm {
+            position: absolute;
+            font-size: 5rem; line-height: 1;
+            filter: drop-shadow(3px 6px 8px rgba(0,0,0,.6));
+            z-index: 3;
+        }
+        .pre-palm-l1 { bottom: 18%; left:  2%; font-size: 5.8rem; transform: scaleX(-1); }
+        .pre-palm-l2 { bottom: 20%; left: 13%; font-size: 3.8rem; transform: scaleX(-1); }
+        .pre-palm-r1 { bottom: 18%; right: 2%; font-size: 5.8rem; }
+        .pre-palm-r2 { bottom: 20%; right:13%; font-size: 3.8rem; }
+        .pre-bus {
+            position: absolute;
+            bottom: calc(13% + 42px);
+            width: 280px; left: 0; z-index: 5;
+        }
+        .pre-bus svg {
+            width: 100%; height: auto;
+            filter: drop-shadow(4px 8px 14px rgba(0,0,0,.55));
+        }
+        @keyframes preWheelSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(-360deg); }
+        }
+        .pre-bus.rolling .w-spin {
+            animation: preWheelSpin .35s linear infinite;
+        }
+        .pre-ui {
+            position: absolute; bottom: 4%;
+            left: 50%; transform: translateX(-50%);
+            text-align: center; z-index: 20;
+            width: 400px; max-width: 90vw;
+        }
+        .pre-logo-txt {
+            font-size: 1.5rem; font-weight: 800;
+            color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.6);
+            margin-bottom: .4rem;
+            font-family: 'Montserrat', sans-serif; letter-spacing: 1px;
+        }
+        .pre-tagline-txt {
+            font-size: .85rem; color: rgba(255,255,255,.9);
+            margin-bottom: .9rem; font-weight: 500;
+        }
+        .pre-bar-wrap {
+            width: 100%; height: 7px;
+            background: rgba(255,255,255,.2);
+            border-radius: 4px; overflow: hidden;
+        }
+        .pre-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #FF6B35 0%, #ffd700 50%, #FF6B35 100%);
+            background-size: 200%;
+            border-radius: 4px;
+            animation: preBarShimmer 1.5s linear infinite;
+        }
+        @keyframes preBarShimmer {
+            0%   { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .pre-arrival {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 30; opacity: 0; pointer-events: none;
+            background: rgba(10,31,68,.65);
+            backdrop-filter: blur(5px);
+        }
+        .pre-arrival-inner { text-align: center; }
+        .pre-arrival-flag {
+            display: block; margin: 0 auto .5rem;
+            width: 80px; border-radius: 5px;
+        }
+        .pre-arrival-title {
+            font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900;
+            font-family: 'Montserrat', sans-serif; color: #fff;
+            text-shadow: 0 4px 24px rgba(0,0,0,.5);
+        }
+        .pre-arrival-sub {
+            font-size: 1.1rem; color: rgba(255,255,255,.85);
+            margin-top: .5rem; font-weight: 500;
+        }
+
         /* HEADER */
         .header {
             position: fixed;
@@ -1831,6 +2011,97 @@
     </style>
 </head>
 <body>
+    <!-- PRELOADER: Buseta rumbo a Bocas del Toro -->
+    <div id="pagePreloader">
+        <div class="pre-sky"></div>
+        <div class="pre-sun"></div>
+        <div class="pre-cloud pc1"></div>
+        <div class="pre-cloud pc2"></div>
+        <div class="pre-cloud pc3"></div>
+        <div class="pre-mountains"></div>
+        <div class="pre-ocean"></div>
+        <div class="pre-ground"></div>
+        <div class="pre-road"></div>
+        <div class="pre-palm pre-palm-l1">🌴</div>
+        <div class="pre-palm pre-palm-l2">🌴</div>
+        <div class="pre-palm pre-palm-r1">🌴</div>
+        <div class="pre-palm pre-palm-r2">🌴</div>
+        <div class="pre-bus" id="preBus">
+            <svg viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
+              <!-- shadow -->
+              <ellipse cx="140" cy="108" rx="118" ry="5" fill="rgba(0,0,0,.22)"/>
+              <!-- body -->
+              <rect x="12" y="30" width="245" height="63" rx="9" fill="#0a1f44"/>
+              <!-- front cab -->
+              <path d="M237 30 Q258 30 268 52 L268 93 L237 93 Z" fill="#0d2860"/>
+              <!-- windshield -->
+              <path d="M240 35 Q256 35 264 52 L264 72 L240 72 Z" fill="#87CEEB" opacity=".85"/>
+              <path d="M243 39 Q252 39 257 51 L257 62 L243 62 Z" fill="rgba(255,255,255,.2)"/>
+              <!-- orange stripe -->
+              <rect x="12" y="58" width="256" height="13" fill="#FF6B35"/>
+              <!-- door -->
+              <rect x="12" y="42" width="20" height="50" rx="3" fill="#0a2060"/>
+              <line x1="22" y1="56" x2="22" y2="88" stroke="#1a3080" stroke-width="1.5"/>
+              <!-- windows -->
+              <rect x="38" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
+              <rect x="83" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
+              <rect x="128" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
+              <rect x="173" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
+              <!-- window glares -->
+              <rect x="40" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
+              <rect x="85" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
+              <rect x="130" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
+              <rect x="175" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
+              <!-- destination sign -->
+              <rect x="44" y="14" width="168" height="17" rx="5" fill="#FF6B35"/>
+              <text x="128" y="26" text-anchor="middle" fill="white" font-size="8.5"
+                    font-weight="800" font-family="Montserrat,Arial,sans-serif">BOCAS DEL TORO &#128756;</text>
+              <!-- brand stripe text -->
+              <text x="116" y="67.5" text-anchor="middle" fill="white" font-size="7.5"
+                    font-weight="700" font-family="Montserrat,Arial,sans-serif" letter-spacing="1.2">TRANSKEYTOURS</text>
+              <!-- headlights -->
+              <ellipse cx="266" cy="67" rx="5" ry="4" fill="#FFF59D" opacity=".95"/>
+              <ellipse cx="266" cy="79" rx="4" ry="3" fill="rgba(255,90,0,.9)"/>
+              <!-- rear lights -->
+              <rect x="11" y="50" width="4" height="10" rx="2" fill="rgba(255,55,0,.85)"/>
+              <!-- exhaust -->
+              <rect x="6" y="85" width="14" height="4" rx="2" fill="#555"/>
+              <!-- rear wheel -->
+              <g class="w-spin" style="transform-origin:65px 95px">
+                <circle cx="65" cy="95" r="14" fill="#1a1a1a"/>
+                <circle cx="65" cy="95" r="9"  fill="#333"/>
+                <circle cx="65" cy="95" r="4"  fill="#888"/>
+                <circle cx="65" cy="83" r="2"  fill="#aaa"/>
+                <circle cx="65" cy="107" r="2" fill="#aaa"/>
+                <circle cx="53" cy="95" r="2"  fill="#aaa"/>
+                <circle cx="77" cy="95" r="2"  fill="#aaa"/>
+              </g>
+              <!-- front wheel -->
+              <g class="w-spin" style="transform-origin:224px 95px">
+                <circle cx="224" cy="95" r="14" fill="#1a1a1a"/>
+                <circle cx="224" cy="95" r="9"  fill="#333"/>
+                <circle cx="224" cy="95" r="4"  fill="#888"/>
+                <circle cx="224" cy="83" r="2"  fill="#aaa"/>
+                <circle cx="224" cy="107" r="2" fill="#aaa"/>
+                <circle cx="212" cy="95" r="2"  fill="#aaa"/>
+                <circle cx="236" cy="95" r="2"  fill="#aaa"/>
+              </g>
+            </svg>
+        </div>
+        <div class="pre-ui">
+            <div class="pre-logo-txt">🌴 TransKeyTours</div>
+            <div class="pre-tagline-txt" id="preTagline">Preparando tu aventura...</div>
+            <div class="pre-bar-wrap"><div class="pre-bar" id="preBar"></div></div>
+        </div>
+        <div class="pre-arrival" id="preArrival">
+            <div class="pre-arrival-inner">
+                <img src="https://flagcdn.com/w80/pa.png" alt="Panama" class="pre-arrival-flag">
+                <div class="pre-arrival-title">¡Bienvenidos!</div>
+                <div class="pre-arrival-sub">Bocas del Toro · Panamá 2026</div>
+            </div>
+        </div>
+    </div>
+
     <!-- HEADER -->
     <header class="header">
         <div class="container">
@@ -1846,8 +2117,8 @@
                     <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
                     <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
                     <div class="lang-selector">
-                        <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
-                        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+                        <button class="lang-btn active" data-lang="es"><img src="https://flagcdn.com/w40/es.png" alt="ES" width="22"> ES</button>
+                        <button class="lang-btn" data-lang="en"><img src="https://flagcdn.com/w40/us.png" alt="EN" width="22"> EN</button>
                     </div>
                 </nav>
                 <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" class="btn-reservar" data-es="Reservar Ahora" data-en="Book Now">Reservar Ahora</a>
@@ -2636,6 +2907,77 @@
     </a>
 
     <script>
+        // ===== PRELOADER — Buseta rumbo a Bocas del Toro =====
+        (function initPreloader() {
+            const preloader = document.getElementById('pagePreloader');
+            if (!preloader) return;
+            document.body.style.overflow = 'hidden';
+
+            const bus   = document.getElementById('preBus');
+            const barEl = document.getElementById('preBar');
+            const tagEl = document.getElementById('preTagline');
+            const arrEl = document.getElementById('preArrival');
+
+            // Ambient animations
+            gsap.to('.pc1', { x: 35,  duration: 5,   yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pc2', { x: -28, duration: 6.5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pc3', { x: 22,  duration: 4.5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pre-sun', { scale: 1.09, duration: 2.5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pre-palm-l1', { rotate: 6,  transformOrigin: '50% 100%', duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pre-palm-l2', { rotate: -5, transformOrigin: '50% 100%', duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pre-palm-r1', { rotate: -6, transformOrigin: '50% 100%', duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            gsap.to('.pre-palm-r2', { rotate: 5,  transformOrigin: '50% 100%', duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+
+            // Wheel spin while moving
+            bus.classList.add('rolling');
+
+            // Main bus journey
+            const tl = gsap.timeline();
+
+            // Bus enters from left, travels to ~center
+            tl.fromTo(bus,
+                { x: -320 },
+                {
+                    x: () => window.innerWidth / 2 - 200,
+                    duration: 2.9,
+                    ease: 'power2.out',
+                    onUpdate() { barEl.style.width = (tl.progress() * 85) + '%'; }
+                }, 0.3)
+
+            // Road bump shake
+            .to(bus, { y: -5, duration: 0.11, yoyo: true, repeat: 22, ease: 'sine.inOut' }, 0.3)
+
+            // Rock to a stop
+            .to(bus, { rotate: 2,  duration: 0.14, ease: 'power2.out'      }, 3.25)
+            .to(bus, { rotate: 0,  duration: 0.35, ease: 'elastic.out(1,.4)' }, 3.4)
+
+            // Stop wheel spin
+            .call(() => bus.classList.remove('rolling'), null, 3.25)
+
+            // Complete progress bar
+            .to(barEl, { width: '100%', duration: 0.3, ease: 'power2.out' }, 3.15)
+
+            // Update tagline
+            .call(() => { tagEl.textContent = '¡Llegamos a Bocas del Toro! 🎉'; }, null, 3.3)
+
+            // Arrival overlay
+            .to(arrEl, { opacity: 1, duration: 0.55, ease: 'power2.out' }, 3.7)
+
+            // Hold at destination
+            .to({}, { duration: 0.95 })
+
+            // Fade out preloader and reveal page
+            .to(preloader, {
+                opacity: 0,
+                duration: 0.55,
+                ease: 'power2.inOut',
+                onComplete() {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+
         gsap.registerPlugin(ScrollTrigger);
 
         // MULTILENGUAJE
