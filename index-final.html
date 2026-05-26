@@ -216,7 +216,7 @@
         .pre-bus {
             position: absolute;
             bottom: calc(13% + 42px);
-            width: 280px; left: 0; z-index: 5;
+            width: min(280px, 72vw); left: 0; z-index: 5;
         }
         .pre-bus svg {
             width: 100%; height: auto;
@@ -269,9 +269,16 @@
             backdrop-filter: blur(5px);
         }
         .pre-arrival-inner { text-align: center; }
+        .pre-arrival-flags {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; margin-bottom: .6rem;
+        }
         .pre-arrival-flag {
-            display: block; margin: 0 auto .5rem;
-            width: 80px; border-radius: 5px;
+            width: 72px; border-radius: 5px;
+            box-shadow: 0 4px 14px rgba(0,0,0,.5);
+        }
+        .pre-arrival-arrow {
+            font-size: 2rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));
         }
         .pre-arrival-title {
             font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900;
@@ -281,6 +288,55 @@
         .pre-arrival-sub {
             font-size: 1.1rem; color: rgba(255,255,255,.85);
             margin-top: .5rem; font-weight: 500;
+        }
+        /* Señales de ruta en el preloader */
+        .pre-sign {
+            position: absolute;
+            bottom: calc(13% + 55px);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 4px; z-index: 4;
+        }
+        .pre-sign img {
+            width: 36px; border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.5);
+        }
+        .pre-sign-label {
+            font-size: .62rem; font-weight: 700;
+            color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.8);
+            font-family: 'Montserrat', sans-serif;
+            white-space: nowrap; letter-spacing: .5px;
+            background: rgba(0,0,0,.45); padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .pre-sign::after {
+            content: '';
+            width: 3px; height: 30px;
+            background: #888; border-radius: 2px;
+        }
+        .pre-sign-cr { left: 5%; }
+        .pre-sign-pa { right: 5%; }
+
+        /* Preloader — mobile responsive */
+        @media (max-width: 480px) {
+            /* Cielo m\u00e1s compacto, sol m\u00e1s peque\u00f1o */
+            .pre-sun { width: 60px; height: 60px; right: 12%; bottom: 38%; }
+            /* Palmeras m\u00e1s peque\u00f1as para no tapar el bus */
+            .pre-palm-l1 { font-size: 4rem; left: 1%; }
+            .pre-palm-l2 { font-size: 2.8rem; left: 10%; }
+            .pre-palm-r1 { font-size: 4rem; right: 1%; }
+            .pre-palm-r2 { font-size: 2.8rem; right: 10%; }
+            /* Se\u00f1ales m\u00e1s peque\u00f1as */
+            .pre-sign img { width: 28px; }
+            .pre-sign-label { font-size: .55rem; }
+            .pre-sign::after { height: 22px; }
+            /* Barra de progreso y texto m\u00e1s compactos */
+            .pre-logo-txt { font-size: 1.15rem; }
+            .pre-tagline-txt { font-size: .75rem; }
+            /* Pantalla de llegada */
+            .pre-arrival-flag { width: 52px; }
+            .pre-arrival-arrow { font-size: 1.5rem; }
+            .pre-arrival-title { font-size: 2rem; }
+            .pre-arrival-sub { font-size: .85rem; }
         }
 
         /* HEADER */
@@ -1674,7 +1730,7 @@
             .nav {
                 display: none !important;
                 position: fixed;
-                top: 70px;
+                top: 92px; /* fallback; JS override con offsetHeight real */
                 left: 0;
                 right: 0;
                 bottom: 0;
@@ -1685,7 +1741,7 @@
                 justify-content: flex-start;
                 padding: 1.5rem;
                 gap: 0 !important;
-                z-index: 998;
+                z-index: 1001; /* encima del header (z-index:1000) */
                 overflow-y: auto;
                 border-top: 1px solid rgba(255,255,255,0.1);
                 box-shadow: 0 20px 40px rgba(0,0,0,0.5);
@@ -2124,7 +2180,7 @@
     </style>
 </head>
 <body>
-    <!-- PRELOADER: Buseta rumbo a Bocas del Toro -->
+    <!-- PRELOADER: Buseta Costa Rica → Panamá -->
     <div id="pagePreloader">
         <div class="pre-sky"></div>
         <div class="pre-sun"></div>
@@ -2139,77 +2195,107 @@
         <div class="pre-palm pre-palm-l2">🌴</div>
         <div class="pre-palm pre-palm-r1">🌴</div>
         <div class="pre-palm pre-palm-r2">🌴</div>
+        <!-- Señal de partida: Costa Rica -->
+        <div class="pre-sign pre-sign-cr" id="preSignCR">
+            <img src="https://flagcdn.com/w40/cr.png" alt="Costa Rica" width="36">
+            <div class="pre-sign-label">San Carlos, C.R.</div>
+        </div>
+        <!-- Señal de llegada: Panamá -->
+        <div class="pre-sign pre-sign-pa" id="preSignPA">
+            <img src="https://flagcdn.com/w40/pa.png" alt="Panamá" width="36">
+            <div class="pre-sign-label">Bocas del Toro</div>
+        </div>
         <div class="pre-bus" id="preBus">
             <svg viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
               <!-- shadow -->
               <ellipse cx="140" cy="108" rx="118" ry="5" fill="rgba(0,0,0,.22)"/>
-              <!-- body -->
-              <rect x="12" y="30" width="245" height="63" rx="9" fill="#0a1f44"/>
-              <!-- front cab -->
-              <path d="M237 30 Q258 30 268 52 L268 93 L237 93 Z" fill="#0d2860"/>
-              <!-- windshield -->
-              <path d="M240 35 Q256 35 264 52 L264 72 L240 72 Z" fill="#87CEEB" opacity=".85"/>
-              <path d="M243 39 Q252 39 257 51 L257 62 L243 62 Z" fill="rgba(255,255,255,.2)"/>
-              <!-- orange stripe -->
-              <rect x="12" y="58" width="256" height="13" fill="#FF6B35"/>
-              <!-- door -->
-              <rect x="12" y="42" width="20" height="50" rx="3" fill="#0a2060"/>
-              <line x1="22" y1="56" x2="22" y2="88" stroke="#1a3080" stroke-width="1.5"/>
-              <!-- windows -->
-              <rect x="38" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
-              <rect x="83" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
-              <rect x="128" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
-              <rect x="173" y="35" width="36" height="23" rx="4" fill="#87CEEB" opacity=".88"/>
-              <!-- window glares -->
-              <rect x="40" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
-              <rect x="85" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
-              <rect x="130" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
-              <rect x="175" y="37" width="11" height="7" rx="2" fill="rgba(255,255,255,.25)"/>
-              <!-- destination sign -->
-              <rect x="44" y="14" width="168" height="17" rx="5" fill="#FF6B35"/>
-              <text x="128" y="26" text-anchor="middle" fill="white" font-size="8.5"
-                    font-weight="800" font-family="Montserrat,Arial,sans-serif">BOCAS DEL TORO &#128756;</text>
-              <!-- brand stripe text -->
-              <text x="116" y="67.5" text-anchor="middle" fill="white" font-size="7.5"
-                    font-weight="700" font-family="Montserrat,Arial,sans-serif" letter-spacing="1.2">TRANSKEYTOURS</text>
-              <!-- headlights -->
-              <ellipse cx="266" cy="67" rx="5" ry="4" fill="#FFF59D" opacity=".95"/>
-              <ellipse cx="266" cy="79" rx="4" ry="3" fill="rgba(255,90,0,.9)"/>
-              <!-- rear lights -->
-              <rect x="11" y="50" width="4" height="10" rx="2" fill="rgba(255,55,0,.85)"/>
-              <!-- exhaust -->
-              <rect x="6" y="85" width="14" height="4" rx="2" fill="#555"/>
-              <!-- rear wheel -->
-              <g class="w-spin" style="transform-origin:65px 95px">
-                <circle cx="65" cy="95" r="14" fill="#1a1a1a"/>
-                <circle cx="65" cy="95" r="9"  fill="#333"/>
-                <circle cx="65" cy="95" r="4"  fill="#888"/>
-                <circle cx="65" cy="83" r="2"  fill="#aaa"/>
-                <circle cx="65" cy="107" r="2" fill="#aaa"/>
-                <circle cx="53" cy="95" r="2"  fill="#aaa"/>
-                <circle cx="77" cy="95" r="2"  fill="#aaa"/>
+              <!-- Hyundai County style bus -->
+              <!-- Shadow -->
+              <ellipse cx="138" cy="108" rx="116" ry="4.5" fill="rgba(0,0,0,.22)"/>
+              <!-- Main body - white/cream -->
+              <rect x="12" y="26" width="248" height="66" rx="8" fill="#f0f0eb"/>
+              <!-- Front boxy section - Hyundai County vertical front -->
+              <rect x="240" y="26" width="22" height="66" rx="8" fill="#e2e2dc"/>
+              <rect x="240" y="26" width="10" height="66" fill="#e2e2dc"/> <!-- join seam -->
+              <!-- Large front windshield - very upright like County -->
+              <rect x="243" y="33" width="14" height="44" rx="3" fill="#87CEEB" opacity=".88"/>
+              <rect x="245" y="35" width="6" height="14" rx="2" fill="rgba(255,255,255,.28)"/>
+              <!-- Chrome front bumper -->
+              <rect x="240" y="86" width="24" height="6" rx="2" fill="#d0d0c8"/>
+              <!-- Chrome grille -->
+              <rect x="243" y="79" width="17" height="8" rx="2" fill="#c8c8c0"/>
+              <line x1="247" y1="79" x2="247" y2="87" stroke="#aaa" stroke-width="1"/>
+              <line x1="251" y1="79" x2="251" y2="87" stroke="#aaa" stroke-width="1"/>
+              <line x1="255" y1="79" x2="255" y2="87" stroke="#aaa" stroke-width="1"/>
+              <!-- Orange/red lower stripe -->
+              <rect x="12" y="60" width="250" height="15" fill="#FF6B35"/>
+              <!-- Destination sign on roof -->
+              <rect x="42" y="13" width="165" height="15" rx="5" fill="#FF6B35"/>
+              <text x="124" y="24" text-anchor="middle" fill="white" font-size="7.5"
+                    font-weight="800" font-family="Montserrat,Arial,sans-serif">BOCAS DEL TORO &#127477;&#127462;</text>
+              <!-- Door -->
+              <rect x="12" y="36" width="19" height="52" rx="3" fill="#dadad5"/>
+              <line x1="21" y1="50" x2="21" y2="86" stroke="#bbb" stroke-width="1.5"/>
+              <!-- Windows (5) -->
+              <rect x="38"  y="30" width="33" height="26" rx="5" fill="#87CEEB" opacity=".88"/>
+              <rect x="79"  y="30" width="33" height="26" rx="5" fill="#87CEEB" opacity=".88"/>
+              <rect x="120" y="30" width="33" height="26" rx="5" fill="#87CEEB" opacity=".88"/>
+              <rect x="161" y="30" width="33" height="26" rx="5" fill="#87CEEB" opacity=".88"/>
+              <rect x="202" y="30" width="30" height="26" rx="5" fill="#87CEEB" opacity=".88"/>
+              <!-- Window glares -->
+              <rect x="40"  y="32" width="10" height="7" rx="2" fill="rgba(255,255,255,.32)"/>
+              <rect x="81"  y="32" width="10" height="7" rx="2" fill="rgba(255,255,255,.32)"/>
+              <rect x="122" y="32" width="10" height="7" rx="2" fill="rgba(255,255,255,.32)"/>
+              <rect x="163" y="32" width="10" height="7" rx="2" fill="rgba(255,255,255,.32)"/>
+              <rect x="204" y="32" width="8"  height="7" rx="2" fill="rgba(255,255,255,.32)"/>
+              <!-- Brand text in orange stripe -->
+              <text x="118" y="70.5" text-anchor="middle" fill="white" font-size="7"
+                    font-weight="700" font-family="Montserrat,Arial,sans-serif" letter-spacing="1.4">TRANSKEYTOURS</text>
+              <!-- Headlights (round - County style) -->
+              <circle cx="258" cy="67" r="4.5" fill="#FFF59D" opacity=".95"/>
+              <rect x="255" y="77" width="8" height="5" rx="2" fill="rgba(255,80,0,.9)"/>
+              <!-- Side mirror -->
+              <rect x="238" y="35" width="7" height="5" rx="2" fill="#ccc"/>
+              <!-- Rear lights -->
+              <rect x="10" y="46" width="4" height="12" rx="2" fill="rgba(255,55,0,.88)"/>
+              <rect x="10" y="34" width="4" height="10" rx="2" fill="rgba(255,200,0,.8)"/>
+              <!-- Exhaust -->
+              <rect x="5" y="84" width="13" height="4" rx="2" fill="#666"/>
+              <!-- Rear wheel -->
+              <g class="w-spin" style="transform-origin:62px 96px">
+                <circle cx="62" cy="96" r="12" fill="#1a1a1a"/>
+                <circle cx="62" cy="96" r="7.5" fill="#2d2d2d"/>
+                <circle cx="62" cy="96" r="3.5" fill="#888"/>
+                <circle cx="62" cy="85" r="1.8" fill="#aaa"/>
+                <circle cx="62" cy="107" r="1.8" fill="#aaa"/>
+                <circle cx="51" cy="96" r="1.8" fill="#aaa"/>
+                <circle cx="73" cy="96" r="1.8" fill="#aaa"/>
               </g>
-              <!-- front wheel -->
-              <g class="w-spin" style="transform-origin:224px 95px">
-                <circle cx="224" cy="95" r="14" fill="#1a1a1a"/>
-                <circle cx="224" cy="95" r="9"  fill="#333"/>
-                <circle cx="224" cy="95" r="4"  fill="#888"/>
-                <circle cx="224" cy="83" r="2"  fill="#aaa"/>
-                <circle cx="224" cy="107" r="2" fill="#aaa"/>
-                <circle cx="212" cy="95" r="2"  fill="#aaa"/>
-                <circle cx="236" cy="95" r="2"  fill="#aaa"/>
+              <!-- Front wheel -->
+              <g class="w-spin" style="transform-origin:218px 96px">
+                <circle cx="218" cy="96" r="12" fill="#1a1a1a"/>
+                <circle cx="218" cy="96" r="7.5" fill="#2d2d2d"/>
+                <circle cx="218" cy="96" r="3.5" fill="#888"/>
+                <circle cx="218" cy="85" r="1.8" fill="#aaa"/>
+                <circle cx="218" cy="107" r="1.8" fill="#aaa"/>
+                <circle cx="207" cy="96" r="1.8" fill="#aaa"/>
+                <circle cx="229" cy="96" r="1.8" fill="#aaa"/>
               </g>
             </svg>
         </div>
         <div class="pre-ui">
             <div class="pre-logo-txt">🌴 TransKeyTours</div>
-            <div class="pre-tagline-txt" id="preTagline">Preparando tu aventura...</div>
+            <div class="pre-tagline-txt" id="preTagline">Viajando desde Costa Rica...</div>
             <div class="pre-bar-wrap"><div class="pre-bar" id="preBar"></div></div>
         </div>
         <div class="pre-arrival" id="preArrival">
             <div class="pre-arrival-inner">
-                <img src="https://flagcdn.com/w80/pa.png" alt="Panama" class="pre-arrival-flag">
-                <div class="pre-arrival-title">¡Bienvenidos!</div>
+                <div class="pre-arrival-flags">
+                    <img src="https://flagcdn.com/w80/cr.png" alt="Costa Rica" class="pre-arrival-flag">
+                    <span class="pre-arrival-arrow">✈️</span>
+                    <img src="https://flagcdn.com/w80/pa.png" alt="Panamá" class="pre-arrival-flag">
+                </div>
+                <div class="pre-arrival-title">¡Llegamos!</div>
                 <div class="pre-arrival-sub">Bocas del Toro · Panamá 2026</div>
             </div>
         </div>
@@ -3059,7 +3145,7 @@
             tl.fromTo(bus,
                 { x: -320 },
                 {
-                    x: () => window.innerWidth / 2 - 200,
+                    x: () => Math.max(window.innerWidth / 2 - 200, window.innerWidth * 0.15),
                     duration: 2.9,
                     ease: 'power2.out',
                     onUpdate() { barEl.style.width = (tl.progress() * 85) + '%'; }
@@ -3155,6 +3241,9 @@
             if (!hamburger || !nav) return;
 
             function openMenu() {
+                // Calcular altura real del header para evitar que el menú quede tapado
+                const headerH = document.querySelector('.header').offsetHeight;
+                nav.style.top = headerH + 'px';
                 nav.classList.add('nav-open');
                 hamburger.classList.add('is-open');
                 hamburger.setAttribute('aria-expanded', 'true');
