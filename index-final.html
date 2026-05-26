@@ -1649,28 +1649,30 @@
             }
         }
 
-        /* Back to top button */
+        /* Back to top button — lado izquierdo para no colisionar con WhatsApp/share */
         .back-to-top {
             position: fixed;
-            bottom: 120px;
-            right: 35px;
-            width: 50px;
-            height: 50px;
-            background: var(--orange);
-            color: #fff;
-            border: none;
+            bottom: 30px;
+            left: 20px;
+            right: auto;
+            width: 48px;
+            height: 48px;
+            background: rgba(10, 31, 68, 0.92);
+            backdrop-filter: blur(10px);
+            color: var(--orange);
+            border: 2px solid var(--orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             cursor: pointer;
             z-index: 998;
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
-            transition: var(--transition-smooth);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
             pointer-events: none;
-            transform: translateY(10px);
+            transform: translateY(12px);
         }
         .back-to-top.visible {
             opacity: 1;
@@ -1678,9 +1680,10 @@
             transform: translateY(0);
         }
         .back-to-top:hover {
-            background: var(--orange-hover, #e05a2a);
+            background: var(--orange);
+            color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.7);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.6);
         }
 
         /* ===== HAMBURGER MENU ===== */
@@ -1768,8 +1771,8 @@
 
             /* ═══════════════════════════════════════════════
                NAV MOBILE OVERLAY — Premium Travel Design
-               Sin backdrop-filter (evita bugs iOS Safari)
-               Animación solo con transform (no opacity stuck)
+               Teleportado al body por JS para escapar del
+               containing block de backdrop-filter en header
             ═══════════════════════════════════════════════ */
             .nav {
                 display: none !important;
@@ -1778,16 +1781,17 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                /* Solid dark bg — NO backdrop-filter para evitar bugs iOS */
-                background: #081636;
+                width: 100vw;
+                height: 100vh;
+                min-height: 100dvh;
+                background: linear-gradient(170deg, #061124 0%, #0a1f44 60%, #0d2860 100%);
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                padding: 6rem 2rem 2rem;
+                padding: 5rem 2rem 3rem;
                 gap: 0 !important;
                 z-index: 99000;
                 overflow-y: auto;
-                /* opacity explícita — previene que quede en 0 */
                 opacity: 1 !important;
             }
 
@@ -1796,16 +1800,10 @@
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                animation: mobileNavSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                animation: mobileNavSlide 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
 
-            /* Solo transform, NUNCA opacity en from — evita bug stuck */
-            @keyframes mobileNavSlide {
-                from { transform: translateY(-100%); }
-                to   { transform: translateY(0); }
-            }
-
-            /* Decoración: línea naranja superior */
+            /* Línea naranja superior */
             .nav.nav-open::before {
                 content: '';
                 position: absolute;
@@ -1813,11 +1811,30 @@
                 left: 0;
                 right: 0;
                 height: 3px;
-                background: linear-gradient(90deg, var(--orange), #ff9a35, var(--orange));
-                background-size: 200% 100%;
+                background: linear-gradient(90deg, transparent, var(--orange), transparent);
                 animation: shimmer 2s infinite;
             }
 
+            /* Logo/Brand en el overlay */
+            .nav.nav-open::after {
+                content: '🌴 TransKeyTours';
+                position: absolute;
+                top: 1.4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: rgba(255,255,255,0.5);
+                white-space: nowrap;
+                font-family: 'Montserrat', sans-serif;
+                letter-spacing: 0.05em;
+                pointer-events: none;
+            }
+
+            @keyframes mobileNavSlide {
+                from { transform: translateY(-100%); opacity: 0.5; }
+                to   { transform: translateY(0);     opacity: 1; }
+            }
             @keyframes shimmer {
                 0%   { background-position: 200% 0; }
                 100% { background-position: -200% 0; }
@@ -1828,19 +1845,19 @@
                 display: block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
-                padding: 1rem 2rem;
-                font-size: 1.3rem;
+                padding: 0.9rem 2rem;
+                font-size: 1.25rem;
                 font-weight: 600;
                 width: 100%;
-                max-width: 320px;
+                max-width: 300px;
                 text-align: center;
-                color: #ffffff !important;
+                color: rgba(255,255,255,0.9) !important;
                 text-decoration: none;
                 border-radius: 12px;
-                margin-bottom: 0.25rem;
+                margin-bottom: 0.15rem;
                 letter-spacing: 0.02em;
-                transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-                will-change: auto; /* reset will-change para evitar sub-stacking contexts */
+                transition: background 0.2s ease, color 0.2s ease;
+                will-change: auto;
                 position: relative;
             }
 
@@ -1852,55 +1869,65 @@
             .nav.nav-open a:nth-child(6) { animation: navItemIn 0.25s 0.30s ease both; }
 
             @keyframes navItemIn {
-                from { transform: translateX(-20px); }
-                to   { transform: translateX(0); }
+                from { transform: translateX(-18px); opacity: 0; }
+                to   { transform: translateX(0);     opacity: 1; }
             }
 
             .nav a:hover,
             .nav a:active {
-                background: rgba(255, 107, 53, 0.15);
+                background: rgba(255, 107, 53, 0.18);
                 color: var(--orange) !important;
-                transform: translateX(6px);
             }
 
-            /* Separador sutil */
+            /* Ocultar underline de desktop */
             .nav a::after {
-                display: none !important; /* ocultar el underline de desktop */
+                display: none !important;
             }
 
+            /* Lang selector: compacto */
             .lang-selector {
-                margin-top: 2rem;
+                margin-top: 1.8rem;
                 justify-content: center;
                 width: 100%;
+                background: rgba(255,255,255,0.07);
+                border-radius: 24px;
+                padding: 0.3rem;
+                gap: 0.3rem;
+                max-width: 200px;
                 order: unset;
+            }
+
+            .lang-btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
             }
 
             /* Botón Reservar dentro del menú mobile */
             .nav-btn-mobile {
                 display: flex !important;
                 width: 100%;
-                max-width: 320px;
+                max-width: 280px;
                 margin-top: 1.5rem;
             }
 
             .nav-btn-mobile a {
                 background: var(--orange) !important;
                 color: white !important;
-                padding: 1.1rem 2rem;
+                padding: 1rem 2rem;
                 border-radius: 30px;
                 font-weight: 700;
                 text-decoration: none;
                 width: 100%;
                 text-align: center;
-                font-size: 1.05rem;
-                box-shadow: 0 6px 24px rgba(255,107,53,0.4);
+                font-size: 1rem;
+                box-shadow: 0 6px 24px rgba(255,107,53,0.45);
                 border-bottom: none !important;
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
             .nav-btn-mobile a:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 10px 32px rgba(255,107,53,0.55);
+                box-shadow: 0 10px 32px rgba(255,107,53,0.6);
             }
         }
 
@@ -1921,15 +1948,25 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                /* Deshabilitar parallax/3D en mobile para evitar offsets */
+                transform: none !important;
             }
 
             .price-box {
-                padding: 1.8rem;
+                padding: 1.5rem;
                 width: 100%;
-                max-width: 460px;
+                max-width: 100%;
                 margin: 0 auto;
                 text-align: center;
                 box-sizing: border-box;
+                /* Deshabilitar 3D y will-change — causan offsets en mobile */
+                will-change: auto !important;
+                transform-style: flat !important;
+                transform: none !important;
+            }
+
+            .price-box:hover {
+                transform: none !important;
             }
 
             .price-label {
@@ -1958,8 +1995,15 @@
             }
 
             .lang-btn {
-                font-size: 1rem;
-                padding: 0.7rem 1.5rem;
+                font-size: 0.78rem;
+                padding: 0.3rem 0.75rem;
+            }
+
+            .lang-selector {
+                background: rgba(255,255,255,0.08);
+                padding: 0.25rem;
+                border-radius: 20px;
+                gap: 0.3rem;
             }
 
             .countdown-timer {
@@ -2070,10 +2114,9 @@
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        /* Micro-animaciones Premium */
+        /* Micro-animaciones Premium — price-box excluido para no conflictuar con GSAP en mobile */
         .blog-read-more,
-        .testimonial-card,
-        .price-box {
+        .testimonial-card {
             will-change: transform;
         }
 
@@ -3371,11 +3414,16 @@
         (function() {
             const hamburger = document.getElementById('hamburger');
             const nav = document.getElementById('mainNav');
+            const headerContent = document.querySelector('.header-content');
+            const btnReservar = document.querySelector('.header-content > .btn-reservar');
             if (!hamburger || !nav) return;
 
             function openMenu() {
-                // Nav es fullscreen (top:0) — no calcular header height
-                nav.style.top = ''; // reset any inline top
+                // Teleportar el nav al body para escapar del containing block
+                // que crea backdrop-filter en el header (bug en Chrome/iOS Safari)
+                if (window.innerWidth <= 768 && nav.parentElement !== document.body) {
+                    document.body.appendChild(nav);
+                }
                 nav.classList.add('nav-open');
                 hamburger.classList.add('is-open');
                 hamburger.setAttribute('aria-expanded', 'true');
@@ -3386,6 +3434,10 @@
                 hamburger.classList.remove('is-open');
                 hamburger.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
+                // Restaurar nav dentro del header
+                if (nav.parentElement === document.body && headerContent && btnReservar) {
+                    headerContent.insertBefore(nav, btnReservar);
+                }
             }
 
             hamburger.addEventListener('click', (e) => {
@@ -3471,6 +3523,8 @@
             }
         });
 
+        // Parallax hero-right: solo en desktop (no en mobile para evitar offsets)
+        if (window.innerWidth > 768) {
         gsap.to(heroRight, {
             y: -80,
             ease: 'none',
@@ -3481,6 +3535,7 @@
                 scrub: 1.8
             }
         });
+        } // end desktop-only parallax
 
         // ANIMACIONES DE ENTRADA HERO
         gsap.from('.hero-left > *', {
@@ -3494,11 +3549,12 @@
 
         gsap.from('.price-box', {
             opacity: 0,
-            x: 80,
+            x: window.innerWidth <= 768 ? 0 : 80,
             scale: 0.9,
             duration: 1.2,
             delay: 0.7,
-            ease: 'back.out(1.4)'
+            ease: 'back.out(1.4)',
+            clearProps: 'transform'
         });
 
         // COUNTER ANIMADO PARA PRECIO
@@ -3696,8 +3752,9 @@
 
         // ===== MEJORAS PREMIUM JAVASCRIPT =====
 
-        // 3D TILT EFFECT SIGUIENDO MOUSE
+        // 3D TILT EFFECT SIGUIENDO MOUSE (solo desktop)
         document.querySelectorAll('.price-box, .testimonial-card, .blog-card').forEach(card => {
+            if (window.innerWidth <= 768) return; // deshabilitado en mobile
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
