@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bocas del Toro 2026 | TransKeyTours - The Magic Travel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
@@ -15,30 +15,89 @@
         }
 
         :root {
-            --navy: #1B3A6B;
-            --orange: #F59E0B;
+            --navy: #0a1f44;
+            --navy-light: #1B3A6B;
+            --orange: #FF6B35;
+            --orange-hover: #ff5722;
             --sky: #00A8E8;
             --green: #10B981;
             --white: #FFFFFF;
-            --gray-light: #F3F4F6;
-            --gray-dark: #374151;
+            --gray-light: #F8FAFC;
+            --gray-medium: #E2E8F0;
+            --gray-dark: #334155;
+            --text-dark: #1E293B;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.20);
+            --shadow-glow: 0 0 40px rgba(255, 107, 53, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-ocean: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 100%);
+            --gradient-sunset: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--gray-dark);
+            font-family: 'Poppins', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
+        h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        /* LANGUAGE SELECTOR */
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--orange);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
         }
 
         /* HEADER */
@@ -47,280 +106,599 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(27, 58, 107, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 31, 68, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .header.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .logo img {
             height: 60px;
             width: auto;
+            transition: var(--transition-smooth);
+        }
+
+        .header.scrolled .logo img {
+            height: 50px;
         }
 
         .nav {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
         }
 
         .nav a:hover {
             color: var(--orange);
+            transform: translateY(-2px);
         }
 
         .btn-reservar {
             background: var(--orange);
             color: var(--white);
-            padding: 0.75rem 2rem;
+            padding: 0.85rem 2rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+            border: 2px solid transparent;
         }
 
         .btn-reservar:hover {
-            background: #D97706;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            background: var(--orange-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* HERO */
+        /* HERO - PARALLAX MULTI-CAPA */
         .hero {
-            margin-top: 100px;
-            min-height: 90vh;
-            background: linear-gradient(135deg, var(--navy) 0%, #2563EB 100%);
-            color: var(--white);
+            margin-top: 90px;
+            min-height: 95vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--navy) 0%, #1e40af 50%, #2563EB 100%);
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: -10%;
+            left: 0;
+            right: 0;
+            bottom: -10%;
+            background: url('https://images.pexels.com/photos/18976054/pexels-photo-18976054.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
+            opacity: 0.12;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: center;
             padding: 4rem 0;
+        }
+
+        .hero-left h1 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .panama-flag {
+            display: inline-block;
+            width: 70px;
+            height: 46px;
+            margin-left: 1rem;
+            vertical-align: middle;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 0.6rem 1.6rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--orange);
+            transform: translateY(-3px);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2.5px solid var(--white);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .price-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .price-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: var(--orange);
+        }
+
+        .price-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--orange);
+            margin-bottom: 1.2rem;
+            text-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .price-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05rem;
+            margin: 0.5rem 0;
+        }
+
+        .price-note {
+            font-size: 1.15rem;
+            padding: 1.2rem;
+            background: rgba(16, 185, 129, 0.25);
+            border-radius: 15px;
+            border-left: 5px solid var(--green);
+            margin-top: 1.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .dates {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dates strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--orange);
+            margin-bottom: 0.8rem;
+        }
+
+        .dates p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05rem;
+        }
+
+        /* TOURS SECTION */
+        .tours-section {
+            padding: 8rem 0;
+            background: var(--gray-light);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--gray-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 3rem;
+        }
+
+        .tour-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-smooth);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-12px) rotateX(2deg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .tour-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tour-card:hover .tour-image {
+            transform: scale(1.08);
+        }
+
+        .tour-content {
+            padding: 2.5rem;
+        }
+
+        .tour-title {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .tour-description {
+            color: var(--gray-dark);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* TESTIMONIOS SECTION */
+        .testimonials-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.pexels.com/photos/18976054/pexels-photo-18976054.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
-            opacity: 0.15;
-            z-index: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        .hero-content {
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
             position: relative;
             z-index: 1;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 3rem;
-            align-items: center;
         }
 
-        .hero-left h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .panama-flag {
-            display: inline-block;
-            width: 60px;
-            height: 40px;
-            margin-left: 1rem;
-            vertical-align: middle;
-            border-radius: 5px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .badges {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            background: var(--orange);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-primary:hover {
-            background: #D97706;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--navy);
-        }
-
-        .price-box {
-            background: rgba(255, 255, 255, 0.15);
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
             padding: 2.5rem;
             border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: var(--transition-smooth);
+            position: relative;
         }
 
-        .price-label {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 800;
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 8rem;
             color: var(--orange);
-            margin-bottom: 1rem;
+            opacity: 0.15;
+            font-family: Georgia, serif;
+            line-height: 1;
         }
 
-        .price-note {
-            font-size: 1.1rem;
-            padding: 1rem;
-            background: rgba(16, 185, 129, 0.2);
-            border-radius: 10px;
-            border-left: 4px solid var(--green);
-            margin-top: 1rem;
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--orange);
         }
 
-        .dates {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .dates strong {
-            display: block;
-            font-size: 1.3rem;
-            color: var(--orange);
-            margin-bottom: 0.5rem;
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-hover) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
-        /* TOURS */
-        .tours-section {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
+        .testimonial-info h4 {
             color: var(--navy);
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
         }
 
-        .section-header p {
-            font-size: 1.2rem;
+        .testimonial-location {
             color: var(--gray-dark);
+            font-size: 0.95rem;
             opacity: 0.8;
         }
 
-        .tours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+        .testimonial-stars {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.2rem;
         }
 
-        .tour-card {
+        .star {
+            color: #FCD34D;
+            font-size: 1.3rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* BLOG PREVIEW SECTION */
+        .blog-section {
+            padding: 8rem 0;
             background: var(--white);
-            border-radius: 20px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-smooth);
+            border: 2px solid var(--gray-medium);
         }
 
-        .tour-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        .blog-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--orange);
         }
 
-        .tour-image {
+        .blog-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .tour-content {
-            padding: 2rem;
+        .blog-card:hover .blog-image {
+            transform: scale(1.1);
         }
 
-        .tour-title {
-            font-size: 1.4rem;
+        .blog-content {
+            padding: 2.5rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--orange);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-title {
+            font-size: 1.6rem;
             color: var(--navy);
             margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
         }
 
-        .tour-description {
+        .blog-excerpt {
             color: var(--gray-dark);
             line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
-        /* INCLUYE */
+        .blog-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--orange);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .blog-read-more:hover {
+            gap: 1rem;
+            color: var(--orange-hover);
+        }
+
+        /* INCLUYE SECTION */
         .incluye-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--navy) 0%, #2563EB 100%);
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--navy) 0%, #1e40af 50%, #2563EB 100%);
             position: relative;
         }
 
@@ -332,7 +710,7 @@
             right: 0;
             bottom: 0;
             background: url('https://images.pexels.com/photos/18976055/pexels-photo-18976055.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
-            opacity: 0.1;
+            opacity: 0.08;
             z-index: 0;
         }
 
@@ -351,49 +729,51 @@
 
         .incluye-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .incluye-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 25px;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-smooth);
         }
 
         .incluye-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-10px) scale(1.03);
             border-color: var(--orange);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
         }
 
         .incluye-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 4rem;
+            margin-bottom: 1.8rem;
             display: block;
+            filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
         }
 
         .incluye-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--white);
         }
 
         .incluye-item p {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
-        /* INFORMACION IMPORTANTE */
+        /* INFO SECTION */
         .info-section {
-            padding: 6rem 0;
+            padding: 8rem 0;
             background: linear-gradient(135deg, #1e40af 0%, #0c4a6e 50%, #0f766e 100%);
             position: relative;
             overflow: hidden;
@@ -427,42 +807,41 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .info-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            color: var(--dark);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            transition: var(--transition-smooth);
         }
 
         .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
             border-color: var(--orange);
         }
 
         .info-card h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            color: var(--navy);
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding-bottom: 1rem;
+            gap: 1rem;
+            padding-bottom: 1.2rem;
             border-bottom: 3px solid var(--orange);
         }
 
         .info-card h3 svg {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             flex-shrink: 0;
         }
 
@@ -472,14 +851,14 @@
         }
 
         .info-card li {
-            padding: 1rem 0;
+            padding: 1.2rem 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--dark);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-dark);
             display: flex;
             align-items: flex-start;
-            gap: 0.5rem;
+            gap: 0.7rem;
         }
 
         .info-card li:last-child {
@@ -487,52 +866,52 @@
         }
 
         .info-alert {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
-            border-left: 4px solid var(--orange);
-            padding: 1.25rem 1.5rem;
-            border-radius: 12px;
-            margin-top: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 107, 53, 0.08) 100%);
+            border-left: 5px solid var(--orange);
+            padding: 1.5rem 1.8rem;
+            border-radius: 15px;
+            margin-top: 2rem;
             font-weight: 600;
-            color: var(--dark);
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
-        }
-
-        .price-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            margin: 0.5rem 0;
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
         }
 
         /* GALERIA */
         .galeria-section {
-            padding: 6rem 0;
+            padding: 8rem 0;
             background: var(--gray-light);
         }
 
         .galeria-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .galeria-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            height: 350px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 380px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-smooth);
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-xl);
         }
 
         .galeria-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.6s ease;
         }
 
         .galeria-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .galeria-overlay {
@@ -540,106 +919,92 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            padding: 2.5rem;
             color: var(--white);
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: var(--transition-smooth);
         }
 
         .galeria-item:hover .galeria-overlay {
             transform: translateY(0);
         }
 
+        .galeria-overlay h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
         /* CONTACTO */
         .contacto-section {
-            padding: 6rem 0;
+            padding: 8rem 0;
             background: var(--white);
         }
 
         .contacto-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
         .contacto-item {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
+            background: var(--gray-light);
+            border-radius: 25px;
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+
+        .contacto-item:hover {
+            transform: translateY(-10px);
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--orange);
         }
 
         .contacto-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .contacto-item h3 {
             color: var(--navy);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
         .contacto-item a {
             color: var(--orange);
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.15rem;
+            transition: var(--transition-smooth);
         }
 
-        /* FOOTER */
-        .footer {
-            background: var(--navy);
-            color: var(--white);
-            padding: 4rem 0 2rem 0;
+        .contacto-item a:hover {
+            color: var(--orange-hover);
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
+        .contacto-item p {
+            color: var(--gray-dark);
+            margin-top: 0.5rem;
         }
 
-        .footer-logo img {
-            height: 80px;
-            margin-bottom: 1rem;
-        }
-
-        .footer h3 {
-            margin-bottom: 1rem;
-            color: var(--orange);
-        }
-
-        .footer p, .footer a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer a:hover {
-            color: var(--orange);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            opacity: 0.7;
-        }
-
-        /* DEVELOPER CREDITS - MINIMALISTA PREMIUM */
+        /* DEVELOPER CREDITS */
         .dev-credits-section {
             background: #0a1f44;
-            border-top: 2px solid rgba(255, 184, 77, 0.3);
-            padding: 3rem 0;
+            border-top: 3px solid rgba(255, 107, 53, 0.4);
+            padding: 4rem 0;
         }
 
         .dev-credits-container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 200px 1fr auto;
+            grid-template-columns: 220px 1fr auto;
             gap: 3rem;
             align-items: center;
         }
@@ -650,14 +1015,15 @@
         }
 
         .dev-logo {
-            max-width: 120px;
+            max-width: 140px;
             height: auto;
-            filter: brightness(1.1);
-            transition: transform 0.3s ease;
+            filter: brightness(1.15);
+            transition: var(--transition-smooth);
         }
 
         .dev-logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            filter: brightness(1.25);
         }
 
         .dev-info {
@@ -665,67 +1031,158 @@
         }
 
         .dev-company-name {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: #fff;
-            margin: 0 0 0.5rem;
-            letter-spacing: 0.5px;
+            margin: 0 0 0.6rem;
+            letter-spacing: 0.3px;
         }
 
         .dev-tagline {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0 0 0.75rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 0.8rem;
         }
 
         .dev-location-text {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
             margin: 0;
         }
 
         .dev-contact-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             align-items: center;
         }
 
         .dev-contact-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
+            gap: 0.6rem;
+            padding: 0.9rem 1.8rem;
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
             text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
         }
 
         .dev-contact-link:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: #FF6B35;
-            transform: translateY(-2px);
+            background: rgba(255, 107, 53, 0.15);
+            border-color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
         }
 
         .dev-contact-link.facebook {
-            background: rgba(24, 119, 242, 0.1);
-            border-color: rgba(24, 119, 242, 0.3);
+            background: rgba(24, 119, 242, 0.12);
+            border-color: rgba(24, 119, 242, 0.35);
         }
 
         .dev-contact-link.facebook:hover {
-            background: rgba(24, 119, 242, 0.2);
+            background: rgba(24, 119, 242, 0.25);
             border-color: #1877F2;
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 5rem 0 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col h3 {
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-col a:hover {
+            color: var(--orange);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.15);
+            opacity: 0.75;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background: #25D366;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: var(--transition-smooth);
+            animation: pulse 2.5s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
             .dev-credits-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 2.5rem;
                 text-align: center;
             }
 
@@ -744,80 +1201,188 @@
             }
         }
 
-            .dev-contact-buttons {
-                flex-direction: column;
-            }
-
-            .dev-contact-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .dev-cta-title {
-                font-size: 1.2rem;
-            }
-        }
-
-        .developer-contact a:hover {
-            color: var(--orange) !important;
-        }
-
-        .developer-tagline {
-            font-size: 0.85rem !important;
-            color: rgba(255, 255, 255, 0.6) !important;
-            margin-top: 0.5rem !important;
-        }
-
-        /* WHATSAPP FLOTANTE */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
-            }
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-content {
+        @media (max-width: 640px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .tours-grid,
+            .galeria-grid,
+            .blog-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero-left h1 {
-                font-size: 2.5rem;
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .nav {
-                flex-direction: column;
-                gap: 1rem;
+                width: 100%;
             }
+        }
 
-            .tours-grid, .galeria-grid {
-                grid-template-columns: 1fr;
+        /* ===== MEJORAS PROFESIONALES PREMIUM ===== */
+
+        /* 3D Tilt Effect en Cards */
+        .price-box,
+        .testimonial-card,
+        .blog-card,
+        .destino-card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+        }
+
+        .price-box:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(-5deg) translateY(-15px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 60px rgba(255, 107, 53, 0.3);
+        }
+
+        .testimonial-card:hover {
+            transform: perspective(1000px) rotateX(-2deg) rotateY(3deg) translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 107, 53, 0.15);
+        }
+
+        .blog-card:hover {
+            transform: perspective(1000px) rotateX(3deg) rotateY(4deg) translateY(-15px);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.25), 0 0 50px rgba(255, 107, 53, 0.2);
+        }
+
+        /* Glassmorphism Premium */
+        .lang-selector {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Gradientes Animados */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #3b82f6 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* Hover Glow Effect */
+        .btn-reservar:hover,
+        .lang-btn.active {
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.6), 0 5px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .whatsapp-float:hover {
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.8), 0 10px 40px rgba(37, 211, 102, 0.5);
+            filter: brightness(1.1);
+        }
+
+        /* Smooth Transitions en Todo */
+        * {
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header,
+        .hero-left,
+        .hero-right {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Micro-animaciones Premium */
+        .nav a,
+        .blog-read-more,
+        .testimonial-card,
+        .price-box {
+            will-change: transform;
+        }
+
+        /* Sombras Elevadas Premium */
+        .testimonial-card::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .testimonial-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Tipografía Premium */
+        h1 {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3));
+        }
+
+        h2 {
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, var(--orange) 50%, transparent 100%);
+            border-radius: 2px;
+        }
+
+        /* Contraste Mejorado */
+        .blog-excerpt,
+        .testimonial-text {
+            color: #1e293b;
+            font-weight: 500;
+            line-height: 1.9;
+        }
+
+        /* Bordes Iluminados */
+        .blog-card:hover,
+        .testimonial-card:hover {
+            border: 2px solid;
+            border-image: linear-gradient(135deg, var(--orange) 0%, #fbbf24 100%) 1;
         }
     </style>
 </head>
@@ -830,58 +1395,65 @@
                     <img src="Logov2.png" alt="TransKeyTours">
                 </div>
                 <nav class="nav">
-                    <a href="#tours">Tours</a>
-                    <a href="#incluye">Incluye</a>
-                    <a href="#galeria">Galería</a>
-                    <a href="#contacto">Contacto</a>
+                    <a href="#tours" data-es="Tours" data-en="Tours">Tours</a>
+                    <a href="#testimonios" data-es="Testimonios" data-en="Testimonials">Testimonios</a>
+                    <a href="#incluye" data-es="Incluye" data-en="Includes">Incluye</a>
+                    <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
+                    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+                    <div class="lang-selector">
+                        <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
+                        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+                    </div>
                 </nav>
-                <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" class="btn-reservar">Reservar Ahora</a>
+                <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" class="btn-reservar" data-es="Reservar Ahora" data-en="Book Now">Reservar Ahora</a>
             </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
+        <div class="hero-bg-layer"></div>
+        <div class="hero-bg-image"></div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-left">
-                    <h1>Bocas del Toro<br>Paraíso Caribeño
+                    <h1>
+                        <span data-es="Bocas del Toro" data-en="Bocas del Toro">Bocas del Toro</span><br>
+                        <span data-es="Paraíso Caribeño" data-en="Caribbean Paradise">Paraíso Caribeño</span>
                         <svg class="panama-flag" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Bandera de Panamá -->
                             <rect width="50" height="30" fill="#FFFFFF"/>
                             <rect x="50" width="50" height="30" fill="#DA121A"/>
                             <rect y="30" width="50" height="30" fill="#0000FF"/>
                             <rect x="50" y="30" width="50" height="30" fill="#FFFFFF"/>
-                            <!-- Estrella azul -->
                             <polygon points="25,10 27.5,17.5 35,17.5 29,22 31,30 25,25 19,30 21,22 15,17.5 22.5,17.5" fill="#0000FF"/>
-                            <!-- Estrella roja -->
                             <polygon points="75,40 77.5,47.5 85,47.5 79,52 81,60 75,55 69,60 71,52 65,47.5 72.5,47.5" fill="#DA121A"/>
                         </svg>
                     </h1>
-                    <p class="hero-subtitle">Descubre las playas más hermosas de Panamá en una aventura inolvidable</p>
+                    <p class="hero-subtitle" data-es="Descubre las playas más hermosas de Panamá en una aventura inolvidable" data-en="Discover Panama's most beautiful beaches in an unforgettable adventure">Descubre las playas más hermosas de Panamá en una aventura inolvidable</p>
                     
                     <div class="badges">
-                        <span class="badge">🏝️ 6 Destinos Paradisíacos</span>
-                        <span class="badge">🌊 Playas de Ensueño</span>
-                        <span class="badge">🐬 Vida Marina Única</span>
+                        <span class="badge" data-es="🏝️ 6 Destinos Paradisíacos" data-en="🏝️ 6 Paradise Destinations">🏝️ 6 Destinos Paradisíacos</span>
+                        <span class="badge" data-es="🌊 Playas de Ensueño" data-en="🌊 Dream Beaches">🌊 Playas de Ensueño</span>
+                        <span class="badge" data-es="🐬 Vida Marina Única" data-en="🐬 Unique Marine Life">🐬 Vida Marina Única</span>
                     </div>
 
                     <div class="hero-cta">
-                        <a href="#incluye" class="btn-primary">Ver Paquete Completo</a>
-                        <a href="#tours" class="btn-secondary">Explorar Tours</a>
+                        <a href="#incluye" class="btn-primary" data-es="Ver Paquete Completo" data-en="View Full Package">Ver Paquete Completo</a>
+                        <a href="#tours" class="btn-secondary" data-es="Explorar Tours" data-en="Explore Tours">Explorar Tours</a>
                     </div>
                 </div>
 
                 <div class="hero-right">
                     <div class="price-box">
-                        <p class="price-label">PRECIO TOTAL POR PERSONA</p>
+                        <p class="price-label" data-es="PRECIO TOTAL POR PERSONA" data-en="TOTAL PRICE PER PERSON">PRECIO TOTAL POR PERSONA</p>
                         <div class="price-amount">₡150.000</div>
-                        <p class="price-subtitle">👶 Niños (5-10 años): ₡120.000</p>
-                        <p class="price-note">💰 Aparta con solo ₡25,000</p>
+                        <p class="price-subtitle" data-es="👶 Niños (5-10 años): ₡120.000" data-en="👶 Children (5-10 years): ₡120.000">👶 Niños (5-10 años): ₡120.000</p>
+                        <p class="price-note" data-es="💰 Aparta con solo ₡25,000" data-en="💰 Reserve with only ₡25,000">💰 Aparta con solo ₡25,000</p>
                         
                         <div class="dates">
-                            <strong>📅 16-19 JULIO 2026</strong>
-                            <p>4 días / 3 noches de pura aventura</p>
+                            <strong data-es="📅 16-19 JULIO 2026" data-en="📅 JULY 16-19, 2026">📅 16-19 JULIO 2026</strong>
+                            <p data-es="4 días / 3 noches de pura aventura" data-en="4 days / 3 nights of pure adventure">4 días / 3 noches de pura aventura</p>
                         </div>
                     </div>
                 </div>
@@ -893,56 +1465,139 @@
     <section id="tours" class="tours-section">
         <div class="container">
             <div class="section-header">
-                <h2>🌴 Nuestros Destinos</h2>
-                <p>Explora los rincones más hermosos de Bocas del Toro</p>
+                <h2 data-es="🌴 Nuestros Destinos" data-en="🌴 Our Destinations">🌴 Nuestros Destinos</h2>
+                <p data-es="Explora los rincones más hermosos de Bocas del Toro" data-en="Explore the most beautiful corners of Bocas del Toro">Explora los rincones más hermosos de Bocas del Toro</p>
             </div>
             <div class="tours-grid">
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/4747783/pexels-photo-4747783.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Playa de las Estrellas" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">⭐ Playa de las Estrellas</h3>
-                        <p class="tour-description">Camina entre cientos de estrellas de mar en aguas cristalinas. Una experiencia mágica que te conecta con la naturaleza marina.</p>
+                        <h3 class="tour-title" data-es="⭐ Playa de las Estrellas" data-en="⭐ Starfish Beach">⭐ Playa de las Estrellas</h3>
+                        <p class="tour-description" data-es="Camina entre cientos de estrellas de mar en aguas cristalinas. Una experiencia mágica que te conecta con la naturaleza marina." data-en="Walk among hundreds of starfish in crystal-clear waters. A magical experience that connects you with marine nature.">Camina entre cientos de estrellas de mar en aguas cristalinas. Una experiencia mágica que te conecta con la naturaleza marina.</p>
                     </div>
                 </div>
 
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/6503998/pexels-photo-6503998.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bahía de los Delfines" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">🐬 Bahía de los Delfines</h3>
-                        <p class="tour-description">Observa delfines en su hábitat natural. Una experiencia única de avistamiento en aguas caribeñas.</p>
+                        <h3 class="tour-title" data-es="🐬 Bahía de los Delfines" data-en="🐬 Dolphin Bay">🐬 Bahía de los Delfines</h3>
+                        <p class="tour-description" data-es="Observa delfines en su hábitat natural. Una experiencia única de avistamiento en aguas caribeñas." data-en="Watch dolphins in their natural habitat. A unique spotting experience in Caribbean waters.">Observa delfines en su hábitat natural. Una experiencia única de avistamiento en aguas caribeñas.</p>
                     </div>
                 </div>
 
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/734725/pexels-photo-734725.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cayo Coral" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">🤿 Snorkel en Cayo Coral</h3>
-                        <p class="tour-description">Explora arrecifes de coral llenos de vida marina. Snorkel en aguas transparentes con peces tropicales de colores vibrantes.</p>
+                        <h3 class="tour-title" data-es="🤿 Snorkel en Cayo Coral" data-en="🤿 Snorkeling at Coral Cay">🤿 Snorkel en Cayo Coral</h3>
+                        <p class="tour-description" data-es="Explora arrecifes de coral llenos de vida marina. Snorkel en aguas transparentes con peces tropicales de colores vibrantes." data-en="Explore coral reefs full of marine life. Snorkel in crystal-clear waters with vibrant tropical fish.">Explora arrecifes de coral llenos de vida marina. Snorkel en aguas transparentes con peces tropicales de colores vibrantes.</p>
                     </div>
                 </div>
 
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/4973961/pexels-photo-4973961.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hollywood Reef" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">🏊 Hollywood Reef</h3>
-                        <p class="tour-description">Uno de los mejores arrecifes del Caribe. Snorkel premium con tortugas, rayas y una biodiversidad impresionante.</p>
+                        <h3 class="tour-title" data-es="🏊 Hollywood Reef" data-en="🏊 Hollywood Reef">🏊 Hollywood Reef</h3>
+                        <p class="tour-description" data-es="Uno de los mejores arrecifes del Caribe. Snorkel premium con tortugas, rayas y una biodiversidad impresionante." data-en="One of the best reefs in the Caribbean. Premium snorkeling with turtles, rays and impressive biodiversity.">Uno de los mejores arrecifes del Caribe. Snorkel premium con tortugas, rayas y una biodiversidad impresionante.</p>
                     </div>
                 </div>
 
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/7786368/pexels-photo-7786368.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Isla Zapatilla" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">🏝️ Parque Marino Isla Zapatilla</h3>
-                        <p class="tour-description">Parque nacional con playas de arena blanca y aguas turquesas. Un paraíso protegido con ecosistemas únicos.</p>
+                        <h3 class="tour-title" data-es="🏝️ Parque Marino Isla Zapatilla" data-en="🏝️ Zapatilla Island Marine Park">🏝️ Parque Marino Isla Zapatilla</h3>
+                        <p class="tour-description" data-es="Parque nacional con playas de arena blanca y aguas turquesas. Un paraíso protegido con ecosistemas únicos." data-en="National park with white sand beaches and turquoise waters. A protected paradise with unique ecosystems.">Parque nacional con playas de arena blanca y aguas turquesas. Un paraíso protegido con ecosistemas únicos.</p>
                     </div>
                 </div>
 
                 <div class="tour-card">
                     <img src="https://images.pexels.com/photos/2038744/pexels-photo-2038744.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Punta Caracol" class="tour-image">
                     <div class="tour-content">
-                        <h3 class="tour-title">📸 Hotel Punta Caracol</h3>
-                        <p class="tour-description">Visita el icónico hotel sobre el agua. Arquitectura única en palafitos con vistas espectaculares al Caribe.</p>
+                        <h3 class="tour-title" data-es="📸 Hotel Punta Caracol" data-en="📸 Punta Caracol Hotel">📸 Hotel Punta Caracol</h3>
+                        <p class="tour-description" data-es="Visita el icónico hotel sobre el agua. Arquitectura única en palafitos con vistas espectaculares al Caribe." data-en="Visit the iconic overwater hotel. Unique stilt house architecture with spectacular Caribbean views.">Visita el icónico hotel sobre el agua. Arquitectura única en palafitos con vistas espectaculares al Caribe.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-es="💬 Lo Que Dicen Nuestros Viajeros" data-en="💬 What Our Travelers Say">💬 Lo Que Dicen Nuestros Viajeros</h2>
+                <p data-es="Experiencias reales de personas que vivieron la aventura" data-en="Real experiences from people who lived the adventure">Experiencias reales de personas que vivieron la aventura</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MC</div>
+                        <div class="testimonial-info">
+                            <h4>María Castro</h4>
+                            <p class="testimonial-location">San Carlos, Alajuela</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text" data-es="Increíble experiencia! La organización fue impecable y los destinos superaron todas mis expectativas. Ver las estrellas de mar en la playa fue un momento mágico que nunca olvidaré. 100% recomendado!" data-en="Amazing experience! The organization was impeccable and the destinations exceeded all my expectations. Seeing the starfish on the beach was a magical moment I'll never forget. 100% recommended!">Increíble experiencia! La organización fue impecable y los destinos superaron todas mis expectativas. Ver las estrellas de mar en la playa fue un momento mágico que nunca olvidaré. 100% recomendado!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">JS</div>
+                        <div class="testimonial-info">
+                            <h4>José Solís</h4>
+                            <p class="testimonial-location">Ciudad Quesada, Alajuela</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text" data-es="Excelente tour! Keylor y su equipo son muy profesionales. El snorkel en Hollywood Reef fue espectacular, vimos tortugas y muchísimos peces. El hospedaje limpio y cómodo. Volveríamos sin dudarlo!" data-en="Excellent tour! Keylor and his team are very professional. Snorkeling at Hollywood Reef was spectacular, we saw turtles and lots of fish. Clean and comfortable accommodation. We would return without hesitation!">Excelente tour! Keylor y su equipo son muy profesionales. El snorkel en Hollywood Reef fue espectacular, vimos tortugas y muchísimos peces. El hospedaje limpio y cómodo. Volveríamos sin dudarlo!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">AR</div>
+                        <div class="testimonial-info">
+                            <h4>Ana Rodríguez</h4>
+                            <p class="testimonial-location">Río Cuarto, Alajuela</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text" data-es="El mejor viaje que he hecho! Bocas del Toro es un paraíso y TransKeyTours lo hace todo súper fácil. Los guías conocen cada rincón y te llevan a los mejores lugares. La Isla Zapatilla es de otro mundo!" data-en="The best trip I've ever taken! Bocas del Toro is paradise and TransKeyTours makes everything super easy. The guides know every corner and take you to the best places. Zapatilla Island is out of this world!">El mejor viaje que he hecho! Bocas del Toro es un paraíso y TransKeyTours lo hace todo súper fácil. Los guías conocen cada rincón y te llevan a los mejores lugares. La Isla Zapatilla es de otro mundo!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">CF</div>
+                        <div class="testimonial-info">
+                            <h4>Carlos Fernández</h4>
+                            <p class="testimonial-location">Venecia, San Carlos</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text" data-es="Viaje familiar perfecto! Llevamos a nuestros dos hijos y la pasaron increíble. El precio es muy justo por todo lo que incluye. La atención personalizada de Keylor hace toda la diferencia. Ya estamos planeando el próximo!" data-en="Perfect family trip! We took our two children and they had an amazing time. The price is very fair for everything included. Keylor's personalized attention makes all the difference. We're already planning the next one!">Viaje familiar perfecto! Llevamos a nuestros dos hijos y la pasaron increíble. El precio es muy justo por todo lo que incluye. La atención personalizada de Keylor hace toda la diferencia. Ya estamos planeando el próximo!</p>
                 </div>
             </div>
         </div>
@@ -952,49 +1607,49 @@
     <section id="incluye" class="incluye-section">
         <div class="container">
             <div class="section-header">
-                <h2>✅ El Paquete Incluye</h2>
-                <p>Todo lo que necesitas para una experiencia inolvidable</p>
+                <h2 data-es="✅ El Paquete Incluye" data-en="✅ The Package Includes">✅ El Paquete Incluye</h2>
+                <p data-es="Todo lo que necesitas para una experiencia inolvidable" data-en="Everything you need for an unforgettable experience">Todo lo que necesitas para una experiencia inolvidable</p>
             </div>
             <div class="incluye-grid">
                 <div class="incluye-item">
                     <span class="incluye-icon">🚌</span>
-                    <h3 class="incluye-title">Transporte Terrestre</h3>
-                    <p>Ida y regreso San Carlos → Sixaola → Puerto Almirante en buses cómodos y seguros</p>
+                    <h3 class="incluye-title" data-es="Transporte Terrestre" data-en="Land Transportation">Transporte Terrestre</h3>
+                    <p data-es="Ida y regreso San Carlos → Sixaola → Puerto Almirante en buses cómodos y seguros" data-en="Round trip San Carlos → Sixaola → Puerto Almirante in comfortable and safe buses">Ida y regreso San Carlos → Sixaola → Puerto Almirante en buses cómodos y seguros</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">🚤</span>
-                    <h3 class="incluye-title">Traslado Marítimo</h3>
-                    <p>Ida y regreso Puerto Almirante → Isla Colón en bote rápido</p>
+                    <h3 class="incluye-title" data-es="Traslado Marítimo" data-en="Maritime Transfer">Traslado Marítimo</h3>
+                    <p data-es="Ida y regreso Puerto Almirante → Isla Colón en bote rápido" data-en="Round trip Puerto Almirante → Isla Colón by speedboat">Ida y regreso Puerto Almirante → Isla Colón en bote rápido</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">🏨</span>
-                    <h3 class="incluye-title">3 Noches Alojamiento</h3>
-                    <p>Habitación privada cómoda y segura en hospedaje céntrico</p>
+                    <h3 class="incluye-title" data-es="3 Noches Alojamiento" data-en="3 Nights Accommodation">3 Noches Alojamiento</h3>
+                    <p data-es="Habitación privada cómoda y segura en hospedaje céntrico" data-en="Comfortable and safe private room in central lodging">Habitación privada cómoda y segura en hospedaje céntrico</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">🍳</span>
-                    <h3 class="incluye-title">3 Desayunos Completos</h3>
-                    <p>Desayunos incluidos cada mañana para empezar el día con energía</p>
+                    <h3 class="incluye-title" data-es="3 Desayunos Completos" data-en="3 Full Breakfasts">3 Desayunos Completos</h3>
+                    <p data-es="Desayunos incluidos cada mañana para empezar el día con energía" data-en="Breakfast included every morning to start the day with energy">Desayunos incluidos cada mañana para empezar el día con energía</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">🌊</span>
-                    <h3 class="incluye-title">2 Días de Tours</h3>
-                    <p>Tours completos a los 6 destinos más increíbles de Bocas del Toro</p>
+                    <h3 class="incluye-title" data-es="2 Días de Tours" data-en="2 Days of Tours">2 Días de Tours</h3>
+                    <p data-es="Tours completos a los 6 destinos más increíbles de Bocas del Toro" data-en="Complete tours to the 6 most incredible destinations in Bocas del Toro">Tours completos a los 6 destinos más increíbles de Bocas del Toro</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">👨‍✈️</span>
-                    <h3 class="incluye-title">Guías Certificados</h3>
-                    <p>Guías locales profesionales con conocimiento profundo de la zona</p>
+                    <h3 class="incluye-title" data-es="Guías Certificados" data-en="Certified Guides">Guías Certificados</h3>
+                    <p data-es="Guías locales profesionales con conocimiento profundo de la zona" data-en="Professional local guides with deep knowledge of the area">Guías locales profesionales con conocimiento profundo de la zona</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">💎</span>
-                    <h3 class="incluye-title">Atención Personalizada</h3>
-                    <p>Servicio y atención personalizada antes, durante y después del viaje</p>
+                    <h3 class="incluye-title" data-es="Atención Personalizada" data-en="Personalized Attention">Atención Personalizada</h3>
+                    <p data-es="Servicio y atención personalizada antes, durante y después del viaje" data-en="Personalized service and attention before, during and after the trip">Servicio y atención personalizada antes, durante y después del viaje</p>
                 </div>
                 <div class="incluye-item">
                     <span class="incluye-icon">🛍️</span>
-                    <h3 class="incluye-title">Tiempo de Compras</h3>
-                    <p>2 horas para realizar compras en Sixaola durante el recorrido</p>
+                    <h3 class="incluye-title" data-es="Tiempo de Compras" data-en="Shopping Time">Tiempo de Compras</h3>
+                    <p data-es="2 horas para realizar compras en Sixaola durante el recorrido" data-en="2 hours for shopping in Sixaola during the tour">2 horas para realizar compras en Sixaola durante el recorrido</p>
                 </div>
             </div>
         </div>
@@ -1004,64 +1659,101 @@
     <section class="info-section">
         <div class="container">
             <div class="section-header">
-                <h2>⚠️ Información Importante</h2>
-                <p>Todo lo que necesitas saber antes de viajar</p>
+                <h2 data-es="⚠️ Información Importante" data-en="⚠️ Important Information">⚠️ Información Importante</h2>
+                <p data-es="Todo lo que necesitas saber antes de viajar" data-en="Everything you need to know before traveling">Todo lo que necesitas saber antes de viajar</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>❌ NO Incluye</h3>
+                    <h3 data-es="❌ NO Incluye" data-en="❌ NOT Included">❌ NO Incluye</h3>
                     <ul>
-                        <li>🍽️ Almuerzos y cenas</li>
-                        <li>🏝️ Entrada Parque Marino Isla Zapatilla ($10 por persona)</li>
-                        <li>🛂 Impuestos fronterizos (ver requisitos)</li>
+                        <li data-es="🍽️ Almuerzos y cenas" data-en="🍽️ Lunches and dinners">🍽️ Almuerzos y cenas</li>
+                        <li data-es="🏝️ Entrada Parque Marino Isla Zapatilla ($10 por persona)" data-en="🏝️ Zapatilla Island Marine Park entrance ($10 per person)">🏝️ Entrada Parque Marino Isla Zapatilla ($10 por persona)</li>
+                        <li data-es="🛂 Impuestos fronterizos (ver requisitos)" data-en="🛂 Border taxes (see requirements)">🛂 Impuestos fronterizos (ver requisitos)</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
                     <h3>
                         <svg width="32" height="24" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Cuadrante superior izquierdo blanco con estrella azul -->
                             <rect width="50" height="30" fill="#FFFFFF"/>
                             <polygon points="25,10 27.5,17.5 35,17.5 29,22 31,30 25,25 19,30 21,22 15,17.5 22.5,17.5" fill="#0000FF"/>
-                            <!-- Cuadrante superior derecho rojo -->
                             <rect x="50" width="50" height="30" fill="#DA121A"/>
-                            <!-- Cuadrante inferior izquierdo azul -->
                             <rect y="30" width="50" height="30" fill="#0000FF"/>
-                            <!-- Cuadrante inferior derecho blanco con estrella roja -->
                             <rect x="50" y="30" width="50" height="30" fill="#FFFFFF"/>
                             <polygon points="75,40 77.5,47.5 85,47.5 79,52 81,60 75,55 69,60 71,52 65,47.5 72.5,47.5" fill="#DA121A"/>
                         </svg>
-                        Requisitos Panamá
+                        <span data-es="Requisitos Panamá" data-en="Panama Requirements">Requisitos Panamá</span>
                     </h3>
                     <ul>
-                        <li>📕 Pasaporte vigente (mínimo 4 meses)</li>
-                        <li>🇨🇷 Impuesto salida Costa Rica: $8</li>
-                        <li>🇵🇦 Impuesto entrada Panamá: $8</li>
+                        <li data-es="📕 Pasaporte vigente (mínimo 4 meses)" data-en="📕 Valid passport (minimum 4 months)">📕 Pasaporte vigente (mínimo 4 meses)</li>
+                        <li data-es="🇨🇷 Impuesto salida Costa Rica: $8" data-en="🇨🇷 Costa Rica exit tax: $8">🇨🇷 Impuesto salida Costa Rica: $8</li>
+                        <li data-es="🇵🇦 Impuesto entrada Panamá: $8" data-en="🇵🇦 Panama entry tax: $8">🇵🇦 Impuesto entrada Panamá: $8</li>
                     </ul>
-                    <div class="info-alert">
+                    <div class="info-alert" data-es="💵 Total impuestos: $16 por persona (efectivo)" data-en="💵 Total taxes: $16 per person (cash)">
                         💵 Total impuestos: $16 por persona (efectivo)
                     </div>
                 </div>
 
                 <div class="info-card">
-                    <h3>💳 Métodos de Pago</h3>
+                    <h3 data-es="💳 Métodos de Pago" data-en="💳 Payment Methods">💳 Métodos de Pago</h3>
                     <ul>
                         <li>📱 SINPE Móvil: 8309-5731</li>
-                        <li>🏦 Transferencia bancaria</li>
+                        <li data-es="🏦 Transferencia bancaria" data-en="🏦 Bank transfer">🏦 Transferencia bancaria</li>
                     </ul>
-                    <div class="info-alert">
+                    <div class="info-alert" data-es="⚠️ Pago total debe estar cancelado ANTES del día del viaje" data-en="⚠️ Full payment must be completed BEFORE the trip day">
                         ⚠️ Pago total debe estar cancelado ANTES del día del viaje
                     </div>
                 </div>
 
                 <div class="info-card">
-                    <h3>📋 Políticas</h3>
+                    <h3 data-es="📋 Políticas" data-en="📋 Policies">📋 Políticas</h3>
                     <ul>
-                        <li>🚫 Dinero NO reembolsable en caso de cancelación o inasistencia</li>
-                        <li>⏰ Cupos limitados - Reserva con anticipación</li>
-                        <li>✅ Aparta tu espacio con solo ₡25,000</li>
-                        <li>💯 Servicio garantizado y atención personalizada</li>
+                        <li data-es="🚫 Dinero NO reembolsable en caso de cancelación o inasistencia" data-en="🚫 Money NOT refundable in case of cancellation or no-show">🚫 Dinero NO reembolsable en caso de cancelación o inasistencia</li>
+                        <li data-es="⏰ Cupos limitados - Reserva con anticipación" data-en="⏰ Limited spots - Book in advance">⏰ Cupos limitados - Reserva con anticipación</li>
+                        <li data-es="✅ Aparta tu espacio con solo ₡25,000" data-en="✅ Reserve your spot with only ₡25,000">✅ Aparta tu espacio con solo ₡25,000</li>
+                        <li data-es="💯 Servicio garantizado y atención personalizada" data-en="💯 Guaranteed service and personalized attention">💯 Servicio garantizado y atención personalizada</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG PREVIEW -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-es="📝 Guía del Viajero" data-en="📝 Traveler's Guide">📝 Guía del Viajero</h2>
+                <p data-es="Tips y consejos para aprovechar al máximo tu viaje" data-en="Tips and advice to make the most of your trip">Tips y consejos para aprovechar al máximo tu viaje</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.pexels.com/photos/1271278/pexels-photo-1271278.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tips para Bocas" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category" data-es="CONSEJOS" data-en="TIPS">CONSEJOS</span>
+                        <h3 class="blog-title" data-es="10 Tips Esenciales para Bocas del Toro" data-en="10 Essential Tips for Bocas del Toro">10 Tips Esenciales para Bocas del Toro</h3>
+                        <p class="blog-excerpt" data-es="Desde protector solar biodegradable hasta efectivo en dólares, descubre todo lo que debes saber para disfrutar al máximo de tu aventura en el Caribe panameño." data-en="From biodegradable sunscreen to cash in dollars, discover everything you need to know to make the most of your adventure in the Panamanian Caribbean.">Desde protector solar biodegradable hasta efectivo en dólares, descubre todo lo que debes saber para disfrutar al máximo de tu aventura en el Caribe panameño.</p>
+                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <img src="https://images.pexels.com/photos/2105416/pexels-photo-2105416.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Qué empacar" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category" data-es="PREPARACIÓN" data-en="PREPARATION">PREPARACIÓN</span>
+                        <h3 class="blog-title" data-es="Qué Empacar para Bocas: Lista Completa" data-en="What to Pack for Bocas: Complete List">Qué Empacar para Bocas: Lista Completa</h3>
+                        <p class="blog-excerpt" data-es="Tu checklist definitivo para no olvidar nada importante. Ropa ligera, calzado acuático, cámara waterproof y más. Empaca inteligente y viaja ligero." data-en="Your definitive checklist so you don't forget anything important. Light clothing, water shoes, waterproof camera and more. Pack smart and travel light.">Tu checklist definitivo para no olvidar nada importante. Ropa ligera, calzado acuático, cámara waterproof y más. Empaca inteligente y viaja ligero.</p>
+                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <img src="https://images.pexels.com/photos/1118877/pexels-photo-1118877.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mejor época" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category" data-es="PLANIFICACIÓN" data-en="PLANNING">PLANIFICACIÓN</span>
+                        <h3 class="blog-title" data-es="Mejor Época para Visitar Bocas del Toro" data-en="Best Time to Visit Bocas del Toro">Mejor Época para Visitar Bocas del Toro</h3>
+                        <p class="blog-excerpt" data-es="Clima, temporada seca vs lluviosa, festividades locales y cuándo encontrarás menos turistas. Guía completa para planificar tu viaje en el momento perfecto." data-en="Weather, dry vs rainy season, local festivals and when you'll find fewer tourists. Complete guide to plan your trip at the perfect time.">Clima, temporada seca vs lluviosa, festividades locales y cuándo encontrarás menos turistas. Guía completa para planificar tu viaje en el momento perfecto.</p>
+                        <a href="#" class="blog-read-more" data-es="Leer más →" data-en="Read more →">Leer más →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1071,32 +1763,32 @@
     <section id="galeria" class="galeria-section">
         <div class="container">
             <div class="section-header">
-                <h2>📸 Galería de Bocas del Toro</h2>
-                <p>Un vistazo al paraíso que te espera</p>
+                <h2 data-es="📸 Galería de Bocas del Toro" data-en="📸 Bocas del Toro Gallery">📸 Galería de Bocas del Toro</h2>
+                <p data-es="Un vistazo al paraíso que te espera" data-en="A glimpse of the paradise that awaits you">Un vistazo al paraíso que te espera</p>
             </div>
             <div class="galeria-grid">
                 <div class="galeria-item">
                     <img src="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Snorkel con Peces Tropicales">
                     <div class="galeria-overlay">
-                        <h3>Snorkel con Peces Tropicales</h3>
+                        <h3 data-es="Snorkel con Peces Tropicales" data-en="Snorkeling with Tropical Fish">Snorkel con Peces Tropicales</h3>
                     </div>
                 </div>
                 <div class="galeria-item">
                     <img src="https://images.pexels.com/photos/15072766/pexels-photo-15072766.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pueblo de Bocas">
                     <div class="galeria-overlay">
-                        <h3>Encanto del Pueblo de Bocas</h3>
+                        <h3 data-es="Encanto del Pueblo de Bocas" data-en="Charm of Bocas Town">Encanto del Pueblo de Bocas</h3>
                     </div>
                 </div>
                 <div class="galeria-item">
                     <img src="https://images.pexels.com/photos/9566563/pexels-photo-9566563.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Perezoso">
                     <div class="galeria-overlay">
-                        <h3>Vida Silvestre Única (Perezosos)</h3>
+                        <h3 data-es="Vida Silvestre Única (Perezosos)" data-en="Unique Wildlife (Sloths)">Vida Silvestre Única (Perezosos)</h3>
                     </div>
                 </div>
                 <div class="galeria-item">
                     <img src="https://images.pexels.com/photos/18197913/pexels-photo-18197913.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kayak en la Playa">
                     <div class="galeria-overlay">
-                        <h3>Aventuras en Kayak</h3>
+                        <h3 data-es="Aventuras en Kayak" data-en="Kayaking Adventures">Aventuras en Kayak</h3>
                     </div>
                 </div>
             </div>
@@ -1107,8 +1799,8 @@
     <section id="contacto" class="contacto-section">
         <div class="container">
             <div class="section-header">
-                <h2>📞 Contáctanos</h2>
-                <p>Estamos listos para hacer realidad tu viaje</p>
+                <h2 data-es="📞 Contáctanos" data-en="📞 Contact Us">📞 Contáctanos</h2>
+                <p data-es="Estamos listos para hacer realidad tu viaje" data-en="We're ready to make your trip a reality">Estamos listos para hacer realidad tu viaje</p>
             </div>
             <div class="contacto-grid">
                 <div class="contacto-item">
@@ -1124,7 +1816,7 @@
                 </div>
                 <div class="contacto-item">
                     <div class="contacto-icon">📍</div>
-                    <h3>Salidas desde</h3>
+                    <h3 data-es="Salidas desde" data-en="Departures from">Salidas desde</h3>
                     <p>Río Cuarto, Venecia,<br>Aguas Zarcas, Pital</p>
                 </div>
             </div>
@@ -1135,11 +1827,11 @@
     <section class="dev-credits-section">
         <div class="dev-credits-container">
             <div class="dev-logo-wrapper">
-                <img src="images/LogoDesarollador.png" alt="JR Digital Solutions" class="dev-logo">
+                <img src="images/LogoDesarrollador.png" alt="JR Digital Solutions" class="dev-logo">
             </div>
             <div class="dev-info">
                 <h3 class="dev-company-name">JR Digital Solutions</h3>
-                <p class="dev-tagline">Desarrollo web profesional • Soluciones digitales a la medida</p>
+                <p class="dev-tagline" data-es="Desarrollo web profesional • Soluciones digitales a la medida" data-en="Professional web development • Custom digital solutions">Desarrollo web profesional • Soluciones digitales a la medida</p>
                 <p class="dev-location-text">📍 San Carlos, Costa Rica</p>
             </div>
             <div class="dev-contact-links">
@@ -1163,30 +1855,30 @@
                     <div class="footer-logo">
                         <img src="logov2.png" alt="TransKeyTours">
                     </div>
-                    <p>Tu agencia de viajes de confianza.<br>Creando experiencias mágicas desde Costa Rica.</p>
+                    <p data-es="Tu agencia de viajes de confianza. Creando experiencias mágicas desde Costa Rica." data-en="Your trusted travel agency. Creating magical experiences from Costa Rica.">Tu agencia de viajes de confianza.<br>Creando experiencias mágicas desde Costa Rica.</p>
                 </div>
                 <div class="footer-col">
-                    <h3>Contacto</h3>
+                    <h3 data-es="Contacto" data-en="Contact">Contacto</h3>
                     <p>📱 WhatsApp: 8309-5731</p>
                     <p>✉️ transkeytour@gmail.com</p>
                     <p>📍 San Carlos, Costa Rica</p>
                 </div>
                 <div class="footer-col">
-                    <h3>Síguenos</h3>
+                    <h3 data-es="Síguenos" data-en="Follow Us">Síguenos</h3>
                     <a href="#">Facebook</a>
                     <a href="#">Instagram</a>
                     <a href="#">TikTok</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados.</p>
+                <p data-es="© 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados." data-en="© 2026 TransKeyTours - The Magic Travel. All rights reserved.">&copy; 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- WHATSAPP FLOTANTE -->
     <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20informaci%C3%B3n%20sobre%20el%20tour%20a%20Bocas%20del%20Toro%20del%2016-19%20Julio%202026%20%F0%9F%87%B5%F0%9F%87%A6" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
-        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="45" height="45" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 0C7.164 0 0 7.164 0 16C0 18.777 0.708 21.397 1.937 23.686L0 32L8.556 30.111C10.763 31.208 13.299 31.833 16 31.833C24.836 31.833 32 24.669 32 16C32 7.331 24.836 0 16 0ZM16 29.167C13.617 29.167 11.363 28.528 9.42 27.425L8.889 27.111L3.833 28.389L5.139 23.5L4.778 22.944C3.556 20.944 2.875 18.583 2.875 16C2.875 8.833 8.833 2.875 16 2.875C23.167 2.875 29.125 8.833 29.125 16C29.125 23.167 23.167 29.167 16 29.167Z" fill="white"/>
             <path d="M22.472 18.889C22.083 18.694 20.222 17.778 19.861 17.639C19.5 17.5 19.222 17.431 18.944 17.819C18.667 18.208 18.028 19.056 17.778 19.333C17.528 19.611 17.278 19.639 16.889 19.444C16.5 19.25 15.222 18.833 13.694 17.472C12.5 16.417 11.722 15.125 11.472 14.736C11.222 14.347 11.444 14.125 11.639 13.931C11.806 13.764 12.028 13.5 12.222 13.25C12.417 13 12.486 12.833 12.625 12.556C12.764 12.278 12.694 12.028 12.597 11.833C12.5 11.639 11.722 9.778 11.389 9C11.056 8.222 10.722 8.333 10.472 8.319C10.222 8.306 9.944 8.306 9.667 8.306C9.389 8.306 8.944 8.403 8.583 8.792C8.222 9.181 7.25 10.097 7.25 11.958C7.25 13.819 8.611 15.625 8.806 15.903C9 16.181 11.722 20.25 15.806 21.917C16.722 22.306 17.444 22.528 18.014 22.694C18.931 22.986 19.764 22.944 20.417 22.847C21.153 22.736 22.667 21.944 22.986 21.083C23.306 20.222 23.306 19.5 23.208 19.333C23.111 19.167 22.861 19.083 22.472 18.889Z" fill="white"/>
         </svg>
@@ -1195,69 +1887,289 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animaciones de entrada para hero
+        // MULTILENGUAJE
+        const translations = {
+            es: {},
+            en: {}
+        };
+
+        // Extraer traducciones del DOM
+        document.querySelectorAll('[data-es]').forEach(el => {
+            const id = el.getAttribute('data-id') || Math.random().toString(36);
+            el.setAttribute('data-id', id);
+            translations.es[id] = el.getAttribute('data-es');
+            translations.en[id] = el.getAttribute('data-en');
+        });
+
+        // Cargar idioma guardado
+        let currentLang = localStorage.getItem('preferredLang') || 'es';
+        document.documentElement.lang = currentLang;
+
+        // Función para cambiar idioma
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLang', lang);
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('[data-es]').forEach(el => {
+                const id = el.getAttribute('data-id');
+                if (translations[lang][id]) {
+                    el.textContent = translations[lang][id];
+                }
+            });
+
+            // Actualizar botones activos
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+
+        // Event listeners para botones de idioma
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Aplicar idioma inicial
+        setLanguage(currentLang);
+
+        // HEADER SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // PARALLAX MULTI-CAPA EN HERO
+        const heroBgImage = document.querySelector('.hero-bg-image');
+        const heroOverlay = document.querySelector('.hero-overlay');
+        const heroLeft = document.querySelector('.hero-left');
+        const heroRight = document.querySelector('.hero-right');
+
+        gsap.to(heroBgImage, {
+            yPercent: 30,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        gsap.to(heroOverlay, {
+            opacity: 0.5,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        gsap.to(heroLeft, {
+            y: -50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1.5
+            }
+        });
+
+        gsap.to(heroRight, {
+            y: -80,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1.8
+            }
+        });
+
+        // ANIMACIONES DE ENTRADA HERO
         gsap.from('.hero-left > *', {
             opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out'
+            y: 60,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: 'power4.out',
+            delay: 0.3
         });
 
         gsap.from('.price-box', {
             opacity: 0,
-            x: 50,
-            duration: 1,
-            delay: 0.5,
-            ease: 'power3.out'
+            x: 80,
+            scale: 0.9,
+            duration: 1.2,
+            delay: 0.7,
+            ease: 'back.out(1.4)'
         });
 
-        // Animaciones con scroll
-        gsap.utils.toArray('.tour-card').forEach(card => {
+        // COUNTER ANIMADO PARA PRECIO
+        const priceElement = document.querySelector('.price-amount');
+        const targetPrice = 150000;
+        gsap.from(priceElement, {
+            textContent: 0,
+            duration: 2,
+            delay: 1,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            onUpdate: function() {
+                priceElement.textContent = '₡' + Math.floor(this.targets()[0].textContent).toLocaleString('es-CR');
+            }
+        });
+
+        // ANIMACIONES CON SCROLL - TOURS (3D TILT)
+        gsap.utils.toArray('.tour-card').forEach((card, index) => {
+            // Entrada con stagger
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-                ease: 'power3.out'
-            });
-        });
-
-        gsap.utils.toArray('.incluye-item').forEach(item => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
                     start: 'top 85%',
                     end: 'bottom 20%',
                     toggleActions: 'play none none reverse'
                 },
                 opacity: 0,
-                scale: 0.8,
-                duration: 0.6,
-                ease: 'back.out(1.7)'
+                y: 80,
+                rotateX: -15,
+                duration: 1,
+                delay: index * 0.1,
+                ease: 'power3.out'
+            });
+
+            // 3D Tilt en hover (CSS handles the visual, GSAP could enhance)
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
             });
         });
 
-        gsap.utils.toArray('.galeria-item').forEach(item => {
-            gsap.from(item, {
+        // TESTIMONIOS - STAGGER DESDE DIFERENTES DIRECCIONES
+        gsap.utils.toArray('.testimonial-card').forEach((card, index) => {
+            const directions = [
+                { x: -100, y: 0 },
+                { x: 0, y: -100 },
+                { x: 100, y: 0 },
+                { x: 0, y: 100 }
+            ];
+            const dir = directions[index % directions.length];
+
+            gsap.from(card, {
                 scrollTrigger: {
-                    trigger: item,
-                    start: 'top 80%',
+                    trigger: card,
+                    start: 'top 85%',
                     toggleActions: 'play none none reverse'
                 },
                 opacity: 0,
-                scale: 0.9,
-                duration: 0.8,
+                x: dir.x,
+                y: dir.y,
+                duration: 1,
                 ease: 'power3.out'
             });
         });
 
-        // ANIMACIÓN DEVELOPER CREDITS
+        // BLOG CARDS - REVEAL CON SCALE
+        gsap.utils.toArray('.blog-card').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                scale: 0.85,
+                y: 60,
+                duration: 0.9,
+                delay: index * 0.15,
+                ease: 'back.out(1.4)'
+            });
+        });
+
+        // INCLUYE ITEMS - BOUNCE IN
+        gsap.utils.toArray('.incluye-item').forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 87%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                scale: 0.7,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.08,
+                ease: 'back.out(2)'
+            });
+        });
+
+        // INFO CARDS - SLIDE FROM SIDES
+        gsap.utils.toArray('.info-card').forEach((card, index) => {
+            const fromLeft = index % 2 === 0;
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                x: fromLeft ? -100 : 100,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // GALERIA - SCALE + ROTATE
+        gsap.utils.toArray('.galeria-item').forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                scale: 0.8,
+                rotation: index % 2 === 0 ? -5 : 5,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // CONTACTO ITEMS - FADE UP
+        gsap.utils.toArray('.contacto-item').forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: 'power3.out'
+            });
+        });
+
+        // DEVELOPER CREDITS
         gsap.from('.dev-credits-section', {
             scrollTrigger: {
                 trigger: '.dev-credits-section',
@@ -1265,10 +2177,152 @@
                 toggleActions: 'play none none reverse'
             },
             opacity: 0,
-            y: 30,
-            duration: 0.8,
+            y: 40,
+            duration: 1,
             ease: 'power2.out'
         });
+
+        // SECTION HEADERS - FADE IN
+        gsap.utils.toArray('.section-header').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+
+        // WHATSAPP FLOAT - ENTRADA ANIMADA
+        gsap.from('.whatsapp-float', {
+            scale: 0,
+            rotation: 360,
+            duration: 1,
+            delay: 2,
+            ease: 'elastic.out(1, 0.5)'
+        });
+
+        // ===== MEJORAS PREMIUM JAVASCRIPT =====
+
+        // 3D TILT EFFECT SIGUIENDO MOUSE
+        document.querySelectorAll('.price-box, .testimonial-card, .blog-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)';
+            });
+        });
+
+        // PARALLAX EN SECCIONES (FONDOS)
+        gsap.utils.toArray('.testimonials-section, .blog-section').forEach(section => {
+            gsap.to(section, {
+                backgroundPosition: `50% ${-innerHeight / 2}px`,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        });
+
+        // SMOOTH SCROLL MEJORADO (NAVEGACIÓN)
+        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // LAZY LOADING OPTIMIZATION
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        }
+
+        // ANIMACIÓN DE CONTEO MEJORADA
+        const priceAmount = document.querySelector('.price-amount');
+        if (priceAmount) {
+            const targetNumber = 150000;
+            gsap.from(priceAmount, {
+                textContent: 0,
+                duration: 2.5,
+                delay: 0.5,
+                ease: 'power2.out',
+                snap: { textContent: 1 },
+                onUpdate: function() {
+                    priceAmount.textContent = '₡' + Math.floor(this.targets()[0].textContent).toLocaleString();
+                }
+            });
+        }
+
+        // INTERSECTION OBSERVER PARA ANIMACIONES AVANZADAS
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-header, .destino-card, .incluye-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            fadeInObserver.observe(el);
+        });
+
+        // PERFORMANCE OPTIMIZATION
+        let ticking = false;
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    // Parallax y efectos de scroll aquí
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        console.log('%c✨ TransKeyTours — Diseño Premium Activado', 'color: #FF6B35; font-size: 16px; font-weight: bold;');
     </script>
 </body>
 </html>
