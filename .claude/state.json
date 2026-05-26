@@ -1,0 +1,204 @@
+﻿{
+  "project": "Transkeytour Bocas Tours",
+  "stack_type": "HTML_CSS_JS",
+  "phases": {
+    "design": "done",
+    "animations": "done",
+    "frontend": "done",
+    "integration": "done",
+    "devops": "pending",
+    "seo": "pending"
+  },
+  "validations": {
+    "responsive": "PASS - Mobile, Tablet, Desktop optimizado",
+    "images": "PASS - Galería con 6 fotos + lightbox",
+    "animations": "PASS - GSAP 3.12.5 + ScrollTrigger implementado",
+    "whatsapp": "PENDING - Número de teléfono por configurar"
+  },
+  "sections": [
+    "Hero", "Galería", "Puntos de Salida", "Qué Incluye",
+    "Destinos", "Precios", "No Incluye", "Requisitos", "Contacto"
+  ],
+  "features": {
+    "done": [
+      "Landing page responsive",
+      "Galería de imágenes con lightbox",
+      "Formulario WhatsApp",
+      "Hero con fondo real + parallax GSAP",
+      "6 destinos con fotos + hover effects",
+      "Menú móvil hamburguesa",
+      "Animaciones GSAP ScrollTrigger",
+      "Counters animados para precios",
+      "Scroll-to-top con GSAP",
+      "Stagger animations en cards",
+      "Hover effects profesionales",
+      "Loading animations",
+      "Parallax en hero background"
+    ],
+    "pending": [
+      "Configurar número WhatsApp",
+      "Reemplazar fotos con del tour real",
+      "Deploy a hosting"
+    ]
+  },
+  "tour_info": {
+    "destino": "Bocas del Toro, Panamá",
+    "origen": "San Carlos, Costa Rica",
+    "fechas": "16-19 Julio 2026",
+    "precio_adulto": 150000,
+    "precio_nino": 120000,
+    "apartado": 25000,
+    "salidas": ["Rio Cuarto", "Venecia", "Aguas Zarcas", "Pital"]
+  },
+  "files": {
+    "html": "index.html",
+    "css": "styles.css",
+    "js": "script.js",
+    "docs": ["README.md", "GUIA-CANVA.md", "Idea.MD"]
+  },
+  "tech_stack": {
+    "libraries": ["GSAP 3.12.5", "ScrollTrigger", "ScrollToPlugin"],
+    "fonts": ["Poppins", "Playfair Display"],
+    "images": "Unsplash API"
+  }
+}
+    "db": "done",
+    "backend": "done",
+    "backend_build": "done",
+    "frontend": "done",
+    "integration": "pending",
+    "review_backend": "pending",
+    "review_frontend": "pending",
+    "review_integration": "pending",
+    "devops": "pending",
+    "security": "pending"
+  },
+  "validations": {
+    "backend_build": "PASS - 0 errores, 0 advertencias",
+    "frontend_build": "PASS - vite build exitoso, 247KB JS"
+  },
+  "entities": [
+    "Empresa", "Usuario", "Cliente", "Producto",
+    "Bodega", "Vehiculo", "InventarioBodega",
+    "Venta", "DetalleVenta", "Cobro",
+    "Ruta", "ParadaRuta", "Encargo",
+    "Transferencia", "DetalleTransferencia"
+  ],
+  "entity_batching": {
+    "enabled": false,
+    "batch_size": 10,
+    "total_entities": 15,
+    "total_batches": 2,
+    "current_batch": 0,
+    "batches_done": [],
+    "auto_enable_threshold": 15
+  },
+  "stack": {
+    "backendPort": 5159,
+    "frontendPort": 5173,
+    "dbName": "VendaDeUna",
+    "connectionString": "Server=JORGE_R\\SQL;Database=VendaDeUna;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+  "lastAgent": "FrontendAgent",
+  "updatedAt": "2026-04-29",
+  "pendingGate": null,
+  "artifacts": [
+    "docs/ARCHITECTURE.md",
+    "docs/TASKS.md",
+    "docs/ROUTES.md",
+    "database/schema.sql",
+    "database/seed.sql",
+    "backend/VendaDeUna.API/Program.cs",
+    "backend/VendaDeUna.API/Extensions/ServiceExtensions.cs",
+    "backend/VendaDeUna.API/Models/",
+    "backend/VendaDeUna.API/DTOs/",
+    "backend/VendaDeUna.API/Data/",
+    "backend/VendaDeUna.API/Services/",
+    "backend/VendaDeUna.API/Controllers/",
+    "backend/VendaDeUna.API/Middleware/",
+    "frontend/vendadeuna-web/src/App.jsx",
+    "frontend/vendadeuna-web/src/context/AuthContext.jsx",
+    "frontend/vendadeuna-web/src/services/",
+    "frontend/vendadeuna-web/src/pages/",
+    "frontend/vendadeuna-web/src/layouts/AppLayout.jsx"
+  ],
+  "featureRequests": [],
+  "designSystem": {
+    "exists": false,
+    "path": "design-system/MASTER.md",
+    "industry": "field-sales",
+    "generatedBy": null
+  },
+  "evolution": {
+    "lessons_pending": 0,
+    "total_lessons": 0,
+    "skills_active": 0,
+    "skills_archived": 0,
+    "skills_registry": [],
+    "evolution_score": 0.0,
+    "retry_rate_improvement": 0.0,
+    "last_run": null,
+    "last_lesson": null,
+    "decay_config": {
+      "enabled": true,
+      "halflife_days": 30,
+      "min_retention": 0.25
+    }
+  },
+  "jarvis_db": {
+    "server": "JORGE_R\\SQL",
+    "database": "JarvisDB",
+    "enabled": true,
+    "degraded": false,
+    "degradation_mode": null,
+    "last_sync": null,
+    "last_sync_rows": 0
+  },
+  "memory": {
+    "agents_since_sync": 0,
+    "last_sync_agent": "ArchitectAgent",
+    "auto_compress_threshold": 3
+  },
+  "sentinel": {
+    "last_score": null,
+    "last_run": null,
+    "issues_pending": 0
+  },
+  "review": {
+    "consensus_score": null,
+    "perspectives_failed": 0,
+    "must_fix_count": 0,
+    "last_run": null
+  },
+  "constitution": {
+    "exists": false,
+    "path": ".claude/constitution.md"
+  },
+  "model_routing": {
+    "enabled": true,
+    "last_routing_decision": "ArchitectAgent"
+  },
+  "test_coverage": {
+    "backend_pct": null,
+    "frontend_pct": null,
+    "e2e_scenarios": 0,
+    "last_run": null
+  },
+  "ci_pipeline": {
+    "platform": null,
+    "status": null,
+    "last_run": null,
+    "last_commit": null
+  },
+  "design_studio": {
+    "has_3d": false,
+    "animation_lib": null,
+    "industry_palette": null,
+    "generated_by": null
+  },
+  "approvalGates": {
+    "scope_v1_approved": false
+  },
+  "reactions_enabled": true,
+  "last_error": null
+}

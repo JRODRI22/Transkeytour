@@ -1,0 +1,95 @@
+{
+  "// DESCRIPCION": "Template de settings.json para proyectos nuevos. Copiar a .claude/settings.json en cada proyecto.",
+  "// USO": "Ajustar los valores marcados con [CONFIGURAR] antes de usar.",
+
+  "project": {
+    "name": "[CONFIGURAR] Nombre del proyecto",
+    "version": "1.0.0",
+    "description": "[CONFIGURAR] Descripción breve del sistema"
+  },
+
+  "stack": {
+    "backend": "dotnet8",
+    "frontend": "react18+vite5",
+    "database": "sqlserver",
+    "orm": "efcore8",
+    "auth": "jwt-bearer",
+    "passwords": "bcrypt",
+    "styles": "tailwindcss3",
+    "http": "axios",
+    "testing": "xunit+moq",
+    "containers": "docker"
+  },
+
+  "ports": {
+    "backend": "[CONFIGURAR] 5159",
+    "frontend": "5173",
+    "database": "1433"
+  },
+
+  "database": {
+    "name": "[CONFIGURAR] NombreDB",
+    "server": "localhost",
+    "connectionString": "[CONFIGURAR] Server=localhost;Database=NombreDB;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+
+  "agents": {
+    "maxRetries": 3,
+    "approvalGates": [
+      "post-architect",
+      "post-tasks",
+      "post-review-with-fixes",
+      "post-security-critical"
+    ],
+    "memoryBank": {
+      "enabled": true,
+      "files": [
+        "CLAUDE-activeContext.md",
+        "CLAUDE-patterns.md",
+        "CLAUDE-decisions.md",
+        "CLAUDE-troubleshooting.md"
+      ],
+      "syncCommand": "/update-memory-bank"
+    }
+  },
+
+  "security": {
+    "jwtSecretMinLength": 32,
+    "corsOrigins": ["http://localhost:5173"],
+    "defaultAuthorize": true,
+    "passwordHashing": "bcrypt",
+    "sqlInjectionPrevention": "efcore-only"
+  },
+
+  "phases": {
+    "sdd": { "status": "pending", "agent": "ArchitectAgent", "output": "docs/" },
+    "database": { "status": "pending", "agent": "DatabaseAgent", "output": "database/" },
+    "backend": { "status": "pending", "agent": "BackendAgent", "output": "backend/" },
+    "frontend": { "status": "pending", "agent": "FrontendAgent", "output": "frontend/" },
+    "integration": { "status": "pending", "agent": "IntegrationAgent", "output": "frontend/src/services/api.js" },
+    "review": { "status": "pending", "agent": "ReviewAgent", "output": "docs/REVIEW_REPORT.md" },
+    "devops": { "status": "pending", "agent": "DevOpsAgent", "output": "docker-compose.yml" },
+    "security": { "status": "pending", "agent": "SecurityAgent", "output": "docs/SECURITY.md" }
+  },
+
+  "modelRouting": {
+    "// DESCRIPCION": "Model routing automático por tipo de tarea. Haiku para mecánicas, Sonnet para integración, Opus para arquitectura.",
+    "default": "sonnet",
+    "routing": {
+      "haiku": ["DDL", "Dockerfiles", "scaffolding", "seed-data", "route-files", "config-files"],
+      "sonnet": ["services", "repositories", "controllers", "api-integration", "multi-file-changes"],
+      "opus": ["architecture", "ADRs", "security-review", "SDD", "complex-debugging"]
+    },
+    "env": {
+      "MAX_THINKING_TOKENS": "10000",
+      "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
+      "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+    }
+  },
+
+  "metadata": {
+    "createdBy": "Jorge Rodríguez — JR Digital Solutions",
+    "templateVersion": "2026",
+    "lastUpdated": "[CONFIGURAR con fecha de inicio del proyecto]"
+  }
+}

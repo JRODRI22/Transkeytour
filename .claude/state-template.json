@@ -1,0 +1,118 @@
+{
+  "project": "",
+  "stack_type": "NET8_React",
+  "_stack_type_options": ["NET8_React", "Python_FastAPI_React", "Node_Express_React", "Go_Gin_React", "PHP_Laravel_React", "custom"],
+  "phases": {
+    "sdd": "pending",
+    "db": "pending",
+    "backend": "pending",
+    "backend_build": "pending",
+    "_backend_build_values": ["pending","done","failed_max_retries"],
+    "frontend": "pending",
+    "integration": "pending",
+    "review_backend": "pending",
+    "review_frontend": "pending",
+    "review_integration": "pending",
+    "devops": "pending",
+    "security": "pending"
+  },
+  "entities": [],
+  "entity_batching": {
+    "enabled": false,
+    "batch_size": 10,
+    "total_entities": 0,
+    "total_batches": 0,
+    "current_batch": 0,
+    "batches_done": [],
+    "auto_enable_threshold": 15
+  },
+  "stack": {
+    "backendPort": null,
+    "frontendPort": 5173,
+    "dbName": null,
+    "connectionString": null
+  },
+  "lastAgent": null,
+  "pendingGate": null,
+  "artifacts": [],
+  "featureRequests": [],
+  "designSystem": {
+    "exists": false,
+    "path": "design-system/MASTER.md",
+    "industry": null,
+    "generatedBy": null
+  },
+  "evolution": {
+    "lessons_pending": 0,
+    "total_lessons": 0,
+    "skills_active": 0,
+    "skills_archived": 0,
+    "skills_registry": [],
+    "evolution_score": 0.0,
+    "retry_rate_improvement": 0.0,
+    "last_run": null,
+    "last_lesson": null,
+    "decay_config": {
+      "_comment": "Ver .claude/evolution.json para config global del framework. Estos valores por-proyectos pueden sobreescribirla.",
+      "enabled": true,
+      "halflife_days": 30,
+      "min_retention": 0.25
+    }
+  },
+  "jarvis_db": {
+    "server": "JORGE_R\\SQL",
+    "database": "JarvisDB",
+    "enabled": true,
+    "degraded": false,
+    "degradation_mode": null,
+    "last_sync": null,
+    "last_sync_rows": 0
+  },
+  "memory": {
+    "agents_since_sync": 0,
+    "last_sync_agent": null,
+    "auto_compress_threshold": 3
+  },
+  "sentinel": {
+    "last_score": null,
+    "last_run": null,
+    "issues_pending": 0
+  },
+  "review": {
+    "consensus_score": null,
+    "perspectives_failed": 0,
+    "must_fix_count": 0,
+    "last_run": null
+  },
+  "constitution": {
+    "exists": false,
+    "path": ".claude/constitution.md"
+  },
+  "model_routing": {
+    "enabled": true,
+    "last_routing_decision": null
+  },
+  "test_coverage": {
+    "backend_pct": null,
+    "frontend_pct": null,
+    "e2e_scenarios": 0,
+    "last_run": null
+  },
+  "ci_pipeline": {
+    "platform": null,
+    "status": null,
+    "last_run": null,
+    "last_commit": null
+  },
+  "design_studio": {
+    "has_3d": false,
+    "animation_lib": null,
+    "industry_palette": null,
+    "generated_by": null
+  },
+  "reactions_enabled": true,
+  "last_error": null,
+  "_write_protocol": "atomic",
+  "_backup_before_write": true,
+  "_last_backup": null
+}

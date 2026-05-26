@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF1493">
+    <title>🌴 TRANSKEYTOUR BOCAS TOURS | ¡Aparta tu espacio!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0077B6 0%, #00B4D8 50%, #0096C7 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* HERO PRINCIPAL */
+        .hero-promo {
+            background: 
+                linear-gradient(135deg, rgba(0, 119, 182, 0.95), rgba(0, 150, 199, 0.9)),
+                url('https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-promo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 214, 10, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .container-promo {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* SALIDAS BADGE */
+        .salidas-badge {
+            background: linear-gradient(135deg, #FFD60A, #FFC107);
+            color: #000;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 214, 10, 0.5);
+            transform: rotate(-2deg);
+            border: 4px solid #FFF;
+            position: relative;
+        }
+
+        .salidas-badge::before {
+            content: '✈️';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .salidas-badge h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .salidas-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .salida-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .salida-pin {
+            color: #FF1493;
+            font-size: 1.5rem;
+        }
+
+        /* LOGO Y TÍTULO */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-promo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 4rem;
+            color: #FFF;
+            text-shadow: 
+                4px 4px 0 #000,
+                6px 6px 0 #FF1493,
+                8px 8px 20px rgba(0,0,0,0.5);
+            margin-bottom: 0;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-accent {
+            color: #FFD60A;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            display: block;
+            background: linear-gradient(135deg, #FF1493, #FF6B9D);
+            padding: 0.5rem 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .destino-principal::before {
+            content: '🐬';
+            position: absolute;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4rem;
+            animation: swim 3s ease-in-out infinite;
+        }
+
+        @keyframes swim {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-10px); }
+            border-radius: 50px;
+            margin-top: 0.5rem;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.6);
+            transform: skew(-5deg);
+        }
+
+        .destino-principal {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 5.5rem;
+            color: #FFF;
+            text-shadow: 
+                6px 6px 0 #000,
+                8px 8px 0 #FFD60A;
+            line-height: 0.9;
+            margin: 1rem 0;
+        }
+
+        .destino-amarillo {
+            color: #FFD60A;
+            font-style: italic;
+        }
+
+        .subtitulo-pais {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: #FFF;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* PRECIO DESTACADO */
+        .precio-circulo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.8);
+            border: 6px solid #FFF;
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 1000;
+            transform: rotate(-10deg);
+        }
+
+        .precio-circulo::before {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            font-size: 2.5rem;
+            animation: spin 4s linear infinite;
+        }
+
+        .precio-circulo::after {
+            content: '💰';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            font-size: 2.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(-10deg) scale(1.05); }
+        }
+
+        .precio-circulo-texto {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #FFF;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .precio-circulo-monto {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            color: #FFD60A;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .precio-circulo-nota {
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        /* FECHAS */
+        .fechas-viaje {
+            background: linear-gradient(135deg, #FF1493, #C71585);
+            padding: 2rem;
+            border-radius: 30px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 6px solid #FFF;
+            box-shadow: 0 15px 40px rgba(199, 21, 133, 0.6);
+        }
+
+        .fechas-label {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #FFF;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .fechas-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .fecha-box {
+            background: #FFF;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .fecha-label-mini {
+            font-size: 0.9rem;
+            color: #FF1493;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .fecha-numero {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 5rem;
+            color: #FF1493;
+            line-height: 1;
+        }
+
+        .fecha-mes {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: #000;
+        }
+
+        .fecha-separador {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: #FFF;
+            font-weight: 900;
+            position: relative;
+        }
+
+        .visitaremos-titulo::before {
+            content: '⭐';
+            position: absolute;
+            left: 20px;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        .visitaremos-titulo::after {
+            content: '⭐';
+            position: absolute;
+            right: 20px;
+            animation: twinkle 1.5s ease-in-out infinite 0.5s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* VISITAREMOS */
+        .visitaremos {
+            margin: 3rem 0;
+        }
+
+        .visitaremos-titulo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: #FFF;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: #FF1493;
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+        }
+
+        .destinos-circulares {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .destino-circular {
+            text-align: center;
+        }
+
+        .destino-circular-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 6px solid #FFF;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .destino-circular:hover .destino-circular-img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .destino-nombre {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: #FFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        /* INCLUYE */
+        .incluye-seccion {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .incluye-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .incluye-item:hover::before {
+            left: 100%;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .incluye-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .incluye-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #00B4D8, #0096C7);
+            border-radius: 20px;
+            color: #FFF;
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .incluye-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .incluye-icono {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .incluye-texto {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        /* NO INCLUYE */
+        .no-incluye {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #FF1493;
+        }
+
+        .no-incluye h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: #FFD60A;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .no-incluye-list {
+            list-style: none;
+            color: #FFF;
+        }
+
+        .no-incluye-list li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .no-incluye-list li::before {
+            content: '❌';
+            font-size: 1.5rem;
+        }
+
+        /* TESTIMONIOS */
+        .testimonios {
+            margin: 3rem 0;
+        }
+
+        .testimonios-titulo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: #FFD60A;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonio-card {
+            background: #FFF;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid #FFF;
+        }
+
+        .whatsapp-flotante::before {
+            content: '💬';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2rem;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 1; }
+            75%, 100% { transform: scale(1.5); opacity: 0; }
+            position: relative;
+        }
+
+        .estrellas {
+            color: #FFD60A;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonio-texto {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .testimonio-autor {
+            font-weight: 700;
+            color: #FF1493;
+        }
+
+        /* BOTÓN WHATSAPP */
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #FFF;
+            padding: 1.5rem 2rem;
+            border-radius: 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.6);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .whatsapp-icono {
+            font-size: 2.5rem;
+        }
+
+        .whatsapp-numero {
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        /* CTA RESERVA */
+        .cta-reserva {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 30px;
+            margin: 3rem 0;
+            border: 8px solid #FFF;
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.7);
+        }
+
+        .cta-titulo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3.5rem;
+            color: #FFD60A;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.7);
+            margin-bottom: 1rem;
+        }
+
+        .cta-slogan {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: #FFF;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .btn-reservar {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD60A, #FFA500);
+            color: #000;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(255, 214, 10, 0.6);
+            transition: all 0.3s ease;
+            border: 5px solid #FFF;
+        }
+
+        .btn-reservar:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 20px 60px rgba(255, 214, 10, 0.9);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .logo-promo {
+                font-size: 2.5rem;
+            }
+
+            .destino-principal {
+                font-size: 3.5rem;
+            }
+
+            .subtitulo-pais {
+                font-size: 2rem;
+            }
+
+            .precio-circulo {
+                width: 130px;
+                height: 130px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .precio-circulo-monto {
+                font-size: 1.8rem;
+            }
+
+            .fecha-numero {
+                font-size: 3rem;
+            }
+
+            .destino-circular-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .whatsapp-flotante {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 1rem 1.5rem;
+            }
+
+            .cta-titulo {
+                font-size: 2rem;
+            }
+
+            .btn-reservar {
+                font-size: 1.8rem;
+                padding: 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRECIO FLOTANTE -->
+    <div class="precio-circulo">
+        <div class="precio-circulo-texto">
+            APARTA TU<br>ESPACIO CON SOLO
+        </div>
+        <div class="precio-circulo-monto">₡25.000</div>
+        <div class="precio-circulo-nota">POR PERSONA</div>
+    </div>
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-promo">
+        <div class="container-promo">
+            <!-- SALIDAS -->
+            <div class="salidas-badge">
+                <h3>SALIDAS DESDE:</h3>
+                <div class="salidas-list">
+                    <div class="salida-item">
+                        <span class="salida-pin">📍</span>
+                        RÍO CUARTO
+                    </div>
+                    <div class="salida-item">
+                        <span class="salida-pin">📍</span>
+                        VENECIA
+                    </div>
+                    <div class="salida-item">
+                        <span class="salida-pin">📍</span>
+                        AGUAS ZARCAS
+                    </div>
+                    <div class="salida-item">
+                        <span class="salida-pin">📍</span>
+                        PITAL
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOGO Y TÍTULO -->
+            <div class="brand-header">
+                <div class="logo-promo">
+                    <span style="font-size: 3rem;">🌴</span> TRANSKEYTOUR <span style="font-size: 3rem;">🌴</span>
+                </div>
+                <div class="logo-accent">
+                    <span style="font-size: 2rem;">🌊</span> BOCAS TOURS <span style="font-size: 2rem;">🌊</span>
+                </div>
+            </div>
+
+            <h1 class="destino-principal">
+                BOCAS<br>
+                <span class="destino-amarillo">DEL TORO</span>
+            </h1>
+
+            <div class="subtitulo-pais">
+                <span style="font-size: 4rem;">🇵🇦</span>
+                PANAMÁ
+                <span style="font-size: 4rem;">🇵🇦</span>
+            </div>
+
+            <div style="background: rgba(0, 0, 0, 0.7); padding: 1.5rem; border-radius: 20px; margin-top: 1rem; border: 3px solid #FFD60A;">
+                <p style="text-align: center; color: #FFD60A; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                    ✈️ VIAJA CON TRANSPORTE + HOTEL + TOURS 🌊<br>
+                    🚌 DESDE SAN CARLOS EN BUS HYUNDAI COUNTY 🚌
+                </p>
+            </div>
+
+            <!-- FECHAS -->
+            <div class="fechas-viaje">
+                <div class="fechas-label">FECHAS DEL VIAJE</div>
+                <div class="fechas-display">
+                    <div class="fecha-box">
+                        <div class="fecha-label-mini">DEL</div>
+                        <div class="fecha-numero">16</div>
+                        <div class="fecha-mes">JULIO</div>
+                        <div class="fecha-label-mini" style="margin-top: 0.5rem;">2026</div>
+                    </div>
+                    <div class="fecha-separador">AL</div>
+                    <div class="fecha-box">
+                        <div class="fecha-label-mini">AL</div>
+                        <div class="fecha-numero">19</div>
+                        <div class="fecha-mes">JULIO</div>
+                        <div class="fecha-label-mini" style="margin-top: 0.5rem;">2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISITAREMOS -->
+            <div class="visitaremos">
+                <h2 class="visitaremos-titulo">🌊 VISITAREMOS: 2 DÍAS DE TOURS INCREÍBLES 🌊</h2>
+                <div class="destinos-circulares">
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/4388164/pexels-photo-4388164.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Playa Estrellas" class="destino-circular-img">
+                        <div class="destino-nombre">PLAYA DE LAS<br>ESTRELLAS</div>
+                    </div>
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/5102825/pexels-photo-5102825.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bahía Delfines" class="destino-circular-img">
+                        <div class="destino-nombre">BAHÍA DE LOS<br>DELFINES</div>
+                    </div>
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Snorkel" class="destino-circular-img">
+                        <div class="destino-nombre">SNORKEL EN<br>CAYO CORAL</div>
+                    </div>
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hollywood Reef" class="destino-circular-img">
+                        <div class="destino-nombre">HOLLYWOOD<br>REEF</div>
+                    </div>
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/1430676/pexels-photo-1430676.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Parque Marino" class="destino-circular-img">
+                        <div class="destino-nombre">PARQUE MARINO<br>ISLA ZAPATILLA</div>
+                    </div>
+                    <div class="destino-circular">
+                        <img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Punta Carenero" class="destino-circular-img">
+                        <div class="destino-nombre">AVISTAMIENTO<br>PUNTA CARENERO</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INCLUYE -->
+            <div class="incluye-seccion">
+                <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; text-align: center; color: #FF1493; margin-bottom: 2rem;">
+                    ✅ EL PAQUETE INCLUYE
+                </h2>
+                <div class="incluye-grid">
+                    <div class="incluye-item">
+                        <div class="incluye-icono">🚌</div>
+                        <div class="incluye-texto">TRANSPORTE<br>IDA Y REGRESO</div>
+                    </div>
+                    <div class="incluye-item">
+                        <div class="incluye-icono">🚤</div>
+                        <div class="incluye-texto">TRASLADO MARÍTIMO<br>IDA Y REGRESO</div>
+                    </div>
+                    <div class="incluye-item">
+                        <div class="incluye-icono">🏨</div>
+                        <div class="incluye-texto">3 NOCHES<br>HOTEL</div>
+                    </div>
+                    <div class="incluye-item">
+                        <div class="incluye-icono">🍳</div>
+                        <div class="incluye-texto">3 DESAYUNOS<br>COMPLETOS</div>
+                    </div>
+                    <div class="incluye-item">
+                        <div class="incluye-icono">👨‍✈️</div>
+                        <div class="incluye-texto">GUÍAS<br>LOCALES</div>
+                    </div>
+                </div>
+
+                <!-- DETALLES -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #FFD60A; border-radius: 15px;">
+                    <ul style="list-style: none; color: #000; font-weight: 600;">
+                        <li style="padding: 0.5rem 0;">✅ Guías certificados y locales</li>
+                        <li style="padding: 0.5rem 0;">✅ Transporte terrestre ida y regreso</li>
+                        <li style="padding: 0.5rem 0;">✅ Transporte marítimo ida y regreso</li>
+                        <li style="padding: 0.5rem 0;">✅ 3 noches en hotel</li>
+                        <li style="padding: 0.5rem 0;">✅ 3 desayunos completos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- NO INCLUYE -->
+            <div class="no-incluye">
+                <h3>❌ NO INCLUYE</h3>
+                <ul class="no-incluye-list">
+                    <li>Almuerzos y cenas</li>
+                    <li>Entrada al Parque Marino Isla Zapatilla ($10 p/p)</li>
+                    <li>Impuestos fronterizos</li>
+                </ul>
+            </div>
+
+            <!-- IMPORTANTE -->
+            <div style="background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 4px solid #FFD60A;">
+                <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #FF1493; margin-bottom: 1rem;">
+                    ⚠️ IMPORTANTE
+                </h3>
+                <ul style="color: #000; font-weight: 600;">
+                    <li style="padding: 0.5rem 0;">👶 La tarifa de niños aplica compartiendo habitación con 2 adultos.</li>
+                    <li style="padding: 0.5rem 0;">💳 Puedes pagar mediante SINPE Móvil o transferencia bancaria.</li>
+                    <li style="padding: 0.5rem 0;">💰 El pago total debe estar cancelado el día del viaje.</li>
+                    <li style="padding: 0.5rem 0;">🚐 Salidas grupales (mínimo 10 personas).</li>
+                </ul>
+            </div>
+
+            <!-- REQUISITOS -->
+            <div style="background: rgba(0, 0, 0, 0.8); padding: 2rem; border-radius: 20px; margin: 2rem 0; border: 3px solid #00B4D8; color: #FFF;">
+                <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #FFD60A; margin-bottom: 1rem;">
+                    📋 REQUISITOS PARA INGRESAR A PANAMÁ
+                </h3>
+                <ul style="font-size: 1.1rem;">
+                    <li style="padding: 0.5rem 0;">✅ Pasaporte vigente mínimo 4 meses</li>
+                    <li style="padding: 0.5rem 0;">✅ Pago de impuesto de salida de Costa Rica ($8 p/p)</li>
+                    <li style="padding: 0.5rem 0;">✅ Pago de impuesto de entrada a Panamá ($8 p/p)</li>
+                    <li style="padding: 0.5rem 0;">✅ Cédula pasaporte en Migración</li>
+                </ul>
+            </div>
+
+            <!-- TESTIMONIOS -->
+            <div class="testimonios">
+                <h2 class="testimonios-titulo">⭐ LO QUE DICEN NUESTROS CLIENTES ⭐</h2>
+                <div class="testimonios-grid">
+                    <div class="testimonio-card">
+                        <div class="estrellas">★★★★★</div>
+                        <p class="testimonio-texto">
+                            "Todo súper organizado y súper bien. Un viaje que vale la pena. Recomendado 100%"
+                        </p>
+                        <p class="testimonio-autor">— Andrea M.</p>
+                    </div>
+                    <div class="testimonio-card">
+                        <div class="estrellas">★★★★★</div>
+                        <p class="testimonio-texto">
+                            "Nos encantó el tour y el transporte muy cómodo."
+                        </p>
+                        <p class="testimonio-autor">— Kevin R.</p>
+                    </div>
+                    <div class="testimonio-card">
+                        <div class="estrellas">★★★★★</div>
+                        <p class="testimonio-texto">
+                            "La mejor experiencia para conocer la belleza del Toro."
+                        </p>
+                        <p class="testimonio-autor">— Daniela C.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA FINAL -->
+            <div class="cta-reserva">
+                <h2 class="cta-titulo">🎉 RESERVA AHORA 🎉</h2>
+                <p class="cta-slogan">¡TU AVENTURA TE ESPERA! ASEGURA TU ESPACIO HOY 🏖️</p>
+                <a href="https://wa.me/50683095731?text=Hola!%20Quiero%20información%20sobre%20el%20tour%20a%20Bocas%20del%20Toro%20del%2016-19%20Julio%202026" class="btn-reservar">
+                    APARTA TU ESPACIO
+                </a>
+                <p style="color: #FFD60A; font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-top: 2rem; text-shadow: 3px 3px 6px rgba(0,0,0,0.9); animation: pulse 2s ease-in-out infinite;">
+                    🌴 VIVE EL CARIBE COMO NUNCA ANTES 🌴<br>
+                    <span style="font-size: 1.3rem; color: #FFF;">💙 Keylor Esquivel 💙</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/50683095731?text=Hola!%20Quiero%20información%20sobre%20Bocas%20del%20Toro" class="whatsapp-flotante">
+        <span class="whatsapp-icono">📱</span>
+        <div>
+            <div style="font-size: 1rem; line-height: 1;">RESERVA AHORA</div>
+            <div class="whatsapp-numero">8309-5731</div>
+            <div style="font-size: 0.9rem;">Keylor Esquivel</div>
+        </div>
+    </a>
+
+    <!-- FOOTER -->
+    <footer style="background: linear-gradient(135deg, #000, #1a1a1a); padding: 3rem 2rem; text-align: center; color: #FFF;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 1rem;">
+            🌴 TRANSKEYTOUR BOCAS TOURS
+        </div>
+        <p style="margin-bottom: 1rem;">Confort, seguridad y la mejor atención</p>
+        <p style="margin-bottom: 1rem;">Ideal para familias, amigos y grupos</p>
+        <div style="font-size: 2rem; margin-bottom: 1rem;">
+            <a href="#" style="color: #FFF; margin: 0 1rem;">📘</a>
+            <a href="#" style="color: #FFF; margin: 0 1rem;">📷</a>
+            <a href="#" style="color: #FFF; margin: 0 1rem;">🎵</a>
+        </div>
+        <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 2rem;">
+            © 2026 Transkeytour Bocas Tours | Todos los derechos reservados
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animación de entrada
+        gsap.from('.salidas-badge', {
+            opacity: 0,
+            y: -100,
+            rotation: -10,
+            duration: 1,
+            ease: 'bounce.out'
+        });
+
+        gsap.from('.brand-header', {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1,
+            delay: 0.3,
+            ease: 'elastic.out(1, 0.5)'
+        });
+
+        gsap.from('.destino-principal', {
+            opacity: 0,
+            x: -200,
+            duration: 1,
+            delay: 0.6,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.fechas-viaje', {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.8,
+            delay: 0.9,
+            ease: 'back.out(1.7)'
+        });
+
+        // Scroll animations
+        gsap.from('.destino-circular', {
+            scrollTrigger: {
+                trigger: '.visitaremos',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: 'power2.out'
+        });
+
+        gsap.from('.incluye-item', {
+            scrollTrigger: {
+                trigger: '.incluye-seccion',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            scale: 0.5,
+            rotation: 360,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: 'back.out(1.7)'
+        });
+
+        gsap.from('.testimonio-card', {
+            scrollTrigger: {
+                trigger: '.testimonios',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 100,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+    </script>
+</body>
+</html>

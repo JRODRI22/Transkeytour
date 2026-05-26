@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "total_lessons_processed": 19,
+  "lessons_active": [
+    "LECCION-001-aspnet-middleware-order-v1",
+    "LECCION-002-efcore-entity-di-patterns-v1",
+    "LECCION-003-react-state-context-axios-v1",
+    "LECCION-004-dotnet-publish-linux-safe-v1",
+    "LECCION-005-automapper-to-mapster-v1",
+    "LECCION-006-hidden-input-null-model-binding-v1",
+    "LECCION-007-docker-port-conflicts-v1",
+    "LECCION-008-sqlserver-connection-dotnetef-v1",
+    "LECCION-009-https-certs-balance-cuentapadre-v1"
+  ],
+  "skills_evolved": [
+    { "name": "LECCION-001-aspnet-middleware-order-v1", "version": 1, "delta": 4.5, "agents": ["BackendAgent","DebugAgent","IntegrationAgent"] },
+    { "name": "LECCION-002-efcore-entity-di-patterns-v1", "version": 1, "delta": 5.0, "agents": ["BackendAgent","DebugAgent","DatabaseAgent"] },
+    { "name": "LECCION-003-react-state-context-axios-v1", "version": 1, "delta": 4.5, "agents": ["FrontendAgent","DebugAgent","IntegrationAgent"] },
+    { "name": "LECCION-004-dotnet-publish-linux-safe-v1", "version": 1, "delta": 4.0, "agents": ["DevOpsAgent","DebugAgent"] },
+    { "name": "LECCION-005-automapper-to-mapster-v1", "version": 1, "delta": 5.0, "agents": ["SecurityAgent","BackendAgent"] },
+    { "name": "LECCION-006-hidden-input-null-model-binding-v1", "version": 1, "delta": 4.0, "agents": ["BackendAgent","FrontendAgent","DebugAgent"] },
+    { "name": "LECCION-007-docker-port-conflicts-v1", "version": 1, "delta": 3.5, "agents": ["DevOpsAgent","DebugAgent","FrontendAgent"] },
+    { "name": "LECCION-008-sqlserver-connection-dotnetef-v1", "version": 1, "delta": 5.0, "agents": ["BackendAgent","DebugAgent","DatabaseAgent"] },
+    { "name": "LECCION-009-https-certs-balance-cuentapadre-v1", "version": 1, "delta": 4.0, "agents": ["DebugAgent","BackendAgent","DevOpsAgent"] }
+  ],
+  "evolution_score": 40.5,
+  "retry_rate_baseline": 1.0,
+  "retry_rate_current": 0.752,
+  "retry_rate_improvement": 0.248,
+  "decay_config": {
+    "enabled": true,
+    "halflife_days": 30,
+    "min_retention": 0.25
+  },
+  "last_run": "2026-04-03T16:36:00Z",
+  "last_decay_run": "2026-04-03T16:36:00Z",
+  "last_lesson": "LECCION-009-https-certs-balance-cuentapadre-v1"
+}

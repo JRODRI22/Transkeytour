@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bocas del Toro 2026 | TransKeyTours - The Magic Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1B3A6B;
+            --orange: #F59E0B;
+            --sky: #00A8E8;
+            --green: #10B981;
+            --white: #FFFFFF;
+            --gray-light: #F3F4F6;
+            --gray-dark: #374151;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(27, 58, 107, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--orange);
+        }
+
+        .btn-reservar {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-reservar:hover {
+            background: #D97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 100px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--navy) 0%, #2563EB 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.pexels.com/photos/18976054/pexels-photo-18976054.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .panama-flag {
+            display: inline-block;
+            width: 60px;
+            height: 40px;
+            margin-left: 1rem;
+            vertical-align: middle;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #D97706;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .price-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .price-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .price-note {
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid var(--green);
+            margin-top: 1rem;
+        }
+
+        .dates {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dates strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        /* TOURS */
+        .tours-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            opacity: 0.8;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .tour-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .tour-content {
+            padding: 2rem;
+        }
+
+        .tour-title {
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .tour-description {
+            color: var(--gray-dark);
+            line-height: 1.8;
+        }
+
+        /* INCLUYE */
+        .incluye-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--navy) 0%, #2563EB 100%);
+            position: relative;
+        }
+
+        .incluye-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.pexels.com/photos/18976055/pexels-photo-18976055.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .incluye-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .incluye-section h2 {
+            color: var(--white);
+        }
+
+        .incluye-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .incluye-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .incluye-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .incluye-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--orange);
+        }
+
+        .incluye-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .incluye-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .incluye-item p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* INFORMACION IMPORTANTE */
+        .info-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #1e40af 0%, #0c4a6e 50%, #0f766e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .info-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-section .section-header h2 {
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .info-section .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+            border-color: var(--orange);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .info-card h3 svg {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        .info-alert {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border-left: 4px solid var(--orange);
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+        }
+
+        .price-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* GALERIA */
+        .galeria-section {
+            padding: 6rem 0;
+            background: var(--gray-light);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .galeria-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .galeria-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover .galeria-overlay {
+            transform: translateY(0);
+        }
+
+        /* CONTACTO */
+        .contacto-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contacto-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .contacto-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contacto-item h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .contacto-item a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 4rem 0 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            color: var(--orange);
+        }
+
+        .footer p, .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+        }
+
+        /* DEVELOPER CREDITS - MINIMALISTA PREMIUM */
+        .dev-credits-section {
+            background: #0a1f44;
+            border-top: 2px solid rgba(255, 184, 77, 0.3);
+            padding: 3rem 0;
+        }
+
+        .dev-credits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .dev-logo-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dev-logo {
+            max-width: 120px;
+            height: auto;
+            filter: brightness(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dev-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .dev-info {
+            text-align: left;
+        }
+
+        .dev-company-name {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .dev-tagline {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 0.75rem;
+        }
+
+        .dev-location-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .dev-contact-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .dev-contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dev-contact-link:hover {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: #FF6B35;
+            transform: translateY(-2px);
+        }
+
+        .dev-contact-link.facebook {
+            background: rgba(24, 119, 242, 0.1);
+            border-color: rgba(24, 119, 242, 0.3);
+        }
+
+        .dev-contact-link.facebook:hover {
+            background: rgba(24, 119, 242, 0.2);
+            border-color: #1877F2;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dev-credits-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .dev-info {
+                text-align: center;
+            }
+
+            .dev-contact-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .dev-contact-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+            .dev-contact-buttons {
+                flex-direction: column;
+            }
+
+            .dev-contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .dev-cta-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        .developer-contact a:hover {
+            color: var(--orange) !important;
+        }
+
+        .developer-tagline {
+            font-size: 0.85rem !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            margin-top: 0.5rem !important;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tours-grid, .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logov2.png" alt="TransKeyTours">
+                </div>
+                <nav class="nav">
+                    <a href="#tours">Tours</a>
+                    <a href="#incluye">Incluye</a>
+                    <a href="#galeria">Galería</a>
+                    <a href="#contacto">Contacto</a>
+                </nav>
+                <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20reservar%20Bocas%20del%20Toro%2016-19%20Julio%202026" class="btn-reservar">Reservar Ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <h1>Bocas del Toro<br>Paraíso Caribeño
+                        <svg class="panama-flag" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Bandera de Panamá -->
+                            <rect width="50" height="30" fill="#FFFFFF"/>
+                            <rect x="50" width="50" height="30" fill="#DA121A"/>
+                            <rect y="30" width="50" height="30" fill="#0000FF"/>
+                            <rect x="50" y="30" width="50" height="30" fill="#FFFFFF"/>
+                            <!-- Estrella azul -->
+                            <polygon points="25,10 27.5,17.5 35,17.5 29,22 31,30 25,25 19,30 21,22 15,17.5 22.5,17.5" fill="#0000FF"/>
+                            <!-- Estrella roja -->
+                            <polygon points="75,40 77.5,47.5 85,47.5 79,52 81,60 75,55 69,60 71,52 65,47.5 72.5,47.5" fill="#DA121A"/>
+                        </svg>
+                    </h1>
+                    <p class="hero-subtitle">Descubre las playas más hermosas de Panamá en una aventura inolvidable</p>
+                    
+                    <div class="badges">
+                        <span class="badge">🏝️ 6 Destinos Paradisíacos</span>
+                        <span class="badge">🌊 Playas de Ensueño</span>
+                        <span class="badge">🐬 Vida Marina Única</span>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#incluye" class="btn-primary">Ver Paquete Completo</a>
+                        <a href="#tours" class="btn-secondary">Explorar Tours</a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="price-box">
+                        <p class="price-label">PRECIO TOTAL POR PERSONA</p>
+                        <div class="price-amount">₡150.000</div>
+                        <p class="price-subtitle">👶 Niños (5-10 años): ₡120.000</p>
+                        <p class="price-note">💰 Aparta con solo ₡25,000</p>
+                        
+                        <div class="dates">
+                            <strong>📅 16-19 JULIO 2026</strong>
+                            <p>4 días / 3 noches de pura aventura</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOURS -->
+    <section id="tours" class="tours-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🌴 Nuestros Destinos</h2>
+                <p>Explora los rincones más hermosos de Bocas del Toro</p>
+            </div>
+            <div class="tours-grid">
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/4747783/pexels-photo-4747783.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Playa de las Estrellas" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">⭐ Playa de las Estrellas</h3>
+                        <p class="tour-description">Camina entre cientos de estrellas de mar en aguas cristalinas. Una experiencia mágica que te conecta con la naturaleza marina.</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/6503998/pexels-photo-6503998.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bahía de los Delfines" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">🐬 Bahía de los Delfines</h3>
+                        <p class="tour-description">Observa delfines en su hábitat natural. Una experiencia única de avistamiento en aguas caribeñas.</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/734725/pexels-photo-734725.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cayo Coral" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">🤿 Snorkel en Cayo Coral</h3>
+                        <p class="tour-description">Explora arrecifes de coral llenos de vida marina. Snorkel en aguas transparentes con peces tropicales de colores vibrantes.</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/4973961/pexels-photo-4973961.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hollywood Reef" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">🏊 Hollywood Reef</h3>
+                        <p class="tour-description">Uno de los mejores arrecifes del Caribe. Snorkel premium con tortugas, rayas y una biodiversidad impresionante.</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/7786368/pexels-photo-7786368.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Isla Zapatilla" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">🏝️ Parque Marino Isla Zapatilla</h3>
+                        <p class="tour-description">Parque nacional con playas de arena blanca y aguas turquesas. Un paraíso protegido con ecosistemas únicos.</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <img src="https://images.pexels.com/photos/2038744/pexels-photo-2038744.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Punta Caracol" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">📸 Hotel Punta Caracol</h3>
+                        <p class="tour-description">Visita el icónico hotel sobre el agua. Arquitectura única en palafitos con vistas espectaculares al Caribe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INCLUYE -->
+    <section id="incluye" class="incluye-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>✅ El Paquete Incluye</h2>
+                <p>Todo lo que necesitas para una experiencia inolvidable</p>
+            </div>
+            <div class="incluye-grid">
+                <div class="incluye-item">
+                    <span class="incluye-icon">🚌</span>
+                    <h3 class="incluye-title">Transporte Terrestre</h3>
+                    <p>Ida y regreso San Carlos → Sixaola → Puerto Almirante en buses cómodos y seguros</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">🚤</span>
+                    <h3 class="incluye-title">Traslado Marítimo</h3>
+                    <p>Ida y regreso Puerto Almirante → Isla Colón en bote rápido</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">🏨</span>
+                    <h3 class="incluye-title">3 Noches Alojamiento</h3>
+                    <p>Habitación privada cómoda y segura en hospedaje céntrico</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">🍳</span>
+                    <h3 class="incluye-title">3 Desayunos Completos</h3>
+                    <p>Desayunos incluidos cada mañana para empezar el día con energía</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">🌊</span>
+                    <h3 class="incluye-title">2 Días de Tours</h3>
+                    <p>Tours completos a los 6 destinos más increíbles de Bocas del Toro</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">👨‍✈️</span>
+                    <h3 class="incluye-title">Guías Certificados</h3>
+                    <p>Guías locales profesionales con conocimiento profundo de la zona</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">💎</span>
+                    <h3 class="incluye-title">Atención Personalizada</h3>
+                    <p>Servicio y atención personalizada antes, durante y después del viaje</p>
+                </div>
+                <div class="incluye-item">
+                    <span class="incluye-icon">🛍️</span>
+                    <h3 class="incluye-title">Tiempo de Compras</h3>
+                    <p>2 horas para realizar compras en Sixaola durante el recorrido</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMACION IMPORTANTE -->
+    <section class="info-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>⚠️ Información Importante</h2>
+                <p>Todo lo que necesitas saber antes de viajar</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>❌ NO Incluye</h3>
+                    <ul>
+                        <li>🍽️ Almuerzos y cenas</li>
+                        <li>🏝️ Entrada Parque Marino Isla Zapatilla ($10 por persona)</li>
+                        <li>🛂 Impuestos fronterizos (ver requisitos)</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <svg width="32" height="24" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Cuadrante superior izquierdo blanco con estrella azul -->
+                            <rect width="50" height="30" fill="#FFFFFF"/>
+                            <polygon points="25,10 27.5,17.5 35,17.5 29,22 31,30 25,25 19,30 21,22 15,17.5 22.5,17.5" fill="#0000FF"/>
+                            <!-- Cuadrante superior derecho rojo -->
+                            <rect x="50" width="50" height="30" fill="#DA121A"/>
+                            <!-- Cuadrante inferior izquierdo azul -->
+                            <rect y="30" width="50" height="30" fill="#0000FF"/>
+                            <!-- Cuadrante inferior derecho blanco con estrella roja -->
+                            <rect x="50" y="30" width="50" height="30" fill="#FFFFFF"/>
+                            <polygon points="75,40 77.5,47.5 85,47.5 79,52 81,60 75,55 69,60 71,52 65,47.5 72.5,47.5" fill="#DA121A"/>
+                        </svg>
+                        Requisitos Panamá
+                    </h3>
+                    <ul>
+                        <li>📕 Pasaporte vigente (mínimo 4 meses)</li>
+                        <li>🇨🇷 Impuesto salida Costa Rica: $8</li>
+                        <li>🇵🇦 Impuesto entrada Panamá: $8</li>
+                    </ul>
+                    <div class="info-alert">
+                        💵 Total impuestos: $16 por persona (efectivo)
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>💳 Métodos de Pago</h3>
+                    <ul>
+                        <li>📱 SINPE Móvil: 8309-5731</li>
+                        <li>🏦 Transferencia bancaria</li>
+                    </ul>
+                    <div class="info-alert">
+                        ⚠️ Pago total debe estar cancelado ANTES del día del viaje
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>📋 Políticas</h3>
+                    <ul>
+                        <li>🚫 Dinero NO reembolsable en caso de cancelación o inasistencia</li>
+                        <li>⏰ Cupos limitados - Reserva con anticipación</li>
+                        <li>✅ Aparta tu espacio con solo ₡25,000</li>
+                        <li>💯 Servicio garantizado y atención personalizada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="galeria-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📸 Galería de Bocas del Toro</h2>
+                <p>Un vistazo al paraíso que te espera</p>
+            </div>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <img src="https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Snorkel con Peces Tropicales">
+                    <div class="galeria-overlay">
+                        <h3>Snorkel con Peces Tropicales</h3>
+                    </div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.pexels.com/photos/15072766/pexels-photo-15072766.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pueblo de Bocas">
+                    <div class="galeria-overlay">
+                        <h3>Encanto del Pueblo de Bocas</h3>
+                    </div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.pexels.com/photos/9566563/pexels-photo-9566563.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Perezoso">
+                    <div class="galeria-overlay">
+                        <h3>Vida Silvestre Única (Perezosos)</h3>
+                    </div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.pexels.com/photos/18197913/pexels-photo-18197913.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kayak en la Playa">
+                    <div class="galeria-overlay">
+                        <h3>Aventuras en Kayak</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📞 Contáctanos</h2>
+                <p>Estamos listos para hacer realidad tu viaje</p>
+            </div>
+            <div class="contacto-grid">
+                <div class="contacto-item">
+                    <div class="contacto-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/50683095731">8309-5731</a>
+                    <p>Keylor Esquivel</p>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-icon">✉️</div>
+                    <h3>Email</h3>
+                    <a href="mailto:transkeytour@gmail.com">transkeytour@gmail.com</a>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-icon">📍</div>
+                    <h3>Salidas desde</h3>
+                    <p>Río Cuarto, Venecia,<br>Aguas Zarcas, Pital</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPER CREDITS -->
+    <section class="dev-credits-section">
+        <div class="dev-credits-container">
+            <div class="dev-logo-wrapper">
+                <img src="images/LogoDesarollador.png" alt="JR Digital Solutions" class="dev-logo">
+            </div>
+            <div class="dev-info">
+                <h3 class="dev-company-name">JR Digital Solutions</h3>
+                <p class="dev-tagline">Desarrollo web profesional • Soluciones digitales a la medida</p>
+                <p class="dev-location-text">📍 San Carlos, Costa Rica</p>
+            </div>
+            <div class="dev-contact-links">
+                <a href="https://wa.me/50661969427" target="_blank" rel="noopener" class="dev-contact-link">
+                    <span>💬</span>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61590098459318" target="_blank" rel="noopener" class="dev-contact-link facebook">
+                    <span>👍</span>
+                    <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logov2.png" alt="TransKeyTours">
+                    </div>
+                    <p>Tu agencia de viajes de confianza.<br>Creando experiencias mágicas desde Costa Rica.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p>📱 WhatsApp: 8309-5731</p>
+                    <p>✉️ transkeytour@gmail.com</p>
+                    <p>📍 San Carlos, Costa Rica</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Síguenos</h3>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/50683095731?text=%F0%9F%8C%B4%20Hola!%20Quiero%20informaci%C3%B3n%20sobre%20el%20tour%20a%20Bocas%20del%20Toro%20del%2016-19%20Julio%202026%20%F0%9F%87%B5%F0%9F%87%A6" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
+        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16C0 18.777 0.708 21.397 1.937 23.686L0 32L8.556 30.111C10.763 31.208 13.299 31.833 16 31.833C24.836 31.833 32 24.669 32 16C32 7.331 24.836 0 16 0ZM16 29.167C13.617 29.167 11.363 28.528 9.42 27.425L8.889 27.111L3.833 28.389L5.139 23.5L4.778 22.944C3.556 20.944 2.875 18.583 2.875 16C2.875 8.833 8.833 2.875 16 2.875C23.167 2.875 29.125 8.833 29.125 16C29.125 23.167 23.167 29.167 16 29.167Z" fill="white"/>
+            <path d="M22.472 18.889C22.083 18.694 20.222 17.778 19.861 17.639C19.5 17.5 19.222 17.431 18.944 17.819C18.667 18.208 18.028 19.056 17.778 19.333C17.528 19.611 17.278 19.639 16.889 19.444C16.5 19.25 15.222 18.833 13.694 17.472C12.5 16.417 11.722 15.125 11.472 14.736C11.222 14.347 11.444 14.125 11.639 13.931C11.806 13.764 12.028 13.5 12.222 13.25C12.417 13 12.486 12.833 12.625 12.556C12.764 12.278 12.694 12.028 12.597 11.833C12.5 11.639 11.722 9.778 11.389 9C11.056 8.222 10.722 8.333 10.472 8.319C10.222 8.306 9.944 8.306 9.667 8.306C9.389 8.306 8.944 8.403 8.583 8.792C8.222 9.181 7.25 10.097 7.25 11.958C7.25 13.819 8.611 15.625 8.806 15.903C9 16.181 11.722 20.25 15.806 21.917C16.722 22.306 17.444 22.528 18.014 22.694C18.931 22.986 19.764 22.944 20.417 22.847C21.153 22.736 22.667 21.944 22.986 21.083C23.306 20.222 23.306 19.5 23.208 19.333C23.111 19.167 22.861 19.083 22.472 18.889Z" fill="white"/>
+        </svg>
+    </a>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animaciones de entrada para hero
+        gsap.from('.hero-left > *', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.price-box', {
+            opacity: 0,
+            x: 50,
+            duration: 1,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
+
+        // Animaciones con scroll
+        gsap.utils.toArray('.tour-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        gsap.utils.toArray('.incluye-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.6,
+                ease: 'back.out(1.7)'
+            });
+        });
+
+        gsap.utils.toArray('.galeria-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        // ANIMACIÓN DEVELOPER CREDITS
+        gsap.from('.dev-credits-section', {
+            scrollTrigger: {
+                trigger: '.dev-credits-section',
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: 'power2.out'
+        });
+    </script>
+</body>
+</html>
