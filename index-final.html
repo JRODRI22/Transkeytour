@@ -1729,53 +1729,107 @@
                 display: none !important;
             }
 
-            /* Nav como overlay fullscreen en mobile */
+            /* ═══════════════════════════════════════════════
+               NAV MOBILE OVERLAY — Premium Travel Design
+               Sin backdrop-filter (evita bugs iOS Safari)
+               Animación solo con transform (no opacity stuck)
+            ═══════════════════════════════════════════════ */
             .nav {
                 display: none !important;
-                position: fixed;
-                top: 92px; /* fallback; JS override con offsetHeight real */
+                position: fixed !important;
+                top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(8, 22, 54, 0.98);
-                backdrop-filter: blur(20px);
+                /* Solid dark bg — NO backdrop-filter para evitar bugs iOS */
+                background: #081636;
                 flex-direction: column !important;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 1.5rem;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 6rem 2rem 2rem;
                 gap: 0 !important;
-                z-index: 99000; /* muy alto: escapa stacking context del hero con GSAP transforms */
+                z-index: 99000;
                 overflow-y: auto;
-                border-top: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+                /* opacity explícita — previene que quede en 0 */
+                opacity: 1 !important;
             }
 
             .nav.nav-open {
                 display: flex !important;
-                animation: mobileNavIn 0.28s ease forwards;
+                animation: mobileNavSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
 
-            @keyframes mobileNavIn {
-                from { opacity: 0; transform: translateY(-10px); }
-                to   { opacity: 1; transform: translateY(0); }
+            /* Solo transform, NUNCA opacity en from — evita bug stuck */
+            @keyframes mobileNavSlide {
+                from { transform: translateY(-100%); }
+                to   { transform: translateY(0); }
             }
 
+            /* Decoración: línea naranja superior */
+            .nav.nav-open::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--orange), #ff9a35, var(--orange));
+                background-size: 200% 100%;
+                animation: shimmer 2s infinite;
+            }
+
+            @keyframes shimmer {
+                0%   { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+
+            /* Staggered entrance de cada link */
             .nav a {
-                padding: 1.1rem 0;
-                font-size: 1.15rem;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                padding: 1rem 2rem;
+                font-size: 1.3rem;
+                font-weight: 600;
                 width: 100%;
+                max-width: 320px;
                 text-align: center;
-                border-bottom: 1px solid rgba(255,255,255,0.07);
-                color: rgba(255,255,255,0.9);
+                color: #ffffff !important;
+                text-decoration: none;
+                border-radius: 12px;
+                margin-bottom: 0.25rem;
+                letter-spacing: 0.02em;
+                transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+                will-change: auto; /* reset will-change para evitar sub-stacking contexts */
+                position: relative;
             }
 
-            .nav a:hover {
-                color: var(--orange);
-                background: none;
+            .nav.nav-open a:nth-child(1) { animation: navItemIn 0.25s 0.05s ease both; }
+            .nav.nav-open a:nth-child(2) { animation: navItemIn 0.25s 0.10s ease both; }
+            .nav.nav-open a:nth-child(3) { animation: navItemIn 0.25s 0.15s ease both; }
+            .nav.nav-open a:nth-child(4) { animation: navItemIn 0.25s 0.20s ease both; }
+            .nav.nav-open a:nth-child(5) { animation: navItemIn 0.25s 0.25s ease both; }
+            .nav.nav-open a:nth-child(6) { animation: navItemIn 0.25s 0.30s ease both; }
+
+            @keyframes navItemIn {
+                from { opacity: 0; transform: translateX(-20px); }
+                to   { opacity: 1; transform: translateX(0); }
+            }
+
+            .nav a:hover,
+            .nav a:active {
+                background: rgba(255, 107, 53, 0.15);
+                color: var(--orange) !important;
+                transform: translateX(6px);
+            }
+
+            /* Separador sutil */
+            .nav a::after {
+                display: none !important; /* ocultar el underline de desktop */
             }
 
             .lang-selector {
-                margin-top: 1.5rem;
+                margin-top: 2rem;
                 justify-content: center;
                 width: 100%;
                 order: unset;
@@ -1783,27 +1837,30 @@
 
             /* Botón Reservar dentro del menú mobile */
             .nav-btn-mobile {
-                display: flex;
+                display: flex !important;
                 width: 100%;
+                max-width: 320px;
                 margin-top: 1.5rem;
             }
 
             .nav-btn-mobile a {
-                background: var(--orange);
-                color: white;
-                padding: 1rem 2rem;
+                background: var(--orange) !important;
+                color: white !important;
+                padding: 1.1rem 2rem;
                 border-radius: 30px;
                 font-weight: 700;
                 text-decoration: none;
                 width: 100%;
                 text-align: center;
+                font-size: 1.05rem;
+                box-shadow: 0 6px 24px rgba(255,107,53,0.4);
                 border-bottom: none !important;
-                font-size: 1rem;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
             .nav-btn-mobile a:hover {
-                background: var(--orange-hover);
-                color: white !important;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 32px rgba(255,107,53,0.55);
             }
         }
 
@@ -1966,7 +2023,6 @@
         }
 
         /* Micro-animaciones Premium */
-        .nav a,
         .blog-read-more,
         .testimonial-card,
         .price-box {
@@ -3267,9 +3323,8 @@
             if (!hamburger || !nav) return;
 
             function openMenu() {
-                // Calcular altura real del header para evitar que el menú quede tapado
-                const headerH = document.querySelector('.header').offsetHeight;
-                nav.style.top = headerH + 'px';
+                // Nav es fullscreen (top:0) — no calcular header height
+                nav.style.top = ''; // reset any inline top
                 nav.classList.add('nav-open');
                 hamburger.classList.add('is-open');
                 hamburger.setAttribute('aria-expanded', 'true');
@@ -3284,6 +3339,7 @@
 
             hamburger.addEventListener('click', (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 nav.classList.contains('nav-open') ? closeMenu() : openMenu();
             });
 
@@ -3292,12 +3348,12 @@
                 link.addEventListener('click', () => closeMenu());
             });
 
-            // Cerrar al hacer clic fuera
-            document.addEventListener('click', (e) => {
-                if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
-                    closeMenu();
-                }
-            });
+            // Cerrar con swipe up en el nav
+            let touchStartY = 0;
+            nav.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+            nav.addEventListener('touchend', (e) => {
+                if (e.changedTouches[0].clientY - touchStartY > 80) closeMenu();
+            }, { passive: true });
 
             // Cerrar al redimensionar a desktop
             window.addEventListener('resize', () => {
