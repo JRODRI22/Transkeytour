@@ -1686,9 +1686,11 @@
                 gap: 3rem;
             }
 
-            .nav {
-                flex-direction: column;
-                gap: 1.5rem;
+            /* Nav en tablet: agrupar links antes de que aparezca hamburger */
+            .nav:not(.nav-open) {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
             .dev-credits-container {
@@ -1756,6 +1758,9 @@
 
             .nav.nav-open {
                 display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
                 animation: mobileNavSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
 
@@ -1812,8 +1817,8 @@
             .nav.nav-open a:nth-child(6) { animation: navItemIn 0.25s 0.30s ease both; }
 
             @keyframes navItemIn {
-                from { opacity: 0; transform: translateX(-20px); }
-                to   { opacity: 1; transform: translateX(0); }
+                from { transform: translateX(-20px); }
+                to   { transform: translateX(0); }
             }
 
             .nav a:hover,
@@ -2280,7 +2285,7 @@
         <!-- Señal de partida: Costa Rica -->
         <div class="pre-sign pre-sign-cr" id="preSignCR">
             <img src="https://flagcdn.com/w40/cr.png" alt="Costa Rica" width="36">
-            <div class="pre-sign-label">San Carlos, C.R.</div>
+            <div class="pre-sign-label">San Carlos, C.R</div>
         </div>
         <!-- Señal de llegada: Panamá -->
         <div class="pre-sign pre-sign-pa" id="preSignPA">
@@ -2940,10 +2945,10 @@
     <section class="dev-credits-section">
         <div class="dev-credits-container">
             <div class="dev-logo-wrapper">
-                <img src="images/LogoDesarollador.png" alt="JR Digital Solutions" class="dev-logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2258%22 fill=%22%23FF6B35%22/%3E%3Ctext x=%2260%22 y=%2275%22 font-family=%22Arial,sans-serif%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3EJR%3C/text%3E%3C/svg%3E'">
+                <img src="LogoDesarollador.png" alt="JR Digital Solutions" class="dev-logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2258%22 fill=%22%23FF6B35%22/%3E%3Ctext x=%2260%22 y=%2275%22 font-family=%22Arial,sans-serif%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3EJR%3C/text%3E%3C/svg%3E'">
             </div>
             <div class="dev-info">
-                <h3 class="dev-company-name">💻 JR Digital Solutions</h3>
+                <h3 class="dev-company-name">👨🏻‍💻 Jorge Rodríguez</h3>
                 <p class="dev-tagline" data-es="Desarrollo web profesional • Soluciones digitales a la medida" data-en="Professional web development • Custom digital solutions">Desarrollo web profesional • Soluciones digitales a la medida</p>
                 <p class="dev-location-text">📍 San Carlos, Costa Rica</p>
             </div>
