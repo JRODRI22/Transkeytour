@@ -1,3 +1,30 @@
+# ========================================
+# SOLO LANDING PAGE PÚBLICA - SIN DATOS SENSIBLES
+# ========================================
+
+# Sistema de agentes Claude (PRIVADO)
+.claude/
+CLAUDE*.md
+PROJECT.md
+GUIA*.md
+OPTIMIZACION*.md
+Idea.MD
+README-PROMO.md
+
+# Configuración interna
+.github/
+.vscode/
+.editorconfig
+
+# Versiones de desarrollo (NO PÚBLICAS)
+index.html
+index-promo.html
+index-profesional.html
+test-images.html
+mejoras-diseño.css
+script.js
+styles.css
+
 # Archivos de sistema
 .DS_Store
 Thumbs.db
@@ -7,16 +34,4 @@ desktop.ini
 *.tmp
 *.bak
 *~
-
-# Logs
 *.log
-
-# Archivos de Visual Studio Code
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# Archivos innecesarios para producción
-index-profesional.html
