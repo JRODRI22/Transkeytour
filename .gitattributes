@@ -6,8 +6,7 @@
 *.ps1 text eol=lf encoding=utf-8
 *.{html,htm} text eol=lf encoding=utf-8
 
-# Git LFS — archivos grandes del proyecto
-# Video del hero (284MB) y videos WhatsApp pesados
-images/galeria/Inicio.mp4 filter=lfs diff=lfs merge=lfs -text
-images/galeria/*.mp4 filter=lfs diff=lfs merge=lfs -text
-images/galeria/DJI_*.JPG filter=lfs diff=lfs merge=lfs -text
+# Git LFS DESHABILITADO
+# GitHub Pages no sirve punteros LFS como binarios.
+# Los assets deben commitarse directamente para servirse como bytes reales.
+# Total repo ~55MB, aceptable para GitHub (<1GB soft limit).
