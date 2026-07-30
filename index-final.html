@@ -597,26 +597,12 @@
             image-rendering: high-quality;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            z-index: 2;
         }
 
-        /* ===== Mobile-first: video SOLO en desktop (>=768px) ===== */
-        /* Por defecto (mobile) el video se oculta, solo se ve el poster */
-        .hero-bg-video {
-            display: none !important;
-        }
+        /* ===== Video hero: visible en TODOS los dispositivos ===== */
+        /* El poster aparece mientras el video carga (instantáneo en JPG). */
 
-        @media (min-width: 768px) {
-            .hero-bg-video {
-                display: block !important;
-            }
-            .hero-bg-poster {
-                /* En desktop el poster queda debajo del video */
-                z-index: 1;
-            }
-        }
-
-        /* ===== Conexión lenta: poster siempre ===== */
+        /* ===== Conexión lenta: respetar preferencia del usuario ===== */
         @media (prefers-reduced-data: reduce) {
             .hero-bg-video {
                 display: none !important;
@@ -3128,7 +3114,6 @@
             <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true" x5-video-player-type="h5" x5-playsinline="true" webkit-playsinline="true" poster="images/galeria/hero-poster.jpg">
                 <source src="images/galeria/Inicio.mp4" type="video/mp4">
             </video>
-            <img src="images/galeria/hero-poster.jpg" alt="" class="hero-bg-poster" aria-hidden="true" loading="eager" fetchpriority="high">
         </div>
         <div class="hero-overlay"></div>
         <div class="container">
