@@ -597,6 +597,30 @@
             image-rendering: high-quality;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            z-index: 2;
+        }
+
+        /* ===== Mobile-first: video SOLO en desktop (>=768px) ===== */
+        /* Por defecto (mobile) el video se oculta, solo se ve el poster */
+        .hero-bg-video {
+            display: none !important;
+        }
+
+        @media (min-width: 768px) {
+            .hero-bg-video {
+                display: block !important;
+            }
+            .hero-bg-poster {
+                /* En desktop el poster queda debajo del video */
+                z-index: 1;
+            }
+        }
+
+        /* ===== Conexión lenta: poster siempre ===== */
+        @media (prefers-reduced-data: reduce) {
+            .hero-bg-video {
+                display: none !important;
+            }
         }
 
         .hero-overlay {
@@ -3756,61 +3780,43 @@
                 </div>
             </div>
             <div class="footer-bottom">
+                <!-- DEVELOPER CREDITS — Barra horizontal dentro del footer (visible) -->
+                <div class="dev-credits-section">
+                    <div class="dev-credits-container">
+                        <div class="dev-credit-brand">
+                            <div class="dev-logo-wrapper">
+                                <img src="LogoDesarollador.png" alt="Jorge Rodríguez" class="dev-logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2258%22 fill=%22%23FF6B35%22/%3E%3Ctext x=%2260%22 y=%2275%22 font-family=%22Arial,sans-serif%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3EJR%3C/text%3E%3C/svg%3E'">
+                            </div>
+                            <div class="dev-credit-text">
+                                <strong class="dev-credit-name">JR Digital Solutions</strong>
+                                <span class="dev-credit-divider">|</span>
+                                <span class="dev-credit-tags" data-es="Software Engineering • AI • Cloud • Costa Rica" data-en="Software Engineering • AI • Cloud • Costa Rica">Software Engineering • AI • Cloud • Costa Rica</span>
+                            </div>
+                        </div>
+                        <div class="dev-credit-actions">
+                            <a href="https://jorge-rodriguez-cv.vercel.app/cv" target="_blank" rel="noopener noreferrer" class="dev-pill" aria-label="Ver Portfolio y CV" title="Portfolio & CV">
+                                <i class="fas fa-briefcase"></i>
+                                <span data-es="Portfolio" data-en="Portfolio">Portfolio</span>
+                            </a>
+                            <a href="https://wa.me/50661969427?text=%F0%9F%91%8B%20Hola%20Jorge.%0A%0ATe%20contacto%20desde%20la%20p%C3%A1gina%20de%20TransKeyTours%20(Bocas%20del%20Toro%20%E2%9C%88%EF%B8%8F).%0A%0AMe%20gust%C3%B3%20el%20proyecto%20y%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20desarrollo%20web%20y%20desarrollo%20de%20software.%0A%0A%C2%BFPodemos%20conversar%3F" target="_blank" rel="noopener noreferrer" class="dev-pill dev-pill-wa" aria-label="Contactar por WhatsApp" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61590176020082" target="_blank" rel="noopener" class="dev-pill dev-pill-fb" aria-label="Facebook" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span data-es="Facebook" data-en="Facebook">Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <p data-es="© 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados." data-en="© 2026 TransKeyTours - The Magic Travel. All rights reserved.">&copy; 2026 TransKeyTours - The Magic Travel. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- DEVELOPER CREDITS — Barra horizontal elegante -->
-    <section class="dev-credits-section">
-        <div class="dev-credits-container">
-            <div class="dev-credit-brand">
-                <div class="dev-logo-wrapper">
-                    <img src="LogoDesarollador.png" alt="Jorge Rodríguez" class="dev-logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Ccircle cx=%2260%22 cy=%2260%22 r=%2258%22 fill=%22%23FF6B35%22/%3E%3Ctext x=%2260%22 y=%2275%22 font-family=%22Arial,sans-serif%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3EJR%3C/text%3E%3C/svg%3E'">
-                </div>
-                <div class="dev-credit-text">
-                    <strong class="dev-credit-name">JR Digital Solutions</strong>
-                    <span class="dev-credit-divider">|</span>
-                    <span class="dev-credit-tags" data-es="Software Engineering • AI • Cloud • Costa Rica" data-en="Software Engineering • AI • Cloud • Costa Rica">Software Engineering • AI • Cloud • Costa Rica</span>
-                </div>
-            </div>
-
-            <div class="dev-credit-actions">
-                <a
-                    href="https://jorge-rodriguez-cv.vercel.app/cv"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="dev-pill"
-                    aria-label="Ver Portfolio y CV"
-                    title="Portfolio & CV">
-                    <i class="fas fa-briefcase"></i>
-                    <span data-es="Portfolio" data-en="Portfolio">Portfolio</span>
-                </a>
-
-                <a
-                    href="https://wa.me/50661969427?text=%F0%9F%91%8B%20Hola%20Jorge.%0A%0ATe%20contacto%20desde%20la%20p%C3%A1gina%20de%20TransKeyTours%20(Bocas%20del%20Toro%20%E2%9C%88%EF%B8%8F).%0A%0AMe%20gust%C3%B3%20el%20proyecto%20y%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20desarrollo%20web%20y%20desarrollo%20de%20software.%0A%0A%C2%BFPodemos%20conversar%3F"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="dev-pill dev-pill-wa"
-                    aria-label="Contactar por WhatsApp"
-                    title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span>
-                </a>
-
                 <a
                     href="https://www.facebook.com/profile.php?id=61590176020082"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="dev-pill dev-pill-fb"
-                    aria-label="Visitar Facebook"
-                    title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                    <span data-es="Facebook" data-en="Facebook">Facebook</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    </footer>
     <!-- LIGHTBOX GALERIA -->
     <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
