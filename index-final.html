@@ -534,14 +534,7 @@
             align-items: center;
         }
 
-        .hero-bg-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%);
-        }
+        /* .hero-bg-layer eliminado: solo video limpio sin overlay gris */
 
         .hero-bg-image {
             position: absolute;
@@ -624,6 +617,16 @@
             pointer-events: none;
         }
 
+        /* En móvil portrait: priorizar ancho completo, dejar alto alto */
+        @media (max-width: 480px) {
+            .hero-bg-video-wrap iframe {
+                width: 177.77vh; /* usar el alto como referencia para que cubra ancho */
+                height: 100vh;
+                min-width: 100vw;
+                min-height: 56.25vw;
+            }
+        }
+
         .hero-bg-poster-fallback {
             position: absolute;
             top: 50%;
@@ -649,14 +652,16 @@
             }
         }
 
+        /* Overlay eliminado - solo video limpio, texto con sombra propia */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
-            z-index: 2;
+            background: transparent;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -3153,10 +3158,10 @@
         <div class="hero-bg-image">
             <div class="hero-bg-video-wrap" id="heroVideo">
                 <iframe
-                    src="https://www.youtube.com/embed/kZe0mQ3J7Io?autoplay=1&mute=1&loop=1&playlist=kZe0mQ3J7Io&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
+                    src="https://www.youtube.com/embed/kZe0mQ3J7Io?autoplay=1&mute=1&loop=1&playlist=kZe0mQ3J7Io&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3&vq=hd1080&quality=hd1080"
                     title="Bocas del Toro - Video de Inicio"
                     frameborder="0"
-                    allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
+                    allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture; fullscreen"
                     allowfullscreen
                     loading="eager">
                 </iframe>
