@@ -428,15 +428,17 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 31, 68, 0.95);
-            backdrop-filter: blur(20px);
+            background: transparent;
+            backdrop-filter: none;
             z-index: 1000;
             padding: calc(1rem + var(--safe-top)) 0 1rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: none;
             transition: var(--transition-smooth);
         }
 
         .header.scrolled {
+            background: rgba(10, 31, 68, 0.95);
+            backdrop-filter: blur(20px);
             padding: 0.75rem 0;
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
         }
@@ -667,7 +669,7 @@
             grid-template-columns: 1.5fr 1fr;
             gap: 4rem;
             align-items: center;
-            padding: 4rem 0;
+            padding: calc(7rem + var(--safe-top)) 0 4rem;
         }
 
         .hero-left h1 {
@@ -685,7 +687,7 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             text-shadow: none;
-            filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
             animation: heroGradientShift 4s ease-in-out infinite;
         }
 
@@ -717,9 +719,9 @@
             font-size: 1.4rem;
             color: #ffffff;
             margin-bottom: 2.5rem;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 1.6;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.8);
         }
 
         .badges {
