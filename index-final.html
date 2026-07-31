@@ -754,29 +754,133 @@
             pointer-events: none;
         }
 
-        /* ===== Hero YouTube iframe — fullscreen 16:9 escalado ===== */
-        .hero-bg-video {
+        /* ===== Hero poster background ===== */
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0f1729;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-bg-video,
+        #heroPosterImg {
             position: absolute;
             top: 50%;
             left: 50%;
             width: 100vw;
-            height: 56.25vw;     /* 100 * 9/16 = ratio 16:9 */
+            height: 100vh;
+            min-width: 100vw;
             min-height: 100vh;
-            min-width: 177.77vh; /* 100 * 16/9 */
             transform: translate(-50%, -50%);
-            border: 0;
+            object-fit: cover;
+            object-position: center center;
             z-index: 1;
             pointer-events: none;
-            /* Refuerza que YT muestre barra superior propia pero no controles */
-        }
-        /* Encima del iframe: forzar que iframe no capture touch */
-        .hero-bg-image {
-            pointer-events: none;
+            image-rendering: high-quality;
         }
 
-        /* Conexión lenta / reduced-motion: respetar preferencia del usuario */
+        /* Hero play button */
+        .hero-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.30);
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.50),
+                0 0 0 0 rgba(255, 107, 53, 0.45);
+            animation: playPulse 2.5s ease-in-out infinite;
+        }
+        .hero-play-btn i {
+            margin-left: 4px;
+        }
+        @keyframes playPulse {
+            0%, 100% { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.50), 0 0 0 0 rgba(255, 107, 53, 0.45); }
+            50%       { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.50), 0 0 0 20px rgba(255, 107, 53, 0); }
+        }
+        .hero-play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.10);
+            background: rgba(255, 87, 34, 1);
+        }
+        @media (max-width: 768px) {
+            .hero-play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ===== Video lightbox modal ===== */
+        #videoLightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(10, 20, 38, 0.97);
+            backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.4s ease;
+        }
+        #videoLightbox.active {
+            display: flex;
+        }
+        #videoLightbox iframe {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.80);
+        }
+        #videoLightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.95);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.30);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #videoLightbox-close:hover {
+            transform: rotate(90deg) scale(1.10);
+            background: rgba(255, 87, 34, 1);
+        }
+        @media (max-width: 768px) {
+            #videoLightbox iframe {
+                width: 100%;
+            }
+            #videoLightbox-close {
+                top: 0.75rem;
+                right: 0.75rem;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* Conexión lenta / reduced-motion: ocultar play button */
         @media (prefers-reduced-data: reduce), (prefers-reduced-motion: reduce) {
-            .hero-bg-video {
+            .hero-play-btn {
                 display: none !important;
             }
         }
@@ -5099,6 +5203,49 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeBlogModal();
+            }
+        });
+
+        // ===== HERO VIDEO LIGHTBOX (Plan C) =====
+        const heroPlayBtn = document.getElementById('heroPlayBtn');
+        const videoLightbox = document.getElementById('videoLightbox');
+        const videoLightboxIframe = document.getElementById('videoLightbox-iframe');
+        const videoLightboxClose = document.getElementById('videoLightbox-close');
+
+        const YT_VIDEO_ID = 'kZe0mQ3J7Io';
+        const YT_EMBED_URL = `https://www.youtube.com/embed/${YT_VIDEO_ID}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080`;
+
+        function openVideoLightbox() {
+            videoLightboxIframe.src = YT_EMBED_URL;
+            videoLightbox.classList.add('active');
+            videoLightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoLightbox() {
+            videoLightbox.classList.remove('active');
+            videoLightbox.setAttribute('aria-hidden', 'true');
+            // Stop playback by clearing src
+            videoLightboxIframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        if (heroPlayBtn) {
+            heroPlayBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openVideoLightbox();
+            });
+        }
+        if (videoLightboxClose) {
+            videoLightboxClose.addEventListener('click', closeVideoLightbox);
+        }
+        if (videoLightbox) {
+            videoLightbox.addEventListener('click', (e) => {
+                if (e.target === videoLightbox) closeVideoLightbox();
+            });
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoLightbox.classList.contains('active')) {
+                closeVideoLightbox();
             }
         });
 
