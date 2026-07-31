@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
@@ -530,6 +530,7 @@
         .hero {
             margin-top: 0;
             min-height: 100vh;
+            min-height: 100svh;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -615,13 +616,21 @@
             image-rendering: high-quality;
         }
 
-        /* En móvil portrait: el alto es la dimension restrictiva */
-        @media (max-width: 480px) {
-            .hero-bg-video {
-                width: 177.77vh;
-                height: 100vh;
+        /* === MOBILE FIX: usar svh (small viewport) y mantener cover sin letterbox === */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100svh;
+                height: 100svh;
+            }
+            .hero-bg-video,
+            .hero-bg-poster {
+                width: 100vw;
+                height: 100svh;
                 min-width: 100vw;
-                min-height: 56.25vw;
+                min-height: 100svh;
+                /* Mantener cover: recorta, no muestra barras negras */
+                object-fit: cover;
+                object-position: center center;
             }
         }
 
@@ -640,25 +649,65 @@
             pointer-events: none;
         }
 
-        /* ===== Video hero: visible en TODOS los dispositivos ===== */
-        /* El poster aparece mientras el video carga (instantáneo en JPG). */
+        /* ===== Hero YouTube iframe — fullscreen 16:9 escalado ===== */
+        .hero-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;     /* 100 * 9/16 = ratio 16:9 */
+            min-height: 100vh;
+            min-width: 177.77vh; /* 100 * 16/9 */
+            transform: translate(-50%, -50%);
+            border: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-        /* ===== Conexión lenta: respetar preferencia del usuario ===== */
-        @media (prefers-reduced-data: reduce) {
+        /* Conexión lenta / reduced-motion: respetar preferencia del usuario */
+        @media (prefers-reduced-data: reduce), (prefers-reduced-motion: reduce) {
             .hero-bg-video {
                 display: none !important;
             }
         }
 
-        /* Overlay eliminado - solo video limpio, texto con sombra propia */
+        /* === MOBILE FIX: usar svh y mantener el iframe escalado === */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100svh;
+                height: 100svh;
+            }
+            .hero-bg-video {
+                width: 177.77svh;
+                height: 100svh;
+                min-width: 100vw;
+                min-height: 56.25vw;
+            }
+        }
+
+        /* Overlay mejorado: gradiente sutil para legibilidad del texto */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: transparent;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.18) 0%,
+                rgba(0, 0, 0, 0.10) 40%,
+                rgba(0, 0, 0, 0.25) 100%
+            );
             z-index: 1;
+            pointer-events: none;
+        }
+        .hero-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), transparent 65%);
+            mix-blend-mode: screen;
+            opacity: 0.6;
             pointer-events: none;
         }
 
@@ -742,6 +791,19 @@
             font-weight: 600;
             transition: var(--transition-smooth);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .badge i {
+            display: inline-block;
+            width: 1.25em;
+            min-width: 1.25em;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--white);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         .badge:hover {
@@ -856,12 +918,13 @@
 
         .price-box {
             position: relative;
-            background: rgba(255, 255, 255, 0.22);
-            backdrop-filter: blur(30px);
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
             padding: 3rem;
-            border-radius: 30px;
-            border: 2.5px solid rgba(255, 255, 255, 0.45);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
             transition: var(--transition-smooth);
             width: 100%;
             box-sizing: border-box;
@@ -3154,9 +3217,16 @@
     <section class="hero" id="main-content" role="main">
         <div class="hero-bg-layer"></div>
         <div class="hero-bg-image">
-            <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-hidden="true" x5-video-player-type="h5" x5-playsinline="true" webkit-playsinline="true" poster="images/galeria/hero-poster.jpg">
-                <source src="images/galeria/Inicio.mp4" type="video/mp4">
-            </video>
+            <iframe
+                class="hero-bg-video"
+                src="https://www.youtube.com/embed/kZe0mQ3J7Io?autoplay=1&mute=1&loop=1&playlist=kZe0mQ3J7Io&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080"
+                title="Bocas del Toro — Paraíso Caribeño"
+                frameborder="0"
+                allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+                loading="eager"
+                aria-hidden="true"></iframe>
         </div>
         <div class="hero-overlay"></div>
         <div class="container">
